@@ -18,7 +18,7 @@ tests the intergration of the Delfi-PQ system
 
 ## Repository overview
 Besides this README file, the repository includes following files:
-- **arduino.ino**:
+- **arduino_feedback.ino**:
 - **blablabla**:
 - **blablabla**:
 
