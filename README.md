@@ -60,7 +60,7 @@ and saves comment
 
 ### Hardware
 In order to use the scripts provided in this repository, the user will need following hardware items: 
-- **SimpleLink™ MSP432P401R LaunchPad**: Simulating the
+- **SimpleLink™ MSP432P401R LaunchPad**: Runs python scripts and is simulating the Delfi-PQ subsystem
 - **Arduino (UNO, MEGA, ect.)**: Used as the external hardware 
 - **Wires and Breadboard**: To connect the LaunchPad and Arduino
 
