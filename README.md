@@ -16,12 +16,19 @@ This project will focus on the design and implementation of a solution for verif
 - hard ware itself does not detect if the led is on itself
 tests the intergration of the Delfi-PQ system
 
+## Repository overview
+Besides this README file, the repository includes following files:
+- **arduino.ino**:
+- **blablabla**:
+- **blablabla**:
+
 ## Design
+
+
 
 so i was thinking of having something that says each 5/10 seconds: The LED is ON (like, if serial reads 1, print this)
 
 if the user sets it to off and it's on, it says: Error, output is not what was chosen. Log file saved; then it saves a file with the time, with what was chosen and what it read
-
 
 
 tell user what to do
@@ -45,17 +52,29 @@ log file will be saved, saves error
 and saves comment
 
 
+### Python block diagram
+### Arduino block diagram
+
+
 ## How to use
 
-### Hardware necessary
-### Software
+### Hardware
+In order to use the scripts provided in this repository, the user will need following hardware items: 
+- **SimpleLink™ MSP432P401R LaunchPad**: Simulating the
+- **Arduino (UNO, MEGA, ect.)**: Used as the external hardware 
+- **Wires and Breadboard**: To connect the LaunchPad and Arduino
+
+
 
 java file running - as local host
-run python script
+
+in stall py.serial library  in order to allows communication between python and arduino
+
+run python script 
 
 commend  to open and be in right directory 
 libraries
-py.serial library 
+
 
 
 ## Results
