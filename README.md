@@ -96,9 +96,9 @@ Following, the user will provide the subsystem with a command to execute a task,
 
 ## Issues encountered
 
-- the connection between board and egse is not established: remedy, try until it is
+- the connection between LaunchPad and EGSE is not established: remedy: try until it is
 
 
 ## Future changes and recommendations
-instead of connecting to the led can be used 
+instead of connecting to the led can be used to verify the funcionality of another Delfi-PQ subsystem
 
