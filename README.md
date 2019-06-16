@@ -58,13 +58,15 @@ and saves comment
 
 ## How to use
 
-### Hardware
+### Requiered hardware
+
 In order to use the scripts provided in this repository, the user will need following hardware items: 
 - **SimpleLink™ MSP432P401R LaunchPad**: Runs python scripts and is simulating the Delfi-PQ subsystem
 - **Arduino (UNO, MEGA, ect.)**: Used as the external hardware 
 - **Wires and Breadboard**: To connect the LaunchPad and Arduino
 
 
+### Implementing the software
 
 java file running - as local host
 
@@ -74,6 +76,19 @@ run python script
 
 commend  to open and be in right directory 
 libraries
+
+(does this belong into design? no, right?)
+
+When xxx.py is running, the user will be provided with the commands available and a short description thereof:
+```
+command 1 - blablabla
+command 2 - ---------
+command 3 - --------
+Press Ctrl + C: Exit program
+```
+Following, the user will provide the subsystem with a command to execute a task, here either 'Turn LED on' or 'Turn LED off'.
+...
+
 
 
 
