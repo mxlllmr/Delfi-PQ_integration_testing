@@ -7,23 +7,8 @@ Authors: Maxi Gallbrecht, Tiago Costa
 This python script has the purpose to test the communication with the ADB
 subsystem of the Delfi-PQ.
 
-Here, the one of the four powerbusses is tested and verified through communication with
+Here, the one of the four power busses is tested and verified through communication with
 the ADB itself and an Arduino, that reads the voltage levels
-
-Changes to the client.py
-
-Testing ADB subsystem:
-In order to test the ADB subsystem, you need to remove line 1475 in
-EPS.xml "<xtce:ArgumentAssignment argumentName="Destination" argumentValue="DEBUG"/>".
-That way you can send the command to the ADB.
-You need to add the "Destination" field in python with either "DEBUG" or "ADB".
-Testing ADB can happen with setting 255 in "536874505" memory address.
-
-Command for controlling EPS power bus:
-
-Command "EPSBusSW" with fields:
-"EPSParam" = "Bus1Sw" /"Bus2Sw" /"Bus3Sw" /"Bus4Sw"
-"state" = "BUSSwOff"/"BUSSwOff"
 
 '''
 
@@ -408,7 +393,7 @@ t.start()
 
 initialization() # Verification of connection with the board
 
-busNumber=choose_bus_number() # Choosing one bus number 1 to 4
+choose_bus_number() # Choosing one bus (number 1 to 4)
 
 t2=threading.Thread(target=send_packets) # Sending commands
 t2.start()
