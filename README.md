@@ -68,6 +68,8 @@ In order to use the scripts provided in this repository, the user will need foll
 
 ### Implementing the software
 
+NOT TO FORGET: in the readme, we need to specify that the arduino has to be connected in the format of "/dev/ttyACM(...)", else the program does not recognise it. In case this is different, one must change that line to the specific designation (like "COM(...)")
+
 java file running - as local host
 
 in stall py.serial library  in order to allows communication between python and arduino
