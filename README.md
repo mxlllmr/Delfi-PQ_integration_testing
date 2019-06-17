@@ -19,8 +19,8 @@ tests the intergration of the Delfi-PQ system
 ## Repository overview
 Besides this README file, the repository includes following files:
 - **arduino_feedback.ino**:
-- **blablabla**:
-- **blablabla**:
+- **bla.py**:
+- **blab.py**:
 
 ## Design
 
@@ -81,9 +81,9 @@ libraries
 
 When xxx.py is running, the user will be provided with the commands available and a short description thereof:
 ```
-command 1 - blablabla
-command 2 - ---------
-command 3 - --------
+command 1: ---------
+command 2: ---------
+command 3: --------
 Press Ctrl + C: Exit program
 ```
 Following, the user will provide the subsystem with a command to execute a task, here either 'Turn LED on' or 'Turn LED off'.
