@@ -30,7 +30,7 @@ Command "EPSBusSW" with fields:
 import threading
 import sys
 import pq_module as pq
-import pq_comms_ADB as pqc
+import pq_comms as pqc
 import time
 import signal
 import sys
