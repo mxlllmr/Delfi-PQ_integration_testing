@@ -38,6 +38,8 @@ general Idea ......
 #### Python block diagrams
 
 
+<img src="images/setup_LED.jpg" width="500">
+
 so i was thinking of having something that says each 5/10 seconds: The LED is ON (like, if serial reads 1, print this)
 
 if the user sets it to off and it's on, it says: Error, output is not what was chosen. Log file saved; then it saves a file with the time, with what was chosen and what it read
