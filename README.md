@@ -19,16 +19,23 @@ tests the intergration of the Delfi-PQ system
 ## Repository overview
 Besides this README file, the repository includes following files:
 - **arduino_feedback.ino**:
-- **client.py**:
 - **client_LED.py**:
 - **client_ADB.py**:
 - **client_ADB_noUI.py**:
 - **pq_comms.py**:
 
 
-
 ## Design
 
+general Idea ......
+
+### Arduino 
+
+#### Arduino block diagram
+
+### Python
+
+#### Python block diagrams
 
 
 so i was thinking of having something that says each 5/10 seconds: The LED is ON (like, if serial reads 1, print this)
@@ -57,9 +64,6 @@ log file will be saved, saves error
 and saves comment
 
 
-### Python block diagram
-### Arduino block diagram
-
 
 ## How to use
 
@@ -70,8 +74,13 @@ In order to use the scripts provided in this repository, the user will need foll
 - **Arduino (UNO, MEGA, ect.)**: Used as the external hardware 
 - **Wires and Breadboard**: To connect the LaunchPad and Arduino
 
+### Software implementation
 
-### Implementing the software
+#### How to use client_LED.py
+
+#### How to use client_ADB.py
+
+#### How to use client_ADB_noUI.py
 
 NOT TO FORGET: in the readme, we need to specify that the arduino has to be connected in the format of "/dev/ttyACM(...)", else the program does not recognise it. In case this is different, one must change that line to the specific designation (like "COM(...)")
 
@@ -95,8 +104,6 @@ Press Ctrl + C: Exit program
 ```
 Following, the user will provide the subsystem with a command to execute a task, here either 'Turn LED on' or 'Turn LED off'.
 ...
-
-
 
 
 ## Results
