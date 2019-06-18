@@ -184,7 +184,7 @@ class pq:
         msg = {}
         msg['_send_'] = 'EPSBusSW'
         msg['Destination'] = destination
-        msg['EPSParam'] = busNumber #sets EPS parameter to bus number
+        msg['EPSParam'] = busNumber #sets EPS parameter to bus 4
         msg['state'] = 'BUSSwOn'
 
         packet = json.dumps(msg, ensure_ascii=False)
@@ -204,7 +204,7 @@ class pq:
         msg = {}
         msg['_send_'] = 'EPSBusSW'
         msg['Destination'] = destination
-        msg['EPSParam'] = busNumber #sets EPS parameter to bus number
+        msg['EPSParam'] = busNumber #sets EPS parameter to bus 4
         msg['state'] = 'BUSSwOff'
 
         packet = json.dumps(msg, ensure_ascii=False)

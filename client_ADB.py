@@ -7,8 +7,23 @@ Authors: Maxi Gallbrecht, Tiago Costa
 This python script has the purpose to test the communication with the ADB
 subsystem of the Delfi-PQ.
 
-Here, the one of the four power busses is tested and verified through communication with
+Here, the one of the four powerbusses is tested and verified through communication with
 the ADB itself and an Arduino, that reads the voltage levels
+
+Changes to the client.py
+
+Testing ADB subsystem:
+In order to test the ADB subsystem, you need to remove line 1475 in
+EPS.xml "<xtce:ArgumentAssignment argumentName="Destination" argumentValue="DEBUG"/>".
+That way you can send the command to the ADB.
+You need to add the "Destination" field in python with either "DEBUG" or "ADB".
+Testing ADB can happen with setting 255 in "536874505" memory address.
+
+Command for controlling EPS power bus:
+
+Command "EPSBusSW" with fields:
+"EPSParam" = "Bus1Sw" /"Bus2Sw" /"Bus3Sw" /"Bus4Sw"
+"state" = "BUSSwOff"/"BUSSwOff"
 
 '''
 
@@ -81,13 +96,14 @@ FUNCTION send_packets
             calls a function to turn ON or OFF the powerbus.
 
 '''
-def send_packets():
+def send_packets(busNumber):
     global user
-    global busNumber
     global last_received
     global working
     while working:
         user_previous=user
+        #print('busNumber: '+str(busNumber)+ '')
+        #pq_class.busOFF("ADB",'Bus1Sw')
         user_input(user_previous) # gets and verifies user input
         if not working:
             break      # If the program finished while the thread was in 'input'
@@ -131,6 +147,7 @@ def user_input(user_previous):
 
     while 1:
         try:
+            print('Choose ON (press 1) or OFF (press 0).')
             user=input()
         except:
             if working==False:
@@ -194,16 +211,16 @@ def check(wait_time):
     while working:  # Wait time has to be !=0 for recheck and =0 for immediate check
         if first_input==True:
             if user==1 and last_received=='1':
-                print("ADB: The BUS is ON.")
+                print('Arduino: The BUS '+busNumber+' is ON.')
             elif user==0 and last_received=='0':
-                print("Arduino: The BUS is OFF.")
+                print('Arduino: The BUS '+busNumber+' is OFF.')
             elif user==0 and last_received=='1':
-                print("\nERROR: The BUS is ON, despite the input. Logfile generated")
+                print('\nERROR: The BUS '+busNumber+' is ON, despite the input. Logfile generated')
                 log()
                 print("Input set to 1\n")
                 user=1
             elif user==1 and last_received=='0':
-                print("\nERROR: The BUS is OFF, despite the input. Logfile generated")
+                print('\nERROR: The BUS '+busNumber+' is OFF, despite the input. Logfile generated')
                 log()
                 print("Input set to 0\n")
                 user=0
@@ -233,7 +250,7 @@ def log():
     logging.basicConfig(filename='log_BUS.log', pathname='./log_BUS.log',
     format='%(asctime)s - %(levelname)s - %(message)s\n',
                         datefmt='%d-%b-%y %H:%M:%S')
-    logging.error('Input was '+str(user)+' and BUS was '+bus+
+    logging.error('Input was '+str(user)+' and BUS '+busNumber+' was '+bus+
     '\nArduino detected an unwanted output. Check connections')
 
 '''
@@ -310,19 +327,21 @@ FUNCTION choose_bus_number
 '''
 
 def choose_bus_number():
-    global busNumber
+    busNumber = 0
 
     user_bus=input('Insert the BUS number (1,2,3,4):')
-    if user_bus == '1':
+    if user_bus == 1:
         busNumber = 'Bus1Sw'
-    elif user_bus == '2':
+    elif user_bus == 2:
         busNumber = 'Bus2Sw'
-    elif user_bus == '3':
+    elif user_bus == 3:
         busNumber = 'Bus3Sw'
-    elif user_bus == '4':
+    elif user_bus == 4:
         busNumber = 'Bus4Sw'
     else:
         print("The command is incorrect. Try again.")
+    print('' +busNumber+ ' was selected.')
+    return busNumber
 
 
 '''
@@ -346,7 +365,7 @@ def initialization():
     sys.stdout.write("\b" * (toolbar_width+1)) # return to start of line, after '['
 
     while not connected:
-        pq_class.ping_silent('DEBUG')
+        pq_class.ping_silent('ADB')
         packets = pq_class.get_packets()
         if packets:
             sys.stdout.write("#")
@@ -359,11 +378,11 @@ def initialization():
             print("\nConnected to the board!")
             print("\nThe application is ready for the BUS input")
             print("\nFirst, input 1, 2, 3 or 4 to select the ADB bus and press \'ENTER\'")
-            print("\nThen, input 1 or 0 to turn the selected bus ON or OFF and press \'ENTER\')")")
+            print("\nThen, input 1 or 0 to turn the selected bus ON or OFF and press \'ENTER\')")
             connected=True
 
         try:
-            time.sleep(1)
+            time.sleep(0.3)
         except KeyboardInterrupt:  # Exits if the user presses CTRL+C while pinging
             working=False
             print("\nExit.")
@@ -393,12 +412,12 @@ t.start()
 
 initialization() # Verification of connection with the board
 
-choose_bus_number() # Choosing one bus (number 1 to 4)
+busNumber=choose_bus_number() # Choosing one bus number 1 to 4
 
-t2=threading.Thread(target=send_packets) # Sending commands
+t2=threading.Thread(target=send_packets, args=(busNumber,)) # Sending commands
 t2.start()
 
-t3=threading.Thread(target=receiving, args=(arduino,)) # Arduino serial monitor
+t3=threading.Thread(target=receiving, args=(arduino,True,)) # Arduino serial monitor
 t3.start()                                             # reading
 
 t4=threading.Thread(target=check, args=(wait_time,))  # Arduino feedback
