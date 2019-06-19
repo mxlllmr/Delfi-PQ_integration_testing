@@ -17,5 +17,5 @@ void loop() {
   // Serial.print("This is loop number: "); Serial.print(k); Serial.print( '\n'); 
   // Serial.print("Your INPUT is:"); Serial.print( '\n'); 
   Serial.print(value); Serial.print( '\n');
-  delay(1000);
+  //delay(1000);
 }
