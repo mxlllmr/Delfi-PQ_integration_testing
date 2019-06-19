@@ -1,7 +1,6 @@
 # Delfi-PQ - Intergration testing
 
 ## Purpose
-(Maybe including that subsystems for small satellites do not consist of any additional units other then the ones absolute needed and cannot monitor the execution of the task; they only send commands and receive replies, but have no guarantee that it actually works.)
 
 Delfi-PQ belongs to the new type of miniaturized satellites, namely PocketQube satellites, which exhibit certain advantages over the widely used CubeSats. Due to their smaller size, PocketQubes bring a decrease in total cost and development time. The main objective of Delfi-PQ is to test the application of a PocketQube satellite for future missions since it is expected that the reduced development cycle will allow a comparably higher launch frequency, increasing flight experience and reliability of the system.
 
