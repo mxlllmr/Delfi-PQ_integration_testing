@@ -108,7 +108,9 @@ The Serial Monitor can be checked to verify its normal functioning. To help with
 
 #### ```client_LED.py```
 
-Libraries needed: ```numpy```, ```Pyserial```, ```threading```, ```sys```, ```time```, ```signal```, ```logging```
+Libraries needed: ```numpy```, ```serial```, ```threading```, ```sys```, ```time```, ```signal```, ```logging```, ```json```, ```socket```
+
+Files needed in repository: ```pq_module.py```, ```pq_comms.py```
 
 Commands: 
 
@@ -124,14 +126,19 @@ in the terminal. After making sure the connection and emulation of the LaunchPad
 ```
 python client_LED.py localhost:8080
 ```
-*NOTE: the last two commands should be executed with terminal running in the respective folders where the invoked files exist. Else, simply replacing the files names by the full directory should suffice.*
+*NOTE: the last two commands should be executed with terminal running in the respective folders where the invoked files/paths exist. Else, simply replacing the files names by the full directory should suffice.*
 
 A message of how to utilise the program will appear:
 
 ```
-Welcome to...
-(...)
-Choose Arduino port (0,1,2,...): 
+#################################################################
+Welcome to the LED detection software!
+This application prints out every 10 seconds the Arduino feedback
+The commands are: 1 to turn the LED ON, 0 to turn it OFF.
+To exit the application press 'CTRL+C'
+#################################################################
+
+'Insert the arduino port (0,1,2,...):'
 ```
 
 Choose the port that connects the Arduino to the PC.
@@ -146,7 +153,7 @@ Each ```#``` represents a successful ping with the DEBUG subsystem of the board.
 
 Finally, the program is ready to take commands to turn ON and OFF the LED. Every 10 seconds (after the first user input) an update on the Arduino feedback is printed on the screen. Every time a user inputs 1/0 (+ENTER), the message that is sent to the board is printed. If there is feedback from the board, the following should appear:
 ```
-Command received from DEBUG
+Command received in DEBUG
 ```
 Additionally, an immediate Arduino feedback check is performed.
 
