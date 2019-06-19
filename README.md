@@ -84,8 +84,8 @@ Libraries needed: ```numpy```, ```Pyserial```,(...) - in the 'import' section)
 
 Commands: 
 
-- **0,1,2,... followed by ENTER**: Chooses Arduino port
-- **0/1 followed by ENTER**: Turns OFF/ON the LED
+- **0,1,2,... followed by ENTER**: Chooses the Arduino port
+- **0/1 followed by ENTER**: Sends a command to turn OFF/ON the LED
 - **CTRL+c followed by ENTER**: Exits the program
 
 First, run the EGSE software. This Java software should be in a local folder, and it runs by writing:
