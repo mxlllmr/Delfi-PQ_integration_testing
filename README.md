@@ -69,7 +69,7 @@ and saves comment
 
 ## How to use
 
-### Requiered hardware
+### Required hardware
 
 In order to use the scripts provided in this repository, the user will need the following hardware items: 
 - **SimpleLink™ MSP432P401R LaunchPad**: Communicates with the python scripts and is simulating the Delfi-PQ subsystem
@@ -96,6 +96,7 @@ in the terminal. After making the connection and emulation of the LaunchPad boar
 ```
 python client_LED.py localhost:8080
 ```
+*NOTE: the last two commands should be executed with terminal running in the respective folders where the invoked files exist. Else, simply replacing the files names by the full directory should suffice.*
 
 A message of how to utilise the program will appear:
 
@@ -106,7 +107,7 @@ Choose Arduino port (0,1,2,...):
 ```
 
 Choose the port that connects the Arduino to the CPU. 
-NOTE: The Arduino board has to be connected in the format of ```/dev/ttyACM(...)```, else the program does not recognise it. In case the connection to the CPU has a different designation, change line (XXXXX) of ```client_LED.py``` to the specific designation (for example, ```COM(...)```)
+*NOTE: The Arduino board has to be connected in the format of ```/dev/ttyACM(...)```, else the program does not recognise it. In case the connection to the CPU has a different designation, change line (XXXXX) of ```client_LED.py``` to the specific designation (for example, ```COM(...)```)*
 
 If the connection is established, the program will attempt to connect to the LaunchPad board. This is represented by a progress bar that looks like the following:
 ```
@@ -122,7 +123,7 @@ Additionally, an immediate Arduino feedback check is performed.
 
 Anytime the Arduino disagrees with the subsystem feedback, an ERROR message is saved in an external .log file.
 
-FINAL REMARKS: This program is protected such that if any undesired input exists, a 'try again' type of notification is printed; The ```ENTER``` command after ```CTRL+c``` is required because there is an existing thread that contains the function ```input()``` that stalls the program. The waiting period is demanded such that existing ```time.sleep()``` functions cease.
+*FINAL REMARKS: This program is protected such that if any undesired input exists, a 'try again' type of notification is printed; The ```ENTER``` command after ```CTRL+c``` is required because there is an existing thread that contains the function ```input()``` that stalls the program. The waiting period is demanded such that existing ```time.sleep()``` functions cease.*
 
 #### How to use client_ADB.py
 
