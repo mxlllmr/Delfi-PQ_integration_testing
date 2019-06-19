@@ -106,7 +106,8 @@ Welcome to...
 Choose Arduino port (0,1,2,...): 
 ```
 
-Choose the port that connects the Arduino to the CPU. 
+Choose the port that connects the Arduino to the CPU.
+
 *NOTE: The Arduino board has to be connected in the format of ```/dev/ttyACM(...)```, else the program does not recognise it. In case the connection to the CPU has a different designation, change line (XXXXX) of ```client_LED.py``` to the specific designation (for example, ```COM(...)```)*
 
 If the connection is established, the program will attempt to connect to the LaunchPad board. This is represented by a progress bar that looks like the following:
