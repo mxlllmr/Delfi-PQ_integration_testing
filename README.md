@@ -122,7 +122,15 @@ The Serial Monitor can be checked to verify its normal functioning. To help with
 ```
 sudo java -jar target/PQ9EGSE-0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
-in the terminal. After making sure the connection and emulation of the LaunchPad board is established (this can be verified by opening the browser in ```localhost:8080```), run the python script as:
+in the terminal.
+
+2. Choose the LaunchPad port in the EGSE software. this done by opening the browser in ```localhost:8080``` and choosing the port as in the picture below:
+
+<img src="https://user-images.githubusercontent.com/50111548/59802762-82e45180-929e-11e9-88b3-2b25fda94401.JPG" width="700"/>
+
+By trial and error, the user can choose a port and verify if it is the correct one by pinging to the DEBUG and verifying a response in the DataLog.
+
+3. Run the python script as:
 ```
 python client_LED.py localhost:8080
 ```
