@@ -16,6 +16,10 @@ Besides this README file, the repository includes the following files:
 - **client_ADB_noUI.py**: Python script without UI to change the state of the ADB power (?????????)
 - **pq_comms.py**: Python script that converts the commands of the client scripts into messages that are sent to the board
 
+Additionally, the remaining necessary files (that were not created or modified by us) are included, such as:
+- **pq_module.py**
+- **EGSE software**: in the folder "PQ9EGSE-master"
+
 ## Literature background
 
 ### Integration testing
