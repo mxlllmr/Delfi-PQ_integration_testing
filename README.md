@@ -80,7 +80,7 @@ In order to use the scripts provided in this repository, the user will need the 
 
 #### How to use client_LED.py
 
-Libraries needed: ```numpy```, (...) - in the 'import' section)
+Libraries needed: ```numpy```, ```Pyserial```,(...) - in the 'import' section)
 
 Commands: 
 
@@ -129,29 +129,6 @@ Anytime the Arduino disagrees with the subsystem feedback, an ERROR message is s
 #### How to use client_ADB.py
 
 #### How to use client_ADB_noUI.py
-
-NOT TO FORGET: in the readme, we need to specify that the arduino has to be connected in the format of "/dev/ttyACM(...)", else the program does not recognise it. In case this is different, one must change that line to the specific designation (like "COM(...)")
-
-java file running - as localhost
-
-install py.serial library  in order to allow communication between python and Arduino
-
-run python script 
-
-a command  to open and be in the right directory 
-libraries
-
-(does this belong into design? no, right?)
-
-When xxx.py is running, the user will be provided with the commands available and a short description thereof:
-```
-command 1: ---------
-command 2: ---------
-command 3: --------
-Press Ctrl + C: Exit program
-```
-Additionally, the user will provide the subsystem with a command to execute a task, here either 'Turn LED on' or 'Turn LED off'.
-...
 
 ## Results
 
