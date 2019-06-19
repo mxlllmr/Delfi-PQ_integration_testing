@@ -133,7 +133,7 @@ Anytime the Arduino disagrees with the subsystem feedback, an ERROR message is s
 
 
 ## Future changes and recommendations
-- Instead of connecting to the LED can be used to verify the funcionality of another Delfi-PQ subsystem
+- Instead of connecting to the LED, this can be used to verify the funcionality of another Delfi-PQ subsystem
 
--
+- ?
 
