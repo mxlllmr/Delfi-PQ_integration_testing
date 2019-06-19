@@ -9,13 +9,6 @@ To ensure that the respective subsystems are operational, the integration of the
 
 This project will focus on the design and implementation of a solution for verifying the successful execution of a command given to the subsystem. In particular, the verification of the LED command to the LaunchPad (Texas Instruments) board is demonstrated via external hardware (Arduino Mega). This software is intended to be modified easily in order to adapt the integration testing to different subsystems of the Delfi-PQ.
 
-
-- receiving feedback from external hardware if the command given to the board was successfully executed
-- verification
-- when in space no-one can check if the led is actually on
-- hard ware itself does not detect if the led is on itself
-tests the intergration of the Delfi-PQ system
-
 ## Repository overview
 Besides this README file, the repository includes the following files:
 - **arduino_feedback.ino**:
