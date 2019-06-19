@@ -18,7 +18,6 @@ import pq_module as pq
 import pq_comms as pqc
 import time
 import signal
-import sys
 import serial
 import logging
 
