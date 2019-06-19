@@ -97,7 +97,7 @@ In order to use the scripts provided in this repository, the user will need the 
 
 ### Software implementation
 
-To run the following software, Arduino IDE, Python 2x and Java must be installed in the user's PC.
+To run the following software, Arduino IDE, Python 2x and Java must be installed in the user's PC. This software must be cloned or forked there as well.
 
 #### ```arduino_microsat.ino```
 
