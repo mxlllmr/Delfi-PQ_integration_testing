@@ -30,7 +30,6 @@ general Idea ......
 #### Python block diagrams
 
 
-<img src="images/setup_LED.jpg" width="500">
 
 so I was thinking of having something that says every 5/10 seconds: The LED is ON (like, if serial reads 1, print this)
 
@@ -67,6 +66,10 @@ In order to use the scripts provided in this repository, the user will need the 
 - **SimpleLink™ MSP432P401R LaunchPad**: Communicates with the python scripts and is simulating the Delfi-PQ subsystem
 - **Arduino (UNO, MEGA, etc.)**: Used as the external hardware 
 - **Wires and Breadboard**: To connect the LaunchPad and Arduino
+
+<img src="images/setup_LED.jpg" width="400">
+
+<img src="images/setup_ADB.jpg" width="600">
 
 ### Software implementation
 
