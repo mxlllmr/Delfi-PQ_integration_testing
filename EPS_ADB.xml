@@ -1,0 +1,1585 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtce:SpaceSystem xmlns:xtce="http://www.omg.org/space/xtce" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Delfi-PQ" xsi:schemaLocation="http://www.omg.org/space/xtce SpaceSystemV1.2-27Feb2014-mods.xsd" shortDescription="Defines bus frames for Delfi-PQ">
+    <xtce:LongDescription>Delfi-PQ data frames description.</xtce:LongDescription>
+    <xtce:Header version="1.0" validationStatus="Draft">
+        <xtce:AuthorSet>
+            <xtce:Author>Stefano Speretta, Delft University of Technology</xtce:Author>
+            <xtce:Author>Nikitas Chronas Foteinakis, Delft University of Technology</xtce:Author>
+        </xtce:AuthorSet>
+        <xtce:NoteSet>
+            <xtce:Note>This file describes the PQ9 bus frames for Delfi-PQ.</xtce:Note>
+        </xtce:NoteSet>
+    </xtce:Header>
+    <!-- All things pertaining to telemetry fall within the TelemetryMetaData section. -->
+    <!-- Some system level parameter type definitions in this section can be used by both telemetry and commands. -->
+    <xtce:TelemetryMetaData>
+        <xtce:ParameterTypeSet>
+            <xtce:EnumeratedParameterType name="AddressType">
+                <xtce:UnitSet/>
+                <xtce:IntegerDataEncoding sizeInBits="8" encoding="unsigned"/>
+                <xtce:EnumerationList>
+                    <xtce:Enumeration label="OBC" value="1"/>
+                    <xtce:Enumeration label="EPS" value="2"/>
+                    <xtce:Enumeration label="ADB" value="3"/>
+                    <xtce:Enumeration label="COMMS" value="4"/>
+                    <xtce:Enumeration label="ADCS" value="5"/>
+                    <xtce:Enumeration label="MPP" value="6"/>
+                    <xtce:Enumeration label="DEBUG" value="7"/>
+                    <xtce:Enumeration label="EGSE" value="8"/>
+                </xtce:EnumerationList>
+            </xtce:EnumeratedParameterType>
+            <xtce:EnumeratedParameterType name="ServiceType">
+                <xtce:UnitSet/>
+                <xtce:IntegerDataEncoding sizeInBits="8" encoding="unsigned"/>
+                <xtce:EnumerationList>
+                    <xtce:Enumeration label="Housekeeping" value="3"/>
+                    <xtce:Enumeration label="Ackownledgment" value="4"/>
+                    <xtce:Enumeration label="PacketStats" value="6"/>
+                    <xtce:Enumeration label="Ping" value="17"/>
+                    <xtce:Enumeration label="Testing" value="21"/>
+                    <xtce:Enumeration label="RX" value="55"/>
+                </xtce:EnumerationList>
+            </xtce:EnumeratedParameterType>
+            <xtce:EnumeratedParameterType name="RequestType">
+                <xtce:UnitSet/>
+                <xtce:IntegerDataEncoding sizeInBits="8" encoding="unsigned"/>
+                <xtce:EnumerationList>
+                    <xtce:Enumeration label="Request" value="1"/>
+                    <xtce:Enumeration label="Reply" value="2"/>
+                    <xtce:Enumeration label="ACKErrorReply" value="4"/>
+                    <xtce:Enumeration label="RF_TX" value="6"/>
+                    <xtce:Enumeration label="Start_master" value="7"/>
+                   <xtce:Enumeration label="Stop_master" value="8"/>
+                </xtce:EnumerationList>
+            </xtce:EnumeratedParameterType>
+            <xtce:EnumeratedParameterType name="sensorBitStatus">
+                <xtce:UnitSet/>
+                <xtce:IntegerDataEncoding sizeInBits="1" encoding="unsigned"/>
+                <xtce:EnumerationList>
+                    <xtce:Enumeration label="Working" value="1"/>
+                    <xtce:Enumeration label="Error" value="0"/>
+                </xtce:EnumerationList>
+            </xtce:EnumeratedParameterType>
+            <xtce:IntegerParameterType name="byte">
+                <xtce:UnitSet/>
+                <xtce:IntegerDataEncoding sizeInBits="8"/>
+            </xtce:IntegerParameterType>
+            <xtce:IntegerParameterType name="short">
+                <xtce:UnitSet/>
+                <xtce:IntegerDataEncoding sizeInBits="16"/>
+            </xtce:IntegerParameterType>
+            <xtce:IntegerParameterType name="long">
+                <xtce:UnitSet/>
+                <xtce:IntegerDataEncoding sizeInBits="32"/>
+            </xtce:IntegerParameterType>
+            <xtce:FloatParameterType name="INAvoltage">
+                <xtce:UnitSet>
+                    <xtce:Unit>V</xtce:Unit>
+                </xtce:UnitSet>
+                <xtce:IntegerDataEncoding sizeInBits="16">
+                    <xtce:DefaultCalibrator>
+                        <xtce:MathOperationCalibrator>
+                            <xtce:ThisParameterOperand/>
+                            <xtce:ValueOperand>0.00125</xtce:ValueOperand>
+                            <xtce:Operator>*</xtce:Operator>
+                        </xtce:MathOperationCalibrator>
+                    </xtce:DefaultCalibrator>
+                </xtce:IntegerDataEncoding>
+                <xtce:ValidRange minExclusive="0.0" maxExclusive="81.0" validRangeAppliesToCalibrated="true"/>
+            </xtce:FloatParameterType>
+            <xtce:FloatParameterType name="INAcurrent">
+                <xtce:UnitSet>
+                    <xtce:Unit>A</xtce:Unit>
+                </xtce:UnitSet>
+                <xtce:IntegerDataEncoding sizeInBits="16">
+                    <xtce:DefaultCalibrator>
+                        <xtce:MathOperationCalibrator>
+                            <xtce:ThisParameterOperand/>
+                            <xtce:ValueOperand>0.00009</xtce:ValueOperand>
+                            <xtce:Operator>*</xtce:Operator>
+                        </xtce:MathOperationCalibrator>
+                    </xtce:DefaultCalibrator>
+                </xtce:IntegerDataEncoding>
+                <xtce:ValidRange minExclusive="0.0" maxExclusive="81.0" validRangeAppliesToCalibrated="true"/>
+            </xtce:FloatParameterType>
+            <xtce:FloatParameterType name="SUBSSYSuptime">
+                <xtce:UnitSet>
+                    <xtce:Unit>s</xtce:Unit>
+                </xtce:UnitSet>
+                <xtce:IntegerDataEncoding sizeInBits="32">
+                    <xtce:DefaultCalibrator>
+                        <xtce:MathOperationCalibrator>
+                            <xtce:ThisParameterOperand/>
+                            <xtce:ValueOperand>0.001</xtce:ValueOperand>
+                            <xtce:Operator>*</xtce:Operator>
+                        </xtce:MathOperationCalibrator>
+                    </xtce:DefaultCalibrator>
+                </xtce:IntegerDataEncoding>
+            </xtce:FloatParameterType>
+            <xtce:FloatParameterType name="TMPtemperature">
+                <xtce:UnitSet>
+                    <xtce:Unit>°C</xtce:Unit>
+                </xtce:UnitSet>
+                <xtce:IntegerDataEncoding sizeInBits="16">
+                    <xtce:DefaultCalibrator>
+                        <xtce:MathOperationCalibrator>
+                            <xtce:ThisParameterOperand/>
+                            <xtce:ValueOperand>0.0625</xtce:ValueOperand>
+                            <xtce:Operator>*</xtce:Operator>
+                        </xtce:MathOperationCalibrator>
+                    </xtce:DefaultCalibrator>
+                </xtce:IntegerDataEncoding>
+                <xtce:ValidRange minExclusive="0.0" maxExclusive="81.0" validRangeAppliesToCalibrated="true"/>
+            </xtce:FloatParameterType>
+            <xtce:FloatParameterType name="MCUtemperature">
+                <xtce:UnitSet>
+                    <xtce:Unit>°C</xtce:Unit>
+                </xtce:UnitSet>
+                <xtce:IntegerDataEncoding sizeInBits="16">
+                    <xtce:DefaultCalibrator>
+                        <xtce:MathOperationCalibrator>
+                            <xtce:ThisParameterOperand/>
+                            <xtce:ValueOperand>55</xtce:ValueOperand>
+                            <xtce:Operator>*</xtce:Operator>
+                            <xtce:ValueOperand>30</xtce:ValueOperand>
+                            <xtce:Operator>+</xtce:Operator>
+                        </xtce:MathOperationCalibrator>
+                    </xtce:DefaultCalibrator>
+                </xtce:IntegerDataEncoding>
+                <xtce:ValidRange minExclusive="0.0" maxExclusive="81.0" validRangeAppliesToCalibrated="true"/>
+            </xtce:FloatParameterType>
+            <xtce:EnumeratedParameterType name="bitStatus">
+                <xtce:UnitSet/>
+                <xtce:IntegerDataEncoding sizeInBits="1" encoding="unsigned"/>
+                <xtce:EnumerationList>
+                    <xtce:Enumeration label="OFF" value="0"/>
+                    <xtce:Enumeration label="ON" value="1"/>
+                </xtce:EnumerationList>
+            </xtce:EnumeratedParameterType>
+            <xtce:ArrayParameterType name="bitStatusArray" arrayTypeRef="bitStatus" numberOfDimensions="1"/>
+            <xtce:ArrayParameterType name="shortArray" arrayTypeRef="short" numberOfDimensions="1"/>
+        </xtce:ParameterTypeSet>
+        <xtce:ParameterSet>
+            <!-- These are parameters that may be used in abstract telemetry or command containers to define system-level settings. -->
+            <xtce:Parameter name="Destination" parameterTypeRef="AddressType"/>
+            <xtce:Parameter name="Size" parameterTypeRef="byte"/>
+            <xtce:Parameter name="Source" parameterTypeRef="AddressType"/>
+            <xtce:Parameter name="Counter" parameterTypeRef="short"/>
+            <xtce:Parameter name="Service" parameterTypeRef="ServiceType"/>
+            <xtce:Parameter name="Request" parameterTypeRef="RequestType"/>
+            <xtce:Parameter name="Uptime" parameterTypeRef="SUBSSYSuptime"/>
+            <xtce:Parameter name="testing4" parameterTypeRef="long"/>
+            <xtce:Parameter name="BootCounter" parameterTypeRef="short"/>
+            <xtce:Parameter name="SoftwareBootCounter" parameterTypeRef="byte"/>
+            <xtce:Parameter name="Sensor0Status" parameterTypeRef="sensorBitStatus"/>
+            <xtce:Parameter name="Sensor1Status" parameterTypeRef="sensorBitStatus"/>
+            <xtce:Parameter name="Sensor2Status" parameterTypeRef="sensorBitStatus"/>
+            <xtce:Parameter name="Sensor3Status" parameterTypeRef="sensorBitStatus"/>
+            <xtce:Parameter name="Sensor4Status" parameterTypeRef="sensorBitStatus"/>
+            <xtce:Parameter name="Sensor5Status" parameterTypeRef="sensorBitStatus"/>
+            <xtce:Parameter name="Sensor6Status" parameterTypeRef="sensorBitStatus"/>
+            <xtce:Parameter name="Sensor7Status" parameterTypeRef="sensorBitStatus"/>
+            <xtce:Parameter name="Sensor8Status" parameterTypeRef="sensorBitStatus"/>
+            <xtce:Parameter name="Sensor9Status" parameterTypeRef="sensorBitStatus"/>
+            <xtce:Parameter name="Sensor10Status" parameterTypeRef="sensorBitStatus"/>
+            <xtce:Parameter name="Sensor11Status" parameterTypeRef="sensorBitStatus"/>
+            <xtce:Parameter name="Sensor12Status" parameterTypeRef="sensorBitStatus"/>
+            <xtce:Parameter name="Sensor13Status" parameterTypeRef="sensorBitStatus"/>
+            <xtce:Parameter name="Sensor14Status" parameterTypeRef="sensorBitStatus"/>
+            <xtce:Parameter name="Sensor15Status" parameterTypeRef="sensorBitStatus"/>
+            <xtce:Parameter name="testing2" parameterTypeRef="short"/>
+            <xtce:Parameter name="MCUTemp" parameterTypeRef="MCUtemperature"/>
+        </xtce:ParameterSet>
+        <xtce:ContainerSet>
+            <xtce:SequenceContainer name="PQ9" abstract="true" shortDescription="PQ9 frame">
+                <xtce:LongDescription>This is the message header used to transfer data on the internal bus. All other messages implement it.</xtce:LongDescription>
+                <xtce:EntryList>
+                    <xtce:ParameterRefEntry parameterRef="Destination"/>
+                    <xtce:ParameterRefEntry parameterRef="Size"/>
+                    <xtce:ParameterRefEntry parameterRef="Source"/>
+                    <xtce:ParameterRefEntry parameterRef="Counter"/>
+                    <xtce:ParameterRefEntry parameterRef="Service"/>
+                    <xtce:ParameterRefEntry parameterRef="Request"/>
+                </xtce:EntryList>
+            </xtce:SequenceContainer>
+            <xtce:SequenceContainer name="HousekeepingHeader" shortDescription="Common Housekeeping frame header">
+                <xtce:LongDescription>This header is used in all housekeeping frames.</xtce:LongDescription>
+                <xtce:EntryList>
+                    <xtce:ParameterRefEntry parameterRef="Uptime"/>
+                    <xtce:ParameterRefEntry parameterRef="testing4"/>
+                    <xtce:ParameterRefEntry parameterRef="BootCounter"/>
+                    <xtce:ParameterRefEntry parameterRef="SoftwareBootCounter"/>
+                </xtce:EntryList>
+            </xtce:SequenceContainer>
+            <xtce:SequenceContainer name="PingRequest" shortDescription="Ping request">
+                <xtce:LongDescription>This message is used to send a ping request to the subsystem.</xtce:LongDescription>
+                <xtce:EntryList>
+                </xtce:EntryList>
+                <xtce:BaseContainer containerRef="PQ9">
+                    <xtce:RestrictionCriteria>
+                        <xtce:ComparisonList>
+                            <xtce:Comparison parameterRef="Service" value="Ping"/>
+                            <xtce:Comparison parameterRef="Request" value="Request"/>
+                        </xtce:ComparisonList>
+                    </xtce:RestrictionCriteria>
+                </xtce:BaseContainer>
+            </xtce:SequenceContainer>
+            <xtce:SequenceContainer name="PingReply" shortDescription="Ping reply">
+                <xtce:LongDescription>This message is used to send a ping reply to the master.</xtce:LongDescription>
+                <xtce:EntryList>
+                </xtce:EntryList>
+                <xtce:BaseContainer containerRef="PQ9">
+                    <xtce:RestrictionCriteria>
+                        <xtce:ComparisonList>
+                            <xtce:Comparison parameterRef="Service" value="Ping"/>
+                            <xtce:Comparison parameterRef="Request" value="Reply"/>
+                        </xtce:ComparisonList>
+                    </xtce:RestrictionCriteria>
+                </xtce:BaseContainer>
+            </xtce:SequenceContainer>
+            <xtce:SequenceContainer name="HousekeepingRequest" shortDescription="Housekeeping request">
+                <xtce:LongDescription>This message is used to request the housekeeping frame to the subsystem.</xtce:LongDescription>
+                <xtce:EntryList>&#13;</xtce:EntryList>
+                <xtce:BaseContainer containerRef="PQ9">
+                    <xtce:RestrictionCriteria>
+                        <xtce:ComparisonList>
+                            <xtce:Comparison parameterRef="Service" value="Housekeeping"/>
+                            <xtce:Comparison parameterRef="Request" value="Request"/>
+                        </xtce:ComparisonList>
+                    </xtce:RestrictionCriteria>
+                </xtce:BaseContainer>
+            </xtce:SequenceContainer>
+            <xtce:SequenceContainer name="HousekeepingReply" shortDescription="Housekeeping reply" abstract="true">
+                <xtce:LongDescription>This message is used to request the housekeeping frame to the subsystem.</xtce:LongDescription>
+                <xtce:EntryList>&#13;</xtce:EntryList>
+                <xtce:BaseContainer containerRef="PQ9">
+                    <xtce:RestrictionCriteria>
+                        <xtce:ComparisonList>
+                            <xtce:Comparison parameterRef="Service" value="Housekeeping"/>
+                            <xtce:Comparison parameterRef="Request" value="Reply"/>
+                        </xtce:ComparisonList>
+                    </xtce:RestrictionCriteria>
+                </xtce:BaseContainer>
+            </xtce:SequenceContainer>
+            <xtce:SequenceContainer name="SendRFFrame" shortDescription="Send RF frame">
+                <xtce:EntryList>
+                </xtce:EntryList>
+                <xtce:BaseContainer containerRef="PQ9">
+                    <xtce:RestrictionCriteria>
+                        <xtce:ComparisonList>
+                            <xtce:Comparison parameterRef="Service" value="Housekeeping"/>
+                            <xtce:Comparison parameterRef="Request" value="RF_TX"/>
+                        </xtce:ComparisonList>
+                    </xtce:RestrictionCriteria>
+                </xtce:BaseContainer>
+            </xtce:SequenceContainer>
+            <xtce:SequenceContainer name="ACK_OK_Reply" shortDescription="Ackownledgment OK reply">
+                <xtce:EntryList>&#13;</xtce:EntryList>
+                <xtce:BaseContainer containerRef="PQ9">
+                    <xtce:RestrictionCriteria>
+                        <xtce:ComparisonList>
+                            <xtce:Comparison parameterRef="Service" value="Ackownledgment"/>
+                            <xtce:Comparison parameterRef="Request" value="Reply"/>
+                        </xtce:ComparisonList>
+                    </xtce:RestrictionCriteria>
+                </xtce:BaseContainer>
+            </xtce:SequenceContainer>
+            <xtce:SequenceContainer name="ACK_ERROR_Reply" shortDescription="Ackownledgment ERROR reply">
+                <xtce:EntryList>&#13;</xtce:EntryList>
+                <xtce:BaseContainer containerRef="PQ9">
+                    <xtce:RestrictionCriteria>
+                        <xtce:ComparisonList>
+                            <xtce:Comparison parameterRef="Service" value="Ackownledgment"/>
+                            <xtce:Comparison parameterRef="Request" value="ACKErrorReply"/>
+                        </xtce:ComparisonList>
+                    </xtce:RestrictionCriteria>
+                </xtce:BaseContainer>
+            </xtce:SequenceContainer>
+        </xtce:ContainerSet>
+        <xtce:StreamSet>
+            <xtce:VariableFrameStream name="PQ9bus" shortDescription="PQ9 stream">
+                <xtce:ContainerRef containerRef="PQ9"/>
+                <xtce:SyncStrategy>
+                    <xtce:Flag/>
+                </xtce:SyncStrategy>
+            </xtce:VariableFrameStream>
+        </xtce:StreamSet>
+    </xtce:TelemetryMetaData>
+    <xtce:CommandMetaData>
+        <xtce:ArgumentTypeSet>
+            <xtce:EnumeratedArgumentType name="AddressType">
+                <xtce:LongDescription>Device address between 0 and 255 (unsigned)</xtce:LongDescription>
+                <xtce:UnitSet/>
+                <xtce:IntegerDataEncoding sizeInBits="8" encoding="unsigned"/>
+                <xtce:EnumerationList>
+                    <xtce:Enumeration label="OBC" value="1"/>
+                    <xtce:Enumeration label="EPS" value="2"/>
+                    <xtce:Enumeration label="ADB" value="3"/>
+                    <xtce:Enumeration label="COMMS" value="4"/>
+                    <xtce:Enumeration label="ADCS" value="5"/>
+                    <xtce:Enumeration label="MPP" value="6"/>
+                    <xtce:Enumeration label="DEBUG" value="7"/>
+                    <xtce:Enumeration label="EGSE" value="8"/>
+                </xtce:EnumerationList>
+            </xtce:EnumeratedArgumentType>
+            <xtce:EnumeratedArgumentType name="ServiceType">
+                <xtce:UnitSet/>
+                <xtce:IntegerDataEncoding sizeInBits="8" encoding="unsigned"/>
+                <xtce:EnumerationList>
+                    <xtce:Enumeration label="GetSetParam" value="1"/>
+                    <xtce:Enumeration label="Housekeeping" value="3"/>
+                    <xtce:Enumeration label="Verification" value="4"/>
+                    <xtce:Enumeration label="PacketStats" value="6"/>
+                    <xtce:Enumeration label="Reset" value="9"/>
+                    <xtce:Enumeration label="Ping" value="17"/>
+                    <xtce:Enumeration label="Testing" value="21"/>
+                </xtce:EnumerationList>
+            </xtce:EnumeratedArgumentType>
+            <xtce:EnumeratedArgumentType name="RequestType">
+                <xtce:UnitSet/>
+                <xtce:IntegerDataEncoding sizeInBits="8" encoding="unsigned"/>
+                <xtce:EnumerationList>
+                    <xtce:Enumeration label="Request" value="1"/>
+                    <xtce:Enumeration label="Reply" value="2"/>
+                    <xtce:Enumeration label="Set" value="3"/>
+                    <xtce:Enumeration label="ACK_error" value="4"/>
+                    <xtce:Enumeration label="Freeze" value="6"/>
+                    <xtce:Enumeration label="Start_master" value="7"/>
+                    <xtce:Enumeration label="Stop_master" value="8"/>
+                </xtce:EnumerationList>
+            </xtce:EnumeratedArgumentType>
+            <xtce:IntegerArgumentType name="byte" shortDescription="Value">
+                <xtce:LongDescription>Unsigned value between 0 and 255.</xtce:LongDescription>
+                <xtce:UnitSet/>
+                <xtce:IntegerDataEncoding sizeInBits="8"/>
+            </xtce:IntegerArgumentType>
+            <xtce:IntegerArgumentType name="short">
+                <xtce:UnitSet/>
+                <xtce:IntegerDataEncoding sizeInBits="16"/>
+            </xtce:IntegerArgumentType>
+            <xtce:IntegerArgumentType name="long">
+                <xtce:UnitSet/>
+                <xtce:IntegerDataEncoding sizeInBits="32"/>
+            </xtce:IntegerArgumentType>
+        </xtce:ArgumentTypeSet>
+        <xtce:MetaCommandSet>
+            <xtce:MetaCommand abstract="true" name="PQ9">
+                <xtce:LongDescription>Base telecommand structure for all PQ9 based telecommands.</xtce:LongDescription>
+                <xtce:ArgumentList>
+                    <xtce:Argument name="Destination" argumentTypeRef="AddressType"/>
+                    <xtce:Argument name="Size" argumentTypeRef="byte"/>
+                    <xtce:Argument name="Source" argumentTypeRef="AddressType"/>
+                    <xtce:Argument name="Counter" argumentTypeRef="short"/>
+                    <xtce:Argument name="Service" argumentTypeRef="ServiceType"/>
+                    <xtce:Argument name="Request" argumentTypeRef="RequestType"/>
+                </xtce:ArgumentList>
+                <xtce:CommandContainer name="PQ9">
+                    <xtce:EntryList>
+                        <xtce:ArgumentRefEntry argumentRef="Destination"/>
+                        <xtce:ArgumentRefEntry argumentRef="Size"/>
+                        <xtce:ArgumentRefEntry argumentRef="Source"/>
+                        <xtce:ArgumentRefEntry argumentRef="Counter"/>
+                        <xtce:ArgumentRefEntry argumentRef="Service"/>
+                        <xtce:ArgumentRefEntry argumentRef="Request"/>
+                    </xtce:EntryList>
+                </xtce:CommandContainer>
+            </xtce:MetaCommand>
+            <xtce:MetaCommand name="Ping" shortDescription="Ping Subsystem">
+                <xtce:LongDescription>Checks if the subsystem is responding.</xtce:LongDescription>
+                <xtce:BaseMetaCommand metaCommandRef="PQ9">
+                    <xtce:ArgumentAssignmentList>
+                        <xtce:ArgumentAssignment argumentName="Size" argumentValue="2"/>
+                        <xtce:ArgumentAssignment argumentName="Source" argumentValue="OBC"/>
+                        <xtce:ArgumentAssignment argumentName="Counter" argumentValue="0"/>
+                        <xtce:ArgumentAssignment argumentName="Service" argumentValue="Ping"/>
+                        <xtce:ArgumentAssignment argumentName="Request" argumentValue="Request"/>
+                    </xtce:ArgumentAssignmentList>
+                </xtce:BaseMetaCommand>
+                <xtce:CommandContainer name="Ping">
+                    <xtce:EntryList/>
+                </xtce:CommandContainer>
+            </xtce:MetaCommand>
+            <xtce:MetaCommand name="GetTelemetry" shortDescription="Housekeeping Request">
+                <xtce:LongDescription>This command requests the housekeeping frame from the selected destination address.</xtce:LongDescription>
+                <xtce:BaseMetaCommand metaCommandRef="PQ9">
+                    <xtce:ArgumentAssignmentList>
+                        <xtce:ArgumentAssignment argumentName="Size" argumentValue="2"/>
+                        <xtce:ArgumentAssignment argumentName="Source" argumentValue="OBC"/>
+                        <xtce:ArgumentAssignment argumentName="Counter" argumentValue="0"/>
+                        <xtce:ArgumentAssignment argumentName="Service" argumentValue="Housekeeping"/>
+                        <xtce:ArgumentAssignment argumentName="Request" argumentValue="Request"/>
+                    </xtce:ArgumentAssignmentList>
+                </xtce:BaseMetaCommand>
+                <xtce:CommandContainer name="GetTelemetry">
+                    <xtce:EntryList/>
+                </xtce:CommandContainer>
+            </xtce:MetaCommand>
+            <xtce:MetaCommand name="Reset">
+                <xtce:LongDescription>Perform a subsystem reset.</xtce:LongDescription>
+                <xtce:BaseMetaCommand metaCommandRef="PQ9">
+                    <xtce:ArgumentAssignmentList>
+                        <xtce:ArgumentAssignment argumentName="Size" argumentValue="2"/>
+                        <xtce:ArgumentAssignment argumentName="Source" argumentValue="OBC"/>
+                        <xtce:ArgumentAssignment argumentName="Counter" argumentValue="0"/>
+                        <xtce:ArgumentAssignment argumentName="Service" argumentValue="GetSetParam"/>
+                        <xtce:ArgumentAssignment argumentName="Request" argumentValue="Set"/>
+                    </xtce:ArgumentAssignmentList>
+                </xtce:BaseMetaCommand>
+                <xtce:CommandContainer name="Reset">
+                    <xtce:EntryList>
+                        <xtce:FixedValueEntry binaryValue="3b" sizeInBits="8"/>
+                    </xtce:EntryList>
+                </xtce:CommandContainer>
+            </xtce:MetaCommand>
+            <xtce:MetaCommand name="SetSensorLoopTiming">
+                <xtce:LongDescription>Sets the sensor loop delay</xtce:LongDescription>
+                <xtce:BaseMetaCommand metaCommandRef="PQ9">
+                    <xtce:ArgumentAssignmentList>
+                        <xtce:ArgumentAssignment argumentName="Size" argumentValue="2"/>
+                        <xtce:ArgumentAssignment argumentName="Source" argumentValue="OBC"/>
+                        <xtce:ArgumentAssignment argumentName="Counter" argumentValue="0"/>
+                        <xtce:ArgumentAssignment argumentName="Service" argumentValue="GetSetParam"/>
+                        <xtce:ArgumentAssignment argumentName="Request" argumentValue="Set"/>
+                    </xtce:ArgumentAssignmentList>
+                </xtce:BaseMetaCommand>
+                <xtce:ArgumentList>
+                    <!-- Fix the next one -->
+                    <xtce:Argument name="SensorLoopTimingParam" argumentTypeRef="long"/>
+                    <xtce:Argument name="TimingParam" argumentTypeRef="long"/>
+                </xtce:ArgumentList>
+                <xtce:CommandContainer name="SetSensorLoopTiming">
+                    <xtce:EntryList>
+                        <xtce:ArgumentRefEntry argumentRef="SensorLoopTimingParam"/>
+                        <xtce:ArgumentRefEntry argumentRef="TimingParam"/>
+                    </xtce:EntryList>
+                </xtce:CommandContainer>
+            </xtce:MetaCommand>
+        </xtce:MetaCommandSet>
+    </xtce:CommandMetaData>
+
+    <xtce:SpaceSystem name="EPS">
+        <xtce:LongDescription>EPS data frames description.</xtce:LongDescription>
+        <xtce:TelemetryMetaData>
+            <xtce:ParameterTypeSet>
+                <xtce:FloatParameterType name="LTCvoltage">
+                    <xtce:UnitSet>
+                        <xtce:Unit>V</xtce:Unit>
+                    </xtce:UnitSet>
+                    <xtce:IntegerDataEncoding sizeInBits="16">
+                        <xtce:DefaultCalibrator>
+                            <xtce:MathOperationCalibrator>
+                                <xtce:ThisParameterOperand/>
+                                <xtce:ValueOperand>65535</xtce:ValueOperand>
+                                <xtce:Operator>/</xtce:Operator>
+                                <xtce:ValueOperand>6</xtce:ValueOperand>
+                                <xtce:Operator>*</xtce:Operator>
+                            </xtce:MathOperationCalibrator>
+                        </xtce:DefaultCalibrator>
+                    </xtce:IntegerDataEncoding>
+                    <xtce:ValidRange minExclusive="0.0" maxExclusive="81.0" validRangeAppliesToCalibrated="true"/>
+                </xtce:FloatParameterType>
+                <xtce:FloatParameterType name="LTCtemperature">
+                    <xtce:UnitSet>
+                        <xtce:Unit>°C</xtce:Unit>
+                    </xtce:UnitSet>
+                    <xtce:IntegerDataEncoding sizeInBits="16">
+                        <xtce:DefaultCalibrator>
+                            <xtce:MathOperationCalibrator>
+                                <xtce:ThisParameterOperand/>
+                                <xtce:ValueOperand>65535</xtce:ValueOperand>
+                                <xtce:Operator>/</xtce:Operator>
+                                <xtce:ValueOperand>600</xtce:ValueOperand>
+                                <xtce:Operator>*</xtce:Operator>
+                                <xtce:ValueOperand>272.15</xtce:ValueOperand>
+                                <xtce:Operator>-</xtce:Operator>
+                            </xtce:MathOperationCalibrator>
+                        </xtce:DefaultCalibrator>
+                    </xtce:IntegerDataEncoding>
+                    <xtce:ValidRange minExclusive="0.0" maxExclusive="81.0" validRangeAppliesToCalibrated="true"/>
+                </xtce:FloatParameterType>
+                <xtce:FloatParameterType name="LTCcapacity">
+                    <xtce:UnitSet/>
+                    <xtce:IntegerDataEncoding sizeInBits="16">
+                        <xtce:DefaultCalibrator>
+                            <xtce:MathOperationCalibrator>
+                                <xtce:ThisParameterOperand/>
+                                <xtce:ValueOperand>0.0265625</xtce:ValueOperand>
+                                <xtce:Operator>*</xtce:Operator>
+                            </xtce:MathOperationCalibrator>
+                        </xtce:DefaultCalibrator>
+                    </xtce:IntegerDataEncoding>
+                    <xtce:ValidRange minExclusive="0.0" maxExclusive="81.0" validRangeAppliesToCalibrated="true"/>
+                </xtce:FloatParameterType>
+            </xtce:ParameterTypeSet>
+            <xtce:ParameterSet>
+                <xtce:Parameter name="EPS_B1_INA_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="EPS_B2_INA_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="EPS_B3_INA_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="EPS_B4_INA_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="EPS_DC_INA_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="EPS_UR_INA_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="SA_XP_INA_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="SA_XM_INA_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="SA_YP_INA_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="SA_YM_INA_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="SA_XP_TMP_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="SA_XM_TMP_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="SA_YP_TMP_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="SA_YM_TMP_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="EPS_LTC_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="B1_voltage" parameterTypeRef="/Delfi-PQ/INAvoltage"/>
+                <xtce:Parameter name="B2_voltage" parameterTypeRef="/Delfi-PQ/INAvoltage"/>
+                <xtce:Parameter name="B3_voltage" parameterTypeRef="/Delfi-PQ/INAvoltage"/>
+                <xtce:Parameter name="B4_voltage" parameterTypeRef="/Delfi-PQ/INAvoltage"/>
+                <xtce:Parameter name="B1_current" parameterTypeRef="/Delfi-PQ/INAcurrent"/>
+                <xtce:Parameter name="B2_current" parameterTypeRef="/Delfi-PQ/INAcurrent"/>
+                <xtce:Parameter name="B3_current" parameterTypeRef="/Delfi-PQ/INAcurrent"/>
+                <xtce:Parameter name="B4_current" parameterTypeRef="/Delfi-PQ/INAcurrent"/>
+                <xtce:Parameter name="SA_YP_voltage" parameterTypeRef="/Delfi-PQ/INAvoltage"/>
+                <xtce:Parameter name="SA_YM_voltage" parameterTypeRef="/Delfi-PQ/INAvoltage"/>
+                <xtce:Parameter name="SA_XP_voltage" parameterTypeRef="/Delfi-PQ/INAvoltage"/>
+                <xtce:Parameter name="SA_XM_voltage" parameterTypeRef="/Delfi-PQ/INAvoltage"/>
+                <xtce:Parameter name="SA_YP_current" parameterTypeRef="/Delfi-PQ/INAcurrent"/>
+                <xtce:Parameter name="SA_YM_current" parameterTypeRef="/Delfi-PQ/INAcurrent"/>
+                <xtce:Parameter name="SA_XP_current" parameterTypeRef="/Delfi-PQ/INAcurrent"/>
+                <xtce:Parameter name="SA_XM_current" parameterTypeRef="/Delfi-PQ/INAcurrent"/>
+                <xtce:Parameter name="SA_YP_temperature" parameterTypeRef="/Delfi-PQ/TMPtemperature"/>
+                <xtce:Parameter name="SA_YM_temperature" parameterTypeRef="/Delfi-PQ/TMPtemperature"/>
+                <xtce:Parameter name="SA_XP_temperature" parameterTypeRef="/Delfi-PQ/TMPtemperature"/>
+                <xtce:Parameter name="SA_XM_temperature" parameterTypeRef="/Delfi-PQ/TMPtemperature"/>
+                <xtce:Parameter name="BattVoltage" parameterTypeRef="LTCvoltage"/>
+                <xtce:Parameter name="BattCapacity" parameterTypeRef="LTCcapacity"/>
+                <xtce:Parameter name="BattTemperature" parameterTypeRef="LTCtemperature"/>
+                <xtce:Parameter name="BusSwitchesSetting" parameterTypeRef="/Delfi-PQ/bitStatusArray"/>
+                <xtce:Parameter name="BusSwitchesStatus" parameterTypeRef="/Delfi-PQ/bitStatusArray"/>
+                <xtce:Parameter name="IntCurrent" parameterTypeRef="/Delfi-PQ/INAcurrent"/>
+                <xtce:Parameter name="IntVoltage" parameterTypeRef="/Delfi-PQ/INAvoltage"/>
+                <xtce:Parameter name="URBCurrent" parameterTypeRef="/Delfi-PQ/INAcurrent"/>
+                <xtce:Parameter name="URBVoltage" parameterTypeRef="/Delfi-PQ/INAvoltage"/>
+            </xtce:ParameterSet>
+            <xtce:ContainerSet>
+                <xtce:SequenceContainer name="EPSHousekeepingContainer" shortDescription="EPS Housekeeping container">
+                    <xtce:EntryList>
+                        <xtce:ContainerRefEntry containerRef="/Delfi-PQ/HousekeepingHeader"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/Sensor15Status"/>
+                        <xtce:ParameterRefEntry parameterRef="EPS_LTC_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="SA_XM_INA_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="SA_XP_INA_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="SA_YM_INA_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="SA_YP_INA_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="EPS_UR_INA_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="EPS_DC_INA_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="EPS_B4_INA_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="EPS_B3_INA_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="EPS_B2_INA_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="EPS_B1_INA_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="SA_XM_TMP_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="SA_XP_TMP_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="SA_YM_TMP_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="SA_YP_TMP_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="SA_YP_temperature"/>
+                        <xtce:ParameterRefEntry parameterRef="SA_YM_temperature"/>
+                        <xtce:ParameterRefEntry parameterRef="SA_XP_temperature"/>
+                        <xtce:ParameterRefEntry parameterRef="SA_XM_temperature"/>
+                        <xtce:ParameterRefEntry parameterRef="SA_YP_current"/>
+                        <xtce:ParameterRefEntry parameterRef="SA_YM_current"/>
+                        <xtce:ParameterRefEntry parameterRef="SA_XP_current"/>
+                        <xtce:ParameterRefEntry parameterRef="SA_XM_current"/>
+                        <xtce:ParameterRefEntry parameterRef="SA_YP_voltage"/>
+                        <xtce:ParameterRefEntry parameterRef="SA_YM_voltage"/>
+                        <xtce:ParameterRefEntry parameterRef="SA_XP_voltage"/>
+                        <xtce:ParameterRefEntry parameterRef="SA_XM_voltage"/>
+                        <xtce:ParameterRefEntry parameterRef="B1_current"/>
+                        <xtce:ParameterRefEntry parameterRef="B2_current"/>
+                        <xtce:ParameterRefEntry parameterRef="B3_current"/>
+                        <xtce:ParameterRefEntry parameterRef="B4_current"/>
+                        <xtce:ParameterRefEntry parameterRef="B1_voltage"/>
+                        <xtce:ParameterRefEntry parameterRef="B2_voltage"/>
+                        <xtce:ParameterRefEntry parameterRef="B3_voltage"/>
+                        <xtce:ParameterRefEntry parameterRef="B4_voltage"/>
+                        <xtce:ParameterRefEntry parameterRef="BattVoltage"/>
+                        <xtce:ParameterRefEntry parameterRef="BattCapacity"/>
+                        <xtce:ParameterRefEntry parameterRef="BattTemperature"/>
+                        <xtce:ArrayParameterRefEntry parameterRef="BusSwitchesSetting">
+                            <xtce:DimensionList>
+                                <xtce:Size>
+                                    <xtce:FixedValue>4</xtce:FixedValue>
+                                </xtce:Size>
+                            </xtce:DimensionList>
+                        </xtce:ArrayParameterRefEntry>
+                        <xtce:ArrayParameterRefEntry parameterRef="BusSwitchesStatus">
+                            <xtce:DimensionList>
+                                <xtce:Size>
+                                    <xtce:FixedValue>4</xtce:FixedValue>
+                                </xtce:Size>
+                            </xtce:DimensionList>
+                        </xtce:ArrayParameterRefEntry>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/MCUTemp"/>
+                        <xtce:ParameterRefEntry parameterRef="IntCurrent"/>
+                        <xtce:ParameterRefEntry parameterRef="IntVoltage"/>
+                        <xtce:ParameterRefEntry parameterRef="URBCurrent"/>
+                        <xtce:ParameterRefEntry parameterRef="URBVoltage"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/testing2"/>
+                    </xtce:EntryList>
+                </xtce:SequenceContainer>
+                <xtce:SequenceContainer name="EPSHousekeepingReply" shortDescription="EPS Housekeeping frame">
+                    <xtce:EntryList>
+                        <xtce:ContainerRefEntry containerRef="EPSHousekeepingContainer"/>
+                    </xtce:EntryList>
+                    <xtce:BaseContainer containerRef="/Delfi-PQ/HousekeepingReply">
+                        <xtce:RestrictionCriteria>
+                            <xtce:ComparisonList>
+                                <xtce:Comparison parameterRef="Source" value="EPS"/>
+                            </xtce:ComparisonList>
+                        </xtce:RestrictionCriteria>
+                    </xtce:BaseContainer>
+                </xtce:SequenceContainer>
+                <xtce:SequenceContainer name="SendEPSHousekeepingRequest" shortDescription="Send EPS Housekeeping frame request">
+                    <xtce:EntryList>
+                        <xtce:ContainerRefEntry containerRef="EPSHousekeepingContainer"/>
+                    </xtce:EntryList>
+                    <xtce:BaseContainer containerRef="/Delfi-PQ/SendRFFrame">
+                        <xtce:RestrictionCriteria>
+                            <xtce:ComparisonList>
+                                <xtce:Comparison parameterRef="Source" value="EPS"/>
+                            </xtce:ComparisonList>
+                        </xtce:RestrictionCriteria>
+                    </xtce:BaseContainer>
+                </xtce:SequenceContainer>
+            </xtce:ContainerSet>
+        </xtce:TelemetryMetaData>
+        <xtce:CommandMetaData>
+            <xtce:ArgumentTypeSet>
+                <xtce:EnumeratedArgumentType name="EPSParameterType" shortDescription="Parameter">
+                    <xtce:UnitSet/>
+                    <xtce:IntegerDataEncoding sizeInBits="8" encoding="unsigned"/>
+                    <xtce:EnumerationList>
+                        <xtce:Enumeration label="Bus1Ith" value="1" shortDescription="Bus 1 Current Threshold"/>
+                        <xtce:Enumeration label="Bus2Ith" value="2" shortDescription="Bus 2 Current Threshold"/>
+                        <xtce:Enumeration label="Bus3Ith" value="3" shortDescription="Bus 3 Current Threshold"/>
+                        <xtce:Enumeration label="Bus4Ith" value="4" shortDescription="Bus 4 Current Threshold"/>
+                        <xtce:Enumeration label="Bus1Sw" value="5" shortDescription="Bus 1 Switch"/>
+                        <xtce:Enumeration label="Bus2Sw" value="6" shortDescription="Bus 2 Switch"/>
+                        <xtce:Enumeration label="Bus3Sw" value="7" shortDescription="Bus 3 Switch"/>
+                        <xtce:Enumeration label="Bus4Sw" value="8" shortDescription="Bus 4 Switch"/>
+                    </xtce:EnumerationList>
+                </xtce:EnumeratedArgumentType>
+                <xtce:EnumeratedArgumentType name="EPSBusParameterType" shortDescription="Bus">
+                    <xtce:UnitSet/>
+                    <xtce:IntegerDataEncoding sizeInBits="8" encoding="unsigned"/>
+                    <xtce:EnumerationList>
+                        <xtce:Enumeration label="Bus1Sw" value="43" shortDescription="1"/>
+                        <xtce:Enumeration label="Bus2Sw" value="44" shortDescription="2"/>
+                        <xtce:Enumeration label="Bus3Sw" value="45" shortDescription="3"/>
+                        <xtce:Enumeration label="Bus4Sw" value="46" shortDescription="4"/>
+                    </xtce:EnumerationList>
+                </xtce:EnumeratedArgumentType>
+                <xtce:EnumeratedArgumentType name="EPSBusSwitchParameterType" shortDescription="Status">
+                    <xtce:UnitSet/>
+                    <xtce:IntegerDataEncoding sizeInBits="8" encoding="unsigned"/>
+                    <xtce:EnumerationList>
+                        <xtce:Enumeration label="BUSSwOff" value="0" shortDescription="OFF"/>
+                        <xtce:Enumeration label="BUSSwOn" value="1" shortDescription="ON"/>
+                    </xtce:EnumerationList>
+                </xtce:EnumeratedArgumentType>
+            </xtce:ArgumentTypeSet>
+            <xtce:MetaCommandSet>
+                <xtce:MetaCommand name="EPSBusSW" shortDescription="Set EPS power bus">
+                    <xtce:LongDescription>EPS power bus</xtce:LongDescription>
+                    <xtce:BaseMetaCommand metaCommandRef="/Delfi-PQ/PQ9">
+                        <xtce:ArgumentAssignmentList>
+                            <xtce:ArgumentAssignment argumentName="Destination" argumentValue="EPS"/>
+                            <xtce:ArgumentAssignment argumentName="Size" argumentValue="4"/>
+                            <xtce:ArgumentAssignment argumentName="Source" argumentValue="OBC"/>
+                            <xtce:ArgumentAssignment argumentName="Counter" argumentValue="0"/>
+                            <xtce:ArgumentAssignment argumentName="Service" argumentValue="GetSetParam"/>
+                            <xtce:ArgumentAssignment argumentName="Request" argumentValue="Set"/>
+                        </xtce:ArgumentAssignmentList>
+                    </xtce:BaseMetaCommand>
+                    <xtce:ArgumentList>
+                        <xtce:Argument name="EPSParam" argumentTypeRef="EPSBusParameterType"/>
+                        <xtce:Argument name="state" argumentTypeRef="EPSBusSwitchParameterType"/>
+                    </xtce:ArgumentList>
+                    <xtce:CommandContainer name="EPSBusSW">
+                        <xtce:EntryList>
+                            <xtce:ArgumentRefEntry argumentRef="EPSParam"/>
+                            <xtce:ArgumentRefEntry argumentRef="state"/>
+                        </xtce:EntryList>
+                    </xtce:CommandContainer>
+                </xtce:MetaCommand>
+                <xtce:MetaCommand name="EPSSetParam" shortDescription="Set EPS parameter">
+                    <xtce:LongDescription>Set EPS parameter</xtce:LongDescription>
+                    <xtce:BaseMetaCommand metaCommandRef="/Delfi-PQ/PQ9">
+                        <xtce:ArgumentAssignmentList>
+                            <xtce:ArgumentAssignment argumentName="Destination" argumentValue="EPS"/>
+                            <xtce:ArgumentAssignment argumentName="Size" argumentValue="4"/>
+                            <xtce:ArgumentAssignment argumentName="Source" argumentValue="OBC"/>
+                            <xtce:ArgumentAssignment argumentName="Counter" argumentValue="0"/>
+                            <xtce:ArgumentAssignment argumentName="Service" argumentValue="GetSetParam"/>
+                            <xtce:ArgumentAssignment argumentName="Request" argumentValue="Request"/>
+                        </xtce:ArgumentAssignmentList>
+                    </xtce:BaseMetaCommand>
+                    <xtce:ArgumentList>
+                        <xtce:Argument name="Param1" argumentTypeRef="EPSParameterType"/>
+                        <xtce:Argument name="Param2" argumentTypeRef="/Delfi-PQ/byte"/>
+                    </xtce:ArgumentList>
+                    <xtce:CommandContainer name="EPSSetParam">
+                        <xtce:EntryList>
+                            <xtce:ArgumentRefEntry argumentRef="Param1"/>
+                            <xtce:ArgumentRefEntry argumentRef="Param2"/>
+                        </xtce:EntryList>
+                    </xtce:CommandContainer>
+                </xtce:MetaCommand>
+                <xtce:MetaCommand name="EPSGetParam" shortDescription="Get EPS parameter">
+                    <xtce:LongDescription>Retrieve EPS parameter</xtce:LongDescription>
+                    <xtce:BaseMetaCommand metaCommandRef="/Delfi-PQ/PQ9">
+                        <xtce:ArgumentAssignmentList>
+                            <xtce:ArgumentAssignment argumentName="Destination" argumentValue="EPS"/>
+                            <xtce:ArgumentAssignment argumentName="Size" argumentValue="4"/>
+                            <xtce:ArgumentAssignment argumentName="Source" argumentValue="OBC"/>
+                            <xtce:ArgumentAssignment argumentName="Counter" argumentValue="0"/>
+                            <xtce:ArgumentAssignment argumentName="Service" argumentValue="GetSetParam"/>
+                            <xtce:ArgumentAssignment argumentName="Request" argumentValue="Reply"/>
+                        </xtce:ArgumentAssignmentList>
+                    </xtce:BaseMetaCommand>
+                    <xtce:ArgumentList>
+                        <xtce:Argument name="Param1" argumentTypeRef="EPSParameterType"/>
+                    </xtce:ArgumentList>
+                    <xtce:CommandContainer name="EPSGetParam">
+                        <xtce:EntryList>
+                            <xtce:ArgumentRefEntry argumentRef="Param1"/>
+                        </xtce:EntryList>
+                    </xtce:CommandContainer>
+                </xtce:MetaCommand>
+            </xtce:MetaCommandSet>
+        </xtce:CommandMetaData>
+    </xtce:SpaceSystem>
+
+    <xtce:SpaceSystem name="OBC">
+        <xtce:TelemetryMetaData>
+            <xtce:ParameterSet>
+                <xtce:Parameter name="OBCCurrent" parameterTypeRef="/Delfi-PQ/INAcurrent"/>
+                <xtce:Parameter name="OBCVoltage" parameterTypeRef="/Delfi-PQ/INAvoltage"/>
+                <xtce:Parameter name="OBC_TMP_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="OBC_INA_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+            </xtce:ParameterSet>
+            <xtce:ContainerSet>
+                <xtce:SequenceContainer name="OBCHousekeepingContainer" shortDescription="OBC Housekeeping container">
+                    <xtce:EntryList>
+                        <xtce:ContainerRefEntry containerRef="/Delfi-PQ/HousekeepingHeader"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/Sensor0Status"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/Sensor1Status"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/Sensor2Status"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/Sensor3Status"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/Sensor4Status"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/Sensor5Status"/>
+                        <xtce:ParameterRefEntry parameterRef="OBC_INA_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="OBC_TMP_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="OBCCurrent"/>
+                        <xtce:ParameterRefEntry parameterRef="OBCVoltage"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/testing2"/>
+                    </xtce:EntryList>
+                </xtce:SequenceContainer>
+                <xtce:SequenceContainer name="OBCHousekeepingReply" shortDescription="OBC Housekeeping frame">
+                    <xtce:EntryList>
+                        <xtce:ContainerRefEntry containerRef="OBCHousekeepingContainer"/>
+                    </xtce:EntryList>
+                    <xtce:BaseContainer containerRef="/Delfi-PQ/HousekeepingReply">
+                        <xtce:RestrictionCriteria>
+                            <xtce:ComparisonList>
+                                <xtce:Comparison parameterRef="Source" value="OBC"/>
+                            </xtce:ComparisonList>
+                        </xtce:RestrictionCriteria>
+                    </xtce:BaseContainer>
+                </xtce:SequenceContainer>
+                <xtce:SequenceContainer name="SendOBCHousekeepingRequest" shortDescription="Send OBC Housekeeping frame request">
+                    <xtce:EntryList>
+                        <xtce:ContainerRefEntry containerRef="OBCHousekeepingContainer"/>
+                    </xtce:EntryList>
+                    <xtce:BaseContainer containerRef="/Delfi-PQ/SendRFFrame">
+                        <xtce:RestrictionCriteria>
+                            <xtce:ComparisonList>
+                                <xtce:Comparison parameterRef="Source" value="OBC"/>
+                            </xtce:ComparisonList>
+                        </xtce:RestrictionCriteria>
+                    </xtce:BaseContainer>
+                </xtce:SequenceContainer>
+            </xtce:ContainerSet>
+        </xtce:TelemetryMetaData>
+        <xtce:CommandMetaData>
+            <xtce:MetaCommandSet>
+                <xtce:MetaCommand name="SetOBCCommandLoopTiming">
+                    <xtce:LongDescription>Sets the command loop delay</xtce:LongDescription>
+                    <xtce:BaseMetaCommand metaCommandRef="/Delfi-PQ/PQ9">
+                        <xtce:ArgumentAssignmentList>
+                            <xtce:ArgumentAssignment argumentName="Size" argumentValue="2"/>
+                            <xtce:ArgumentAssignment argumentName="Source" argumentValue="OBC"/>
+                            <xtce:ArgumentAssignment argumentName="Counter" argumentValue="0"/>
+                            <xtce:ArgumentAssignment argumentName="Service" argumentValue="GetSetParam"/>
+                            <xtce:ArgumentAssignment argumentName="Request" argumentValue="Set"/>
+                        </xtce:ArgumentAssignmentList>
+                    </xtce:BaseMetaCommand>
+                    <xtce:ArgumentList>
+                        <!-- Fix the next one -->
+                        <xtce:Argument name="OBCCommandLoopTimingParam" argumentTypeRef="/Delfi-PQ/long"/>
+                        <xtce:Argument name="TimingParam" argumentTypeRef="/Delfi-PQ/long"/>
+                    </xtce:ArgumentList>
+                    <xtce:CommandContainer name="SetOBCCommandLoopTiming">
+                        <xtce:EntryList>
+                            <!--xtce:ArgumentRefEntry argumentRef="OBCCommandLoopTimingParam"/-->
+                            <xtce:ArgumentRefEntry argumentRef="TimingParam"/>
+                        </xtce:EntryList>
+                    </xtce:CommandContainer>
+                </xtce:MetaCommand>
+            </xtce:MetaCommandSet>
+        </xtce:CommandMetaData>
+    </xtce:SpaceSystem>
+
+    <xtce:SpaceSystem name="ADCS">
+        <xtce:TelemetryMetaData>
+            <xtce:ParameterSet>
+                <xtce:Parameter name="ADCS_TMP_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="ADCS_INA1_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="ADCS_INA2_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="ADCS_INA3_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="ADCS_INA4_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="ADCSCurrent1" parameterTypeRef="/Delfi-PQ/INAcurrent"/>
+                <xtce:Parameter name="ADCSCurrent2" parameterTypeRef="/Delfi-PQ/INAcurrent"/>
+                <xtce:Parameter name="ADCSCurrent3" parameterTypeRef="/Delfi-PQ/INAcurrent"/>
+                <xtce:Parameter name="ADCSCurrent4" parameterTypeRef="/Delfi-PQ/INAcurrent"/>
+                <xtce:Parameter name="ADCSVoltage1" parameterTypeRef="/Delfi-PQ/INAvoltage"/>
+                <xtce:Parameter name="ADCSVoltage2" parameterTypeRef="/Delfi-PQ/INAvoltage"/>
+                <xtce:Parameter name="ADCSVoltage3" parameterTypeRef="/Delfi-PQ/INAvoltage"/>
+                <xtce:Parameter name="ADCSVoltage4" parameterTypeRef="/Delfi-PQ/INAvoltage"/>
+                <xtce:Parameter name="ADCSTemperature" parameterTypeRef="/Delfi-PQ/TMPtemperature"/>
+            </xtce:ParameterSet>
+            <xtce:ContainerSet>
+                <xtce:SequenceContainer name="ADCSHousekeepingContainer" shortDescription="ADCS Housekeeping container">
+                    <xtce:EntryList>
+                        <xtce:ContainerRefEntry containerRef="/Delfi-PQ/HousekeepingHeader"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/Sensor0Status"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/Sensor1Status"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/Sensor2Status"/>
+                        <xtce:ParameterRefEntry parameterRef="ADCS_INA1_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="ADCS_INA2_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="ADCS_INA3_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="ADCS_INA4_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="ADCS_TMP_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="ADCSTemperature"/>
+                        <xtce:ParameterRefEntry parameterRef="ADCSCurrent1"/>
+                        <xtce:ParameterRefEntry parameterRef="ADCSCurrent2"/>
+                        <xtce:ParameterRefEntry parameterRef="ADCSCurrent3"/>
+                        <xtce:ParameterRefEntry parameterRef="ADCSCurrent4"/>
+                        <xtce:ParameterRefEntry parameterRef="ADCSVoltage1"/>
+                        <xtce:ParameterRefEntry parameterRef="ADCSVoltage2"/>
+                        <xtce:ParameterRefEntry parameterRef="ADCSVoltage3"/>
+                        <xtce:ParameterRefEntry parameterRef="ADCSVoltage4"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/testing2"/>
+                    </xtce:EntryList>
+                </xtce:SequenceContainer>
+                <xtce:SequenceContainer name="ADCSHousekeepingReply" shortDescription="ADCS Housekeeping frame">
+                    <xtce:EntryList>
+                        <xtce:ContainerRefEntry containerRef="ADCSHousekeepingContainer"/>
+                    </xtce:EntryList>
+                    <xtce:BaseContainer containerRef="/Delfi-PQ/HousekeepingReply">
+                        <xtce:RestrictionCriteria>
+                            <xtce:ComparisonList>
+                                <xtce:Comparison parameterRef="Source" value="ADCS"/>
+                            </xtce:ComparisonList>
+                        </xtce:RestrictionCriteria>
+                    </xtce:BaseContainer>
+                </xtce:SequenceContainer>
+                <xtce:SequenceContainer name="SendADCSHousekeepingRequest" shortDescription="Send ADCS Housekeeping frame request">
+                    <xtce:EntryList>
+                        <xtce:ContainerRefEntry containerRef="ADCSHousekeepingContainer"/>
+                    </xtce:EntryList>
+                    <xtce:BaseContainer containerRef="/Delfi-PQ/SendRFFrame">
+                        <xtce:RestrictionCriteria>
+                            <xtce:ComparisonList>
+                                <xtce:Comparison parameterRef="Source" value="ADCS"/>
+                            </xtce:ComparisonList>
+                        </xtce:RestrictionCriteria>
+                    </xtce:BaseContainer>
+                </xtce:SequenceContainer>
+            </xtce:ContainerSet>
+        </xtce:TelemetryMetaData>
+        <xtce:CommandMetaData>
+             <xtce:MetaCommandSet>
+             <xtce:MetaCommand name="ADCS_test_var">
+                 <xtce:LongDescription>ADCS test variable</xtce:LongDescription>
+                 <xtce:BaseMetaCommand metaCommandRef="/Delfi-PQ/PQ9">
+                     <xtce:ArgumentAssignmentList>
+                         <xtce:ArgumentAssignment argumentName="Destination" argumentValue="ADCS"/>
+                         <xtce:ArgumentAssignment argumentName="Size" argumentValue="6"/>
+                         <xtce:ArgumentAssignment argumentName="Source" argumentValue="OBC"/>
+                         <xtce:ArgumentAssignment argumentName="Counter" argumentValue="0"/>
+                         <xtce:ArgumentAssignment argumentName="Service" argumentValue="GetSetParam"/>
+                         <xtce:ArgumentAssignment argumentName="Request" argumentValue="Set"/>
+                     </xtce:ArgumentAssignmentList>
+                 </xtce:BaseMetaCommand>
+                 <xtce:ArgumentList>
+                     <xtce:Argument name="value" argumentTypeRef="/Delfi-PQ/long"/>
+                 </xtce:ArgumentList>
+                 <xtce:CommandContainer name="ADCS_test_var">
+                     <xtce:EntryList>
+                         <xtce:FixedValueEntry binaryValue="42" sizeInBits="8"/>
+                         <xtce:ArgumentRefEntry argumentRef="value"/>
+                     </xtce:EntryList>
+                 </xtce:CommandContainer>
+             </xtce:MetaCommand>
+        </xtce:MetaCommandSet>
+      </xtce:CommandMetaData>
+    </xtce:SpaceSystem>
+    <xtce:SpaceSystem name="ADB">
+        <xtce:TelemetryMetaData>
+            <xtce:ParameterTypeSet>
+                <xtce:EnumeratedParameterType name="DEPStatus">
+                    <xtce:UnitSet/>
+                    <xtce:IntegerDataEncoding sizeInBits="1" encoding="unsigned"/>
+                    <xtce:EnumerationList>
+                        <xtce:Enumeration label="OFF" value="1"/>
+                        <xtce:Enumeration label="ON" value="0"/>
+                    </xtce:EnumerationList>
+                </xtce:EnumeratedParameterType>
+                <xtce:ArrayParameterType name="DEPStatusArray" arrayTypeRef="DEPStatus" numberOfDimensions="1"/>
+            </xtce:ParameterTypeSet>
+            <xtce:ParameterSet>
+                <xtce:Parameter name="TxADBCounter" parameterTypeRef="/Delfi-PQ/short"/>
+                <xtce:Parameter name="ADBCurrent" parameterTypeRef="/Delfi-PQ/INAcurrent"/>
+                <xtce:Parameter name="ADBVoltage" parameterTypeRef="/Delfi-PQ/INAvoltage"/>
+                <xtce:Parameter name="ADB_TMP_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="ADB_INA_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="ADBTemperature" parameterTypeRef="/Delfi-PQ/TMPtemperature"/>
+                <xtce:Parameter name="DEPSwitchesSetting" parameterTypeRef="/Delfi-PQ/bitStatusArray"/>
+                <xtce:Parameter name="DEPSwitchesStatus" parameterTypeRef="DEPStatusArray"/>
+            </xtce:ParameterSet>
+            <xtce:ContainerSet>
+                <xtce:SequenceContainer name="ADBHousekeepingContainer" shortDescription="ADB Housekeeping container">
+                    <xtce:EntryList>
+                        <xtce:ContainerRefEntry containerRef="/Delfi-PQ/HousekeepingHeader"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/Sensor0Status"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/Sensor1Status"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/Sensor2Status"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/Sensor3Status"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/Sensor4Status"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/Sensor5Status"/>
+                        <xtce:ParameterRefEntry parameterRef="ADB_INA_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="ADB_TMP_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="ADBCurrent"/>
+                        <xtce:ParameterRefEntry parameterRef="ADBVoltage"/>
+                        <xtce:ParameterRefEntry parameterRef="ADBTemperature"/>
+                        <xtce:ArrayParameterRefEntry parameterRef="DEPSwitchesSetting">
+                            <xtce:DimensionList>
+                                <xtce:Size>
+                                    <xtce:FixedValue>4</xtce:FixedValue>
+                                </xtce:Size>
+                            </xtce:DimensionList>
+                        </xtce:ArrayParameterRefEntry>
+                        <xtce:ArrayParameterRefEntry parameterRef="DEPSwitchesSetting">
+                            <xtce:DimensionList>
+                                <xtce:Size>
+                                    <xtce:FixedValue>4</xtce:FixedValue>
+                                </xtce:Size>
+                            </xtce:DimensionList>
+                        </xtce:ArrayParameterRefEntry>
+                        <xtce:ArrayParameterRefEntry parameterRef="DEPSwitchesSetting">
+                            <xtce:DimensionList>
+                                <xtce:Size>
+                                    <xtce:FixedValue>4</xtce:FixedValue>
+                                </xtce:Size>
+                            </xtce:DimensionList>
+                        </xtce:ArrayParameterRefEntry>
+                        <xtce:ArrayParameterRefEntry parameterRef="DEPSwitchesStatus">
+                            <xtce:DimensionList>
+                                <xtce:Size>
+                                    <xtce:FixedValue>4</xtce:FixedValue>
+                                </xtce:Size>
+                            </xtce:DimensionList>
+                        </xtce:ArrayParameterRefEntry>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/MCUTemp"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/testing2"/>
+                    </xtce:EntryList>
+                </xtce:SequenceContainer>
+                <xtce:SequenceContainer name="ADBHousekeepingReply" shortDescription="ADB Housekeeping frame">
+                    <xtce:EntryList>
+                        <xtce:ContainerRefEntry containerRef="ADBHousekeepingContainer"/>
+                    </xtce:EntryList>
+                    <xtce:BaseContainer containerRef="/Delfi-PQ/HousekeepingReply">
+                        <xtce:RestrictionCriteria>
+                            <xtce:ComparisonList>
+                                <xtce:Comparison parameterRef="Source" value="ADB"/>
+                            </xtce:ComparisonList>
+                        </xtce:RestrictionCriteria>
+                    </xtce:BaseContainer>
+                </xtce:SequenceContainer>
+                <xtce:SequenceContainer name="SendADBHousekeepingRequest" shortDescription="Send ADB Housekeeping frame request">
+                    <xtce:EntryList>
+                        <xtce:ContainerRefEntry containerRef="ADBHousekeepingContainer"/>
+                    </xtce:EntryList>
+                    <xtce:BaseContainer containerRef="/Delfi-PQ/SendRFFrame">
+                        <xtce:RestrictionCriteria>
+                            <xtce:ComparisonList>
+                                <xtce:Comparison parameterRef="Source" value="ADB"/>
+                            </xtce:ComparisonList>
+                        </xtce:RestrictionCriteria>
+                    </xtce:BaseContainer>
+                </xtce:SequenceContainer>
+            </xtce:ContainerSet>
+        </xtce:TelemetryMetaData>
+        <xtce:CommandMetaData>
+            <xtce:ArgumentTypeSet>
+                <xtce:EnumeratedArgumentType name="ADBDEPType">
+                    <xtce:UnitSet/>
+                    <xtce:IntegerDataEncoding sizeInBits="8" encoding="unsigned"/>
+                    <xtce:EnumerationList>
+                        <xtce:Enumeration label="DEP1Sw" value="1" shortDescription="1"/>
+                        <xtce:Enumeration label="DEP2Sw" value="2" shortDescription="2"/>
+                        <xtce:Enumeration label="DEP3Sw" value="3" shortDescription="3"/>
+                        <xtce:Enumeration label="DEP4Sw" value="4" shortDescription="4"/>
+                    </xtce:EnumerationList>
+                </xtce:EnumeratedArgumentType>
+                <xtce:EnumeratedArgumentType name="ADBFeedbackParameterType">
+                    <xtce:UnitSet/>
+                    <xtce:IntegerDataEncoding sizeInBits="8" encoding="unsigned"/>
+                    <xtce:EnumerationList>
+                        <xtce:Enumeration label="Feedbackoff" value="0" shortDescription="Feedback off"/>
+                        <xtce:Enumeration label="Feedbackon" value="1" shortDescription="Feedback on"/>
+                    </xtce:EnumerationList>
+                </xtce:EnumeratedArgumentType>
+            </xtce:ArgumentTypeSet>
+            <xtce:MetaCommandSet>
+                <xtce:MetaCommand name="ADBburnParam">
+                    <xtce:LongDescription>ADB Deployment switch</xtce:LongDescription>
+                    <xtce:BaseMetaCommand metaCommandRef="/Delfi-PQ/PQ9">
+                        <xtce:ArgumentAssignmentList>
+                            <xtce:ArgumentAssignment argumentName="Destination" argumentValue="ADB"/>
+                            <xtce:ArgumentAssignment argumentName="Size" argumentValue="6"/>
+                            <xtce:ArgumentAssignment argumentName="Source" argumentValue="OBC"/>
+                            <xtce:ArgumentAssignment argumentName="Counter" argumentValue="0"/>
+                            <xtce:ArgumentAssignment argumentName="Service" argumentValue="GetSetParam"/>
+                            <xtce:ArgumentAssignment argumentName="Request" argumentValue="Set"/>
+                        </xtce:ArgumentAssignmentList>
+                    </xtce:BaseMetaCommand>
+                    <xtce:ArgumentList>
+                        <xtce:Argument name="Switch" argumentTypeRef="ADBDEPType"/>
+                        <xtce:Argument name="Feedback" argumentTypeRef="ADBFeedbackParameterType"/>
+                        <xtce:Argument name="Burn_time" argumentTypeRef="/Delfi-PQ/short"/>
+                    </xtce:ArgumentList>
+                    <xtce:CommandContainer name="ADBburnParam">
+                        <xtce:EntryList>
+                            <xtce:FixedValueEntry binaryValue="31" sizeInBits="8"/>
+                            <xtce:ArgumentRefEntry argumentRef="Switch"/>
+                            <xtce:ArgumentRefEntry argumentRef="Feedback"/>
+                            <xtce:ArgumentRefEntry argumentRef="Burn_time"/>
+                        </xtce:EntryList>
+                    </xtce:CommandContainer>
+                </xtce:MetaCommand>
+            </xtce:MetaCommandSet>
+        </xtce:CommandMetaData>
+    </xtce:SpaceSystem>
+    <xtce:SpaceSystem name="COMMS">
+        <xtce:TelemetryMetaData>
+            <xtce:ParameterTypeSet>
+                <xtce:IntegerParameterType name="UInt6">
+                    <xtce:UnitSet/>
+                    <xtce:IntegerDataEncoding sizeInBits="6"/>
+                </xtce:IntegerParameterType>
+                <xtce:FloatParameterType name="CurrentType">
+                    <xtce:UnitSet>
+                        <xtce:Unit>mA</xtce:Unit>
+                    </xtce:UnitSet>
+                    <xtce:IntegerDataEncoding sizeInBits="16">
+                        <xtce:DefaultCalibrator>
+                            <xtce:MathOperationCalibrator>
+                                <xtce:ThisParameterOperand/>
+                                <xtce:ValueOperand>0.00152587890625</xtce:ValueOperand>
+                                <xtce:Operator>*</xtce:Operator>
+                            </xtce:MathOperationCalibrator>
+                        </xtce:DefaultCalibrator>
+                    </xtce:IntegerDataEncoding>
+                </xtce:FloatParameterType>
+                <xtce:FloatParameterType name="VoltageType">
+                    <xtce:UnitSet>
+                        <xtce:Unit>V</xtce:Unit>
+                    </xtce:UnitSet>
+                    <xtce:IntegerDataEncoding sizeInBits="16">
+                        <xtce:DefaultCalibrator>
+                            <xtce:MathOperationCalibrator>
+                                <xtce:ThisParameterOperand/>
+                                <xtce:ValueOperand>0.00030517578125</xtce:ValueOperand>
+                                <xtce:Operator>*</xtce:Operator>
+                            </xtce:MathOperationCalibrator>
+                        </xtce:DefaultCalibrator>
+                    </xtce:IntegerDataEncoding>
+                </xtce:FloatParameterType>
+                <xtce:ArrayParameterType name="byteArray" arrayTypeRef="/Delfi-PQ/byte" numberOfDimensions="1"/>
+            </xtce:ParameterTypeSet>
+            <xtce:ParameterSet>
+                <xtce:Parameter name="padding" parameterTypeRef="UInt6"/>
+                <xtce:Parameter name="COMMS_TMP_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="COMMS_ADC1_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="COMMS_ADC2_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="COMMS_ADC3_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="COMMS_ADC4_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="COMMS_ADC5_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="COMMS_ADC6_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="COMMS_ADC7_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="COMMS_ADC8_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="COMMS_ADC9_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="TCXOTemperature" shortDescription="TCXO Temperature" parameterTypeRef="/Delfi-PQ/TMPtemperature"/>
+                <xtce:Parameter name="SupplyCurrent" shortDescription="Supply Current" parameterTypeRef="CurrentType"/>
+                <xtce:Parameter name="RXVoltage" shortDescription="RX Supply Voltage" parameterTypeRef="VoltageType"/>
+                <xtce:Parameter name="TXVoltage" shortDescription="TX Supply Voltage" parameterTypeRef="VoltageType"/>
+                <xtce:Parameter name="TCXOVoltage" shortDescription="TCXO Supply Voltage" parameterTypeRef="VoltageType"/>
+                <xtce:Parameter name="RS485Voltage" shortDescription="RS485 Supply Voltage" parameterTypeRef="VoltageType"/>
+                <xtce:Parameter name="MCUVoltage" shortDescription="MCU Supply Voltage" parameterTypeRef="VoltageType"/>
+                <xtce:Parameter name="ProtectionVoltage" shortDescription="Protection Supply Voltage" parameterTypeRef="VoltageType"/>
+                <xtce:Parameter name="SupplyVoltage" shortDescription="3V3 Supply Voltage" parameterTypeRef="VoltageType"/>
+                <xtce:Parameter name="ADCreading" parameterTypeRef="VoltageType"/>
+                <xtce:Parameter name="Data" parameterTypeRef="byteArray"/>
+            </xtce:ParameterSet>
+            <xtce:ContainerSet>
+                <xtce:SequenceContainer name="COMMSHousekeepingContainer" shortDescription="COMMS Housekeeping container">
+                    <xtce:EntryList>
+                        <xtce:ContainerRefEntry containerRef="/Delfi-PQ/HousekeepingHeader"/>
+                        <xtce:ParameterRefEntry parameterRef="padding"/>
+                        <xtce:ParameterRefEntry parameterRef="COMMS_ADC9_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="COMMS_ADC8_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="COMMS_ADC7_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="COMMS_ADC6_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="COMMS_ADC5_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="COMMS_ADC4_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="COMMS_ADC3_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="COMMS_ADC2_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="COMMS_ADC1_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="COMMS_TMP_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="TCXOTemperature"/>
+                        <xtce:ParameterRefEntry parameterRef="RXVoltage"/>
+                        <xtce:ParameterRefEntry parameterRef="TXVoltage"/>
+                        <xtce:ParameterRefEntry parameterRef="TCXOVoltage"/>
+                        <xtce:ParameterRefEntry parameterRef="RS485Voltage"/>
+                        <xtce:ParameterRefEntry parameterRef="MCUVoltage"/>
+                        <xtce:ParameterRefEntry parameterRef="ProtectionVoltage"/>
+                        <xtce:ParameterRefEntry parameterRef="SupplyVoltage"/>
+                        <xtce:ParameterRefEntry parameterRef="SupplyCurrent"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/testing2"/>
+                    </xtce:EntryList>
+                </xtce:SequenceContainer>
+                <xtce:SequenceContainer name="COMMSHousekeepingReply" shortDescription="COMMS Housekeeping frame">
+                    <xtce:EntryList>
+                        <xtce:ContainerRefEntry containerRef="COMMSHousekeepingContainer"/>
+                    </xtce:EntryList>
+                    <xtce:BaseContainer containerRef="/Delfi-PQ/HousekeepingReply">
+                        <xtce:RestrictionCriteria>
+                            <xtce:ComparisonList>
+                                <xtce:Comparison parameterRef="Source" value="COMMS"/>
+                            </xtce:ComparisonList>
+                        </xtce:RestrictionCriteria>
+                    </xtce:BaseContainer>
+                </xtce:SequenceContainer>
+                <xtce:SequenceContainer name="SendCOMMSHousekeepingRequest" shortDescription="Send COMMS Housekeeping frame request">
+                    <xtce:EntryList>
+                        <xtce:ContainerRefEntry containerRef="COMMSHousekeepingContainer"/>
+                    </xtce:EntryList>
+                    <xtce:BaseContainer containerRef="/Delfi-PQ/SendRFFrame">
+                        <xtce:RestrictionCriteria>
+                            <xtce:ComparisonList>
+                                <xtce:Comparison parameterRef="Source" value="COMMS"/>
+                            </xtce:ComparisonList>
+                        </xtce:RestrictionCriteria>
+                    </xtce:BaseContainer>
+                </xtce:SequenceContainer>
+                <xtce:SequenceContainer name="RXData" shortDescription="COMMS RX data">
+                    <xtce:EntryList>
+                        <xtce:ArrayParameterRefEntry parameterRef="Data">
+                            <xtce:DimensionList>
+                                <xtce:Size>
+                                    <xtce:DynamicValue>
+                                        <xtce:ParameterInstanceRef parameterRef="/Delfi-PQ/Size" useCalibratedValue="true"/>
+                                        <xtce:LinearAdjustment intercept="-4" slope="1"/>
+                                    </xtce:DynamicValue>
+                                </xtce:Size>
+                            </xtce:DimensionList>
+                        </xtce:ArrayParameterRefEntry>
+                    </xtce:EntryList>
+                    <xtce:BaseContainer containerRef="/Delfi-PQ/PQ9">
+                        <xtce:RestrictionCriteria>
+                            <xtce:ComparisonList>
+                                <xtce:Comparison parameterRef="Source" value="COMMS"/>
+                                <xtce:Comparison parameterRef="Service" value="RX"/>
+                                <xtce:Comparison parameterRef="Request" value="Reply"/>
+                            </xtce:ComparisonList>
+                        </xtce:RestrictionCriteria>
+                    </xtce:BaseContainer>
+                </xtce:SequenceContainer>
+            </xtce:ContainerSet>
+        </xtce:TelemetryMetaData>
+        <xtce:CommandMetaData>
+            <xtce:MetaCommandSet>
+                <xtce:MetaCommand name="PingRadio" shortDescription="Ping Radio">
+                    <xtce:BaseMetaCommand metaCommandRef="/Delfi-PQ/Ping">
+                        <xtce:ArgumentAssignmentList>
+                            <xtce:ArgumentAssignment argumentName="Destination" argumentValue="COMMS"/>
+                            <xtce:ArgumentAssignment argumentName="Size" argumentValue="2"/>
+                            <xtce:ArgumentAssignment argumentName="Source" argumentValue="OBC"/>
+                            <xtce:ArgumentAssignment argumentName="Counter" argumentValue="0"/>
+                            <xtce:ArgumentAssignment argumentName="Service" argumentValue="Ping"/>
+                            <xtce:ArgumentAssignment argumentName="Request" argumentValue="Request"/>
+                        </xtce:ArgumentAssignmentList>
+                    </xtce:BaseMetaCommand>
+                    <xtce:CommandContainer name="PingRadio">
+                        <xtce:EntryList/>
+                    </xtce:CommandContainer>
+                </xtce:MetaCommand>
+            </xtce:MetaCommandSet>
+        </xtce:CommandMetaData>
+    </xtce:SpaceSystem>
+    <xtce:SpaceSystem name="MPP">
+        <xtce:TelemetryMetaData>
+            <xtce:ParameterSet>
+                <xtce:Parameter name="MPPTemperatureStatus" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="MPPINAHold_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="MPPINASpike_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="MPPINAHeater_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="MPPINA_Status" parameterTypeRef="/Delfi-PQ/sensorBitStatus"/>
+                <xtce:Parameter name="MPPCurrent" parameterTypeRef="/Delfi-PQ/INAcurrent"/>
+                <xtce:Parameter name="MPPVoltage" parameterTypeRef="/Delfi-PQ/INAvoltage"/>
+                <xtce:Parameter name="HOLDCurrent" parameterTypeRef="/Delfi-PQ/INAcurrent"/>
+                <xtce:Parameter name="HOLDVoltage" parameterTypeRef="/Delfi-PQ/INAvoltage"/>
+                <xtce:Parameter name="SPIKECurrent" parameterTypeRef="/Delfi-PQ/INAcurrent"/>
+                <xtce:Parameter name="SPIKEVoltage" parameterTypeRef="/Delfi-PQ/INAvoltage"/>
+                <xtce:Parameter name="HeaterCurrent" parameterTypeRef="/Delfi-PQ/INAcurrent"/>
+                <xtce:Parameter name="HeaterVoltage" parameterTypeRef="/Delfi-PQ/INAvoltage"/>
+                <xtce:Parameter name="MPPTemperature" parameterTypeRef="/Delfi-PQ/TMPtemperature"/>
+                <xtce:Parameter name="LPMExternalSensor" parameterTypeRef="/Delfi-PQ/short"/>
+            </xtce:ParameterSet>
+            <xtce:ContainerSet>
+                <xtce:SequenceContainer name="MPPHousekeepingContainer" shortDescription="MPP Housekeeping container">
+                    <xtce:EntryList>
+                        <xtce:ContainerRefEntry containerRef="/Delfi-PQ/HousekeepingHeader"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/Sensor0Status"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/Sensor1Status"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/Sensor2Status"/>
+                        <xtce:ParameterRefEntry parameterRef="MPPINAHeater_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="MPPINASpike_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="MPPINAHold_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="MPPINA_Status"/>
+                        <xtce:ParameterRefEntry parameterRef="MPPTemperatureStatus"/>
+                        <xtce:ParameterRefEntry parameterRef="MPPCurrent"/>
+                        <xtce:ParameterRefEntry parameterRef="MPPVoltage"/>
+                        <xtce:ParameterRefEntry parameterRef="HOLDCurrent"/>
+                        <xtce:ParameterRefEntry parameterRef="HOLDVoltage"/>
+                        <xtce:ParameterRefEntry parameterRef="SPIKECurrent"/>
+                        <xtce:ParameterRefEntry parameterRef="SPIKEVoltage"/>
+                        <xtce:ParameterRefEntry parameterRef="HeaterCurrent"/>
+                        <xtce:ParameterRefEntry parameterRef="HeaterVoltage"/>
+                        <xtce:ParameterRefEntry parameterRef="MPPTemperature"/>
+                        <xtce:ParameterRefEntry parameterRef="LPMExternalSensor"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/testing2"/>
+                    </xtce:EntryList>
+                </xtce:SequenceContainer>
+                <xtce:SequenceContainer name="MPPHousekeepingReply" shortDescription="MPP Housekeeping frame">
+                    <xtce:EntryList>
+                        <xtce:ContainerRefEntry containerRef="MPPHousekeepingContainer"/>
+                    </xtce:EntryList>
+                    <xtce:BaseContainer containerRef="/Delfi-PQ/HousekeepingReply">
+                        <xtce:RestrictionCriteria>
+                            <xtce:ComparisonList>
+                                <xtce:Comparison parameterRef="Source" value="MPP"/>
+                            </xtce:ComparisonList>
+                        </xtce:RestrictionCriteria>
+                    </xtce:BaseContainer>
+                </xtce:SequenceContainer>
+                <xtce:SequenceContainer name="SendMPPHousekeepingRequest" shortDescription="Send MPP Housekeeping frame request">
+                    <xtce:EntryList>
+                        <xtce:ContainerRefEntry containerRef="MPPHousekeepingContainer"/>
+                    </xtce:EntryList>
+                    <xtce:BaseContainer containerRef="/Delfi-PQ/SendRFFrame">
+                        <xtce:RestrictionCriteria>
+                            <xtce:ComparisonList>
+                                <xtce:Comparison parameterRef="Source" value="MPP"/>
+                            </xtce:ComparisonList>
+                        </xtce:RestrictionCriteria>
+                    </xtce:BaseContainer>
+                </xtce:SequenceContainer>
+            </xtce:ContainerSet>
+        </xtce:TelemetryMetaData>
+        <xtce:CommandMetaData>
+            <xtce:ArgumentTypeSet>
+                <xtce:EnumeratedArgumentType name="MPPValveSwitchesType">
+                    <xtce:UnitSet/>
+                    <xtce:IntegerDataEncoding sizeInBits="8" encoding="unsigned"/>
+                    <xtce:EnumerationList>
+                        <xtce:Enumeration label="on" value="1" shortDescription="Valve on"/>
+                        <xtce:Enumeration label="off" value="0" shortDescription="Valve off"/>
+                    </xtce:EnumerationList>
+                </xtce:EnumeratedArgumentType>
+            </xtce:ArgumentTypeSet>
+            <xtce:MetaCommandSet>
+                <xtce:MetaCommand name="MPPDigitalPot">
+                    <xtce:LongDescription>MPP Digital pot</xtce:LongDescription>
+                    <xtce:BaseMetaCommand metaCommandRef="/Delfi-PQ/PQ9">
+                        <xtce:ArgumentAssignmentList>
+                            <xtce:ArgumentAssignment argumentName="Destination" argumentValue="MPP"/>
+                            <xtce:ArgumentAssignment argumentName="Size" argumentValue="6"/>
+                            <xtce:ArgumentAssignment argumentName="Source" argumentValue="OBC"/>
+                            <xtce:ArgumentAssignment argumentName="Counter" argumentValue="0"/>
+                            <xtce:ArgumentAssignment argumentName="Service" argumentValue="GetSetParam"/>
+                            <xtce:ArgumentAssignment argumentName="Request" argumentValue="Set"/>
+                        </xtce:ArgumentAssignmentList>
+                    </xtce:BaseMetaCommand>
+                    <xtce:ArgumentList>
+                        <xtce:Argument name="value" argumentTypeRef="/Delfi-PQ/short"/>
+                    </xtce:ArgumentList>
+                    <xtce:CommandContainer name="MPPDPOT">
+                        <xtce:EntryList>
+                            <xtce:FixedValueEntry binaryValue="41" sizeInBits="8"/>
+                            <xtce:ArgumentRefEntry argumentRef="value"/>
+                        </xtce:EntryList>
+                    </xtce:CommandContainer>
+                </xtce:MetaCommand>
+                <xtce:MetaCommand name="MPPValveSwitches">
+                    <xtce:LongDescription>MPP valve switches</xtce:LongDescription>
+                    <xtce:BaseMetaCommand metaCommandRef="/Delfi-PQ/PQ9">
+                        <xtce:ArgumentAssignmentList>
+                            <xtce:ArgumentAssignment argumentName="Destination" argumentValue="MPP"/>
+                            <xtce:ArgumentAssignment argumentName="Size" argumentValue="6"/>
+                            <xtce:ArgumentAssignment argumentName="Source" argumentValue="OBC"/>
+                            <xtce:ArgumentAssignment argumentName="Counter" argumentValue="0"/>
+                            <xtce:ArgumentAssignment argumentName="Service" argumentValue="GetSetParam"/>
+                            <xtce:ArgumentAssignment argumentName="Request" argumentValue="Set"/>
+                        </xtce:ArgumentAssignmentList>
+                    </xtce:BaseMetaCommand>
+                    <xtce:ArgumentList>
+                        <xtce:Argument name="LPMHeat" argumentTypeRef="MPPValveSwitchesType"/>
+                        <xtce:Argument name="VLMHeat" argumentTypeRef="MPPValveSwitchesType"/>
+                        <xtce:Argument name="LPMSpike" argumentTypeRef="MPPValveSwitchesType"/>
+                        <xtce:Argument name="VLMSpike" argumentTypeRef="MPPValveSwitchesType"/>
+                        <xtce:Argument name="LPMHold" argumentTypeRef="MPPValveSwitchesType"/>
+                        <xtce:Argument name="VLMHold" argumentTypeRef="MPPValveSwitchesType"/>
+                    </xtce:ArgumentList>
+                    <xtce:CommandContainer name="MPPValveSwitches">
+                        <xtce:EntryList>
+                            <xtce:FixedValueEntry binaryValue="43" sizeInBits="8"/>
+                            <xtce:ArgumentRefEntry argumentRef="LPMHeat"/>
+                            <xtce:ArgumentRefEntry argumentRef="VLMHeat"/>
+                            <xtce:ArgumentRefEntry argumentRef="LPMSpike"/>
+                            <xtce:ArgumentRefEntry argumentRef="VLMSpike"/>
+                            <xtce:ArgumentRefEntry argumentRef="LPMHold"/>
+                            <xtce:ArgumentRefEntry argumentRef="VLMHold"/>
+                        </xtce:EntryList>
+                    </xtce:CommandContainer>
+                </xtce:MetaCommand>
+           </xtce:MetaCommandSet>
+        </xtce:CommandMetaData>
+    </xtce:SpaceSystem>
+
+    <xtce:SpaceSystem name="DEBUG">
+        <xtce:TelemetryMetaData>
+            <xtce:ParameterTypeSet>
+              <xtce:EnumeratedParameterType name="DBGSWStatusType">
+                  <xtce:UnitSet/>
+                  <xtce:IntegerDataEncoding sizeInBits="8" encoding="unsigned"/>
+                  <xtce:EnumerationList>
+                      <xtce:Enumeration label="OFF" value="1"/>
+                      <xtce:Enumeration label="ON" value="0"/>
+                  </xtce:EnumerationList>
+              </xtce:EnumeratedParameterType>
+            </xtce:ParameterTypeSet>
+            <xtce:ParameterSet>
+              <xtce:Parameter name="DBGSW1" parameterTypeRef="DBGSWStatusType"/>
+              <xtce:Parameter name="DBGSW2" parameterTypeRef="DBGSWStatusType"/>
+          </xtce:ParameterSet>
+            <xtce:ContainerSet>
+                <xtce:SequenceContainer name="DEBUGHousekeepingContainer" shortDescription="DEBUG Housekeeping container">
+                    <xtce:EntryList>
+                        <xtce:ContainerRefEntry containerRef="/Delfi-PQ/HousekeepingHeader"/>
+                        <xtce:ParameterRefEntry parameterRef="DBGSW1"/>
+                        <xtce:ParameterRefEntry parameterRef="DBGSW2"/>
+                        <xtce:ParameterRefEntry parameterRef="/Delfi-PQ/testing2"/>
+                    </xtce:EntryList>
+                </xtce:SequenceContainer>
+                <xtce:SequenceContainer name="DEBUGHousekeepingReply" shortDescription="DEBUG Housekeeping frame">
+                    <xtce:EntryList>
+                        <xtce:ContainerRefEntry containerRef="DEBUGHousekeepingContainer"/>
+                    </xtce:EntryList>
+                    <xtce:BaseContainer containerRef="/Delfi-PQ/HousekeepingReply">
+                        <xtce:RestrictionCriteria>
+                            <xtce:ComparisonList>
+                                <xtce:Comparison parameterRef="Source" value="DEBUG"/>
+                            </xtce:ComparisonList>
+                        </xtce:RestrictionCriteria>
+                    </xtce:BaseContainer>
+                </xtce:SequenceContainer>
+                <xtce:SequenceContainer name="SendDEBUGHousekeepingRequest" shortDescription="Send DEBUG Housekeeping frame request">
+                    <xtce:EntryList>
+                        <xtce:ContainerRefEntry containerRef="DEBUGHousekeepingContainer"/>
+                    </xtce:EntryList>
+                    <xtce:BaseContainer containerRef="/Delfi-PQ/SendRFFrame">
+                        <xtce:RestrictionCriteria>
+                            <xtce:ComparisonList>
+                                <xtce:Comparison parameterRef="Source" value="DEBUG"/>
+                            </xtce:ComparisonList>
+                        </xtce:RestrictionCriteria>
+                    </xtce:BaseContainer>
+                </xtce:SequenceContainer>
+            </xtce:ContainerSet>
+        </xtce:TelemetryMetaData>
+        <xtce:CommandMetaData>
+            <xtce:ArgumentTypeSet>
+                <xtce:EnumeratedArgumentType name="DEBUGLEDType">
+                    <xtce:UnitSet/>
+                    <xtce:IntegerDataEncoding sizeInBits="8" encoding="unsigned"/>
+                    <xtce:EnumerationList>
+                        <xtce:Enumeration label="on" value="1" shortDescription="LED on"/>
+                        <xtce:Enumeration label="off" value="0" shortDescription="LED off"/>
+                    </xtce:EnumerationList>
+                </xtce:EnumeratedArgumentType>
+            </xtce:ArgumentTypeSet>
+            <xtce:MetaCommandSet>
+                <xtce:MetaCommand name="DBGLEDcmd">
+                    <xtce:LongDescription>Board led</xtce:LongDescription>
+                    <xtce:BaseMetaCommand metaCommandRef="/Delfi-PQ/PQ9">
+                        <xtce:ArgumentAssignmentList>
+                            <xtce:ArgumentAssignment argumentName="Size" argumentValue="6"/>
+                            <xtce:ArgumentAssignment argumentName="Source" argumentValue="OBC"/>
+                            <xtce:ArgumentAssignment argumentName="Counter" argumentValue="0"/>
+                            <xtce:ArgumentAssignment argumentName="Service" argumentValue="GetSetParam"/>
+                            <xtce:ArgumentAssignment argumentName="Request" argumentValue="Set"/>
+                        </xtce:ArgumentAssignmentList>
+                    </xtce:BaseMetaCommand>
+                    <xtce:ArgumentList>
+                        <xtce:Argument name="DBGLED" argumentTypeRef="DEBUGLEDType"/>
+                    </xtce:ArgumentList>
+                    <xtce:CommandContainer name="DBGLEDcmd">
+                        <xtce:EntryList>
+                            <xtce:FixedValueEntry binaryValue="45" sizeInBits="8"/>
+                            <xtce:ArgumentRefEntry argumentRef="DBGLED"/>
+                        </xtce:EntryList>
+                    </xtce:CommandContainer>
+                </xtce:MetaCommand>
+           </xtce:MetaCommandSet>
+        </xtce:CommandMetaData>
+    </xtce:SpaceSystem>
+
+    <xtce:SpaceSystem name="TEST">
+        <xtce:TelemetryMetaData>
+            <xtce:ParameterSet>
+                <xtce:Parameter name="RxRawCounter" parameterTypeRef="/Delfi-PQ/short"/>
+                <xtce:Parameter name="RxErrCounter" parameterTypeRef="/Delfi-PQ/short"/>
+                <xtce:Parameter name="TxOBCCounter" parameterTypeRef="/Delfi-PQ/short"/>
+                <xtce:Parameter name="RxOBCCounter" parameterTypeRef="/Delfi-PQ/short"/>
+                <xtce:Parameter name="RxEPSCounter" parameterTypeRef="/Delfi-PQ/short"/>
+                <xtce:Parameter name="TxEPSCounter" parameterTypeRef="/Delfi-PQ/short"/>
+                <xtce:Parameter name="RxADBCounter" parameterTypeRef="/Delfi-PQ/short"/>
+                <xtce:Parameter name="TxADBCounter" parameterTypeRef="/Delfi-PQ/short"/>
+                <xtce:Parameter name="RxADCSCounter" parameterTypeRef="/Delfi-PQ/short"/>
+                <xtce:Parameter name="TxADCSCounter" parameterTypeRef="/Delfi-PQ/short"/>
+                <xtce:Parameter name="RxCOMMSCounter" parameterTypeRef="/Delfi-PQ/short"/>
+                <xtce:Parameter name="TxCOMMSCounter" parameterTypeRef="/Delfi-PQ/short"/>
+                <xtce:Parameter name="RxDBGCounter" parameterTypeRef="/Delfi-PQ/short"/>
+                <xtce:Parameter name="TxDBGCounter" parameterTypeRef="/Delfi-PQ/short"/>
+            </xtce:ParameterSet>
+            <xtce:ContainerSet>
+                <xtce:SequenceContainer name="PACKET_STATS" shortDescription="packet statistics frame">
+                    <xtce:EntryList>
+                        <xtce:ParameterRefEntry parameterRef="RxRawCounter"/>
+                        <xtce:ParameterRefEntry parameterRef="RxErrCounter"/>
+                        <xtce:ParameterRefEntry parameterRef="RxOBCCounter"/>
+                        <xtce:ParameterRefEntry parameterRef="RxEPSCounter"/>
+                        <xtce:ParameterRefEntry parameterRef="RxADBCounter"/>
+                        <xtce:ParameterRefEntry parameterRef="RxADCSCounter"/>
+                        <xtce:ParameterRefEntry parameterRef="RxCOMMSCounter"/>
+                        <xtce:ParameterRefEntry parameterRef="RxDBGCounter"/>
+                        <xtce:ParameterRefEntry parameterRef="TxOBCCounter"/>
+                        <xtce:ParameterRefEntry parameterRef="TxEPSCounter"/>
+                        <xtce:ParameterRefEntry parameterRef="TxADBCounter"/>
+                        <xtce:ParameterRefEntry parameterRef="TxADCSCounter"/>
+                        <xtce:ParameterRefEntry parameterRef="TxCOMMSCounter"/>
+                        <xtce:ParameterRefEntry parameterRef="TxDBGCounter"/>
+                    </xtce:EntryList>
+                    <xtce:BaseContainer containerRef="/Delfi-PQ/PQ9">
+                        <xtce:RestrictionCriteria>
+                            <xtce:ComparisonList>
+                                <xtce:Comparison parameterRef="Service" value="PacketStats"/>
+                                <xtce:Comparison parameterRef="Request" value="Reply"/>
+                            </xtce:ComparisonList>
+                        </xtce:RestrictionCriteria>
+                    </xtce:BaseContainer>
+                </xtce:SequenceContainer>
+            </xtce:ContainerSet>
+        </xtce:TelemetryMetaData>
+        <xtce:CommandMetaData>
+            <!--xtce:ArgumentTypeSet>
+            </xtce:ArgumentTypeSet-->
+            <xtce:MetaCommandSet>
+                <xtce:MetaCommand name="PStats" shortDescription="Packet statistics">
+                    <xtce:LongDescription>Checks the subsystem packet statistics.</xtce:LongDescription>
+                    <xtce:BaseMetaCommand metaCommandRef="/Delfi-PQ/PQ9">
+                        <xtce:ArgumentAssignmentList>
+                            <xtce:ArgumentAssignment argumentName="Size" argumentValue="2"/>
+                            <xtce:ArgumentAssignment argumentName="Source" argumentValue="OBC"/>
+                            <xtce:ArgumentAssignment argumentName="Counter" argumentValue="0"/>
+                            <xtce:ArgumentAssignment argumentName="Service" argumentValue="PacketStats"/>
+                            <xtce:ArgumentAssignment argumentName="Request" argumentValue="Request"/>
+                        </xtce:ArgumentAssignmentList>
+                    </xtce:BaseMetaCommand>
+                    <xtce:CommandContainer name="PStats">
+                        <xtce:EntryList/>
+                    </xtce:CommandContainer>
+                </xtce:MetaCommand>
+
+            <xtce:MetaCommand name="Freeze">
+                 <xtce:LongDescription>Stops a subsystem from working.</xtce:LongDescription>
+                 <xtce:BaseMetaCommand metaCommandRef="/Delfi-PQ/PQ9">
+                     <xtce:ArgumentAssignmentList>
+                        <xtce:ArgumentAssignment argumentName="Size" argumentValue="2"/>
+                        <xtce:ArgumentAssignment argumentName="Source" argumentValue="OBC"/>
+                        <xtce:ArgumentAssignment argumentName="Counter" argumentValue="0"/>
+                        <xtce:ArgumentAssignment argumentName="Service" argumentValue="Freeze"/>
+                        <xtce:ArgumentAssignment argumentName="Request" argumentValue="Request"/>
+                        <xtce:ArgumentAssignment argumentName="Service" argumentValue="Testing"/>
+                        <xtce:ArgumentAssignment argumentName="Request" argumentValue="Freeze"/>
+                    </xtce:ArgumentAssignmentList>
+                </xtce:BaseMetaCommand>
+                <xtce:CommandContainer name="Freeze">
+                    <xtce:EntryList/>
+                </xtce:CommandContainer>
+            </xtce:MetaCommand>
+
+            <xtce:MetaCommand name="Start_Master_loop">
+               <xtce:LongDescription>Enables the master query.</xtce:LongDescription>
+               <xtce:BaseMetaCommand metaCommandRef="/Delfi-PQ/PQ9">
+                   <xtce:ArgumentAssignmentList>
+                       <xtce:ArgumentAssignment argumentName="Size" argumentValue="2"/>
+                       <xtce:ArgumentAssignment argumentName="Destination" argumentValue="OBC"/>
+                       <xtce:ArgumentAssignment argumentName="Source" argumentValue="OBC"/>
+                       <xtce:ArgumentAssignment argumentName="Counter" argumentValue="0"/>
+                       <xtce:ArgumentAssignment argumentName="Service" argumentValue="Testing"/>
+                       <xtce:ArgumentAssignment argumentName="Request" argumentValue="Start_master"/>
+                   </xtce:ArgumentAssignmentList>
+               </xtce:BaseMetaCommand>
+               <xtce:CommandContainer name="Start_Master_loop">
+                   <xtce:EntryList/>
+               </xtce:CommandContainer>
+           </xtce:MetaCommand>
+            <xtce:MetaCommand name="Stop_Master_loop">
+               <xtce:LongDescription>Disables the master query.</xtce:LongDescription>
+               <xtce:BaseMetaCommand metaCommandRef="/Delfi-PQ/PQ9">
+                   <xtce:ArgumentAssignmentList>
+                       <xtce:ArgumentAssignment argumentName="Size" argumentValue="2"/>
+                       <xtce:ArgumentAssignment argumentName="Source" argumentValue="OBC"/>
+                       <xtce:ArgumentAssignment argumentName="Destination" argumentValue="OBC"/>
+                       <xtce:ArgumentAssignment argumentName="Counter" argumentValue="0"/>
+                       <xtce:ArgumentAssignment argumentName="Service" argumentValue="Testing"/>
+                       <xtce:ArgumentAssignment argumentName="Request" argumentValue="Stop_master"/>
+                   </xtce:ArgumentAssignmentList>
+               </xtce:BaseMetaCommand>
+               <xtce:CommandContainer name="Stop_Master_loop">
+                   <xtce:EntryList/>
+               </xtce:CommandContainer>
+           </xtce:MetaCommand>
+           </xtce:MetaCommandSet>
+        </xtce:CommandMetaData>
+    </xtce:SpaceSystem>
+</xtce:SpaceSystem>
