@@ -136,7 +136,7 @@ python client_LED.py localhost:8080
 ```
 *NOTE: the last two commands should be executed with terminal running in the respective folders where the invoked files/paths exist. Else, simply replacing the files names by the full directory should suffice.*
 
-2. A message of how to utilise the program will appear:
+4. A message of how to utilise the program will appear:
 
 ```
 #################################################################
@@ -153,13 +153,13 @@ Choose the port that connects the Arduino to the PC.
 
 *NOTE: The Arduino board has to be connected in the format of ```/dev/ttyACM(...)```, else the program does not recognise it. In case the connection to the PC has a different designation, change line (XXXXX) of ```client_LED.py``` to the specific designation (for example, ```COM(...)```)*
 
-3. If the connection is established, the program will attempt to connect to the LaunchPad board. This is represented by a progress bar that looks like the following:
+5. If the connection is established, the program will attempt to connect to the LaunchPad board. This is represented by a progress bar that looks like the following:
 ```
 [###       ]
 ```
 Each ```#``` represents a successful ping with the DEBUG subsystem of the board. 
 
-4. Finally, the program is ready to take commands to turn ON and OFF the LED. Every 10 seconds (after the first user input) an update on the Arduino feedback is printed on the screen. Every time a user inputs 1/0 (+ENTER), the message that is sent to the board is printed. If there is feedback from the board, the following should appear:
+6. Finally, the program is ready to take commands to turn ON and OFF the LED. Every 10 seconds (after the first user input) an update on the Arduino feedback is printed on the screen. Every time a user inputs 1/0 (+ENTER), the message that is sent to the board is printed. If there is feedback from the board, the following should appear:
 ```
 Command received in DEBUG
 ```
