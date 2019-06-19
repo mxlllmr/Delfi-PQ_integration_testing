@@ -98,7 +98,7 @@ In order to use the scripts provided in this repository, the user will need the 
 ### Software implementation
 
 
-### ```arduino_microsat.ino```
+#### ```arduino_microsat.ino```
 
 To run any of the python scripts, this code must be uploaded to the Arduino board connected to the PC. After checking the connection in Arduino IDE (by choosing the type of board in ```Tools->Board``` and the port in ```Tools->Port```), the user can upload the code to the board.
 
