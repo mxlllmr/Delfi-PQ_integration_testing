@@ -32,6 +32,9 @@ The Arduino script is the simplest one. It updates every second in the Serial Mo
 
 #### Arduino block diagram
 
+![arduino](https://user-images.githubusercontent.com/50111548/59796762-08fa9b00-9293-11e9-8ffa-40642fd87ef6.jpg)
+
+
 ### Python
 
 #### Python block diagrams
