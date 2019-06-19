@@ -92,7 +92,7 @@ First, run the EGSE software. This Java software should be in a local folder, an
 ```
 java -........ 
 ```
-in the terminal. After making the connection and emulation of the LaunchPad board is established (this can be verified by opening the browser in ```localhost:8080```, run the python script as:
+in the terminal. After making sure the connection and emulation of the LaunchPad board is established (this can be verified by opening the browser in ```localhost:8080```), run the python script as:
 ```
 python client_LED.py localhost:8080
 ```
