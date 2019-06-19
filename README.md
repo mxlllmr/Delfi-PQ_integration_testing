@@ -1,13 +1,13 @@
 # Delfi-PQ - Intergration testing
 
 ## Purpose
-(Maybe including that subsystems for small satellits do not consist of any additional units other then the ones absolute needed, cannot monitor the execution of the task, only send command and receive replyies, but no guarantee it actually worked.)
+(Maybe including that subsystems for small satellites do not consist of any additional units other then the ones absolute needed and cannot monitor the execution of the task; they only send commands and receive replies, but have no guarantee that it actually works.)
 
 Delfi-PQ belongs to the new type of miniaturized satellites, namely PocketQube satellites, which exhibit certain advantages over the widely used CubeSats. Due to their smaller size, PocketQubes bring a decrease in total cost and development time. The main objective of Delfi-PQ is to test the application of a PocketQube satellite for future missions since it is expected that the reduced development cycle will allow a comparably higher launch frequency, increasing flight experience and reliability of the system.
 
 To ensure that the respective subsystems are operational, the integration of the Delfi-PQ system must be tested. While in space, the functionality of a subsystem cannot be observed directly and positive feedback from the subsystem itself does not guarantee a faultless execution of the specified task. Additionally, the subsystem hardware itself is not able to detect if the execution was in fact successful. Hence, it is necessary to deploy verification through external hardware if the command given to the subsystem was effectively executed.
 
-This project will focus on the design and implementation of a solution for verifying the successful execution of a command given to the subsystem. In particular, the verification of the LED command to the Launchpad (Texas Instruments) board is demonstrated via external hardware (Arduino Mega). This software is intended to be modified easily in order to adapt the integration testing to different subsystems of the Delfi-PQ.
+This project will focus on the design and implementation of a solution for verifying the successful execution of a command given to the subsystem. In particular, the verification of the LED command to the LaunchPad (Texas Instruments) board is demonstrated via external hardware (Arduino Mega). This software is intended to be modified easily in order to adapt the integration testing to different subsystems of the Delfi-PQ.
 
 
 - receiving feedback from external hardware if the command given to the board was successfully executed
@@ -163,5 +163,5 @@ Additionally, the user will provide the subsystem with a command to execute a ta
 ## Future changes and recommendations
 instead of connecting to the led can be used to verify the funcionality of another Delfi-PQ subsystem
 
-Using better versions of the EGSE software and Launchpad that are not as flawed and do not require extra time
+Using better versions of the EGSE software and LaunchPad that are not as flawed and do not require extra time
 
