@@ -71,7 +71,7 @@ In order to use the scripts provided in this repository, the user will need the 
 
 ### Software implementation
 
-#### How to use client_LED.py
+#### ```client_LED.py```
 
 Libraries needed: ```numpy```, ```Pyserial```,(...) - in the 'import' section)
 
@@ -119,9 +119,9 @@ Anytime the Arduino disagrees with the subsystem feedback, an ERROR message is s
 
 *FINAL REMARKS: This program is protected such that if any undesired input exists, a 'try again' type of notification is printed; The ```ENTER``` command after ```CTRL+c``` is required because there is an existing thread that contains the function ```input()``` that stalls the program. The waiting period is demanded such that existing ```time.sleep()``` functions cease.*
 
-#### How to use client_ADB.py
+#### ```client_ADB.py```
 
-#### How to use client_ADB_noUI.py
+#### ```client_ADB_noUI.py```
 
 ## Results
 
