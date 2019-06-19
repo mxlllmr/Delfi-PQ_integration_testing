@@ -127,13 +127,13 @@ Anytime the Arduino disagrees with the subsystem feedback, an ERROR message is s
 
 ## Issues encountered
 
-- the connection between LaunchPad and EGSE is not established: remedy: try until it is
+- The connection between LaunchPad and EGSE was not always established. The only remedy was to kill the EGSE instance and rerun it until it worked.
 
-- The launchpad LED P1.0 connection burned and the LED was constantly ON when plugged to that GPIO. This was remedied by manually connecting/disconnecting the cable accordingly (or not) to the user input
+- The LaunchPad LED P1.0 GPIO connection burned and the LED was constantly ON when plugged in. This was remedied by manually connecting/disconnecting the cable accordingly (or not) to the user input.
 
 
 ## Future changes and recommendations
-instead of connecting to the led can be used to verify the funcionality of another Delfi-PQ subsystem
+- Instead of connecting to the LED can be used to verify the funcionality of another Delfi-PQ subsystem
 
-Using better versions of the EGSE software and LaunchPad that are not as flawed and do not require extra time
+-
 
