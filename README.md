@@ -97,6 +97,7 @@ In order to use the scripts provided in this repository, the user will need the 
 
 ### Software implementation
 
+To run the following software, Arduino IDE, Python 2x and Java must be installed in the user's PC.
 
 #### ```arduino_microsat.ino```
 
@@ -108,17 +109,16 @@ The Serial Monitor can be checked to verify its normal functioning. To help with
 
 #### ```client_LED.py```
 
-Libraries needed: ```numpy```, ```serial```, ```threading```, ```sys```, ```time```, ```signal```, ```logging```, ```json```, ```socket```
+- Libraries needed: ```numpy```, ```serial```, ```threading```, ```sys```, ```time```, ```signal```, ```logging```, ```json```, ```socket```
 
-Files needed in repository: ```pq_module.py```, ```pq_comms.py```
+- Files needed in repository: ```pq_module.py```, ```pq_comms.py```
 
-Commands: 
+- Commands: 
+  - **0,1,2,... followed by ENTER**: Chooses the Arduino port
+  - **0/1 followed by ENTER**: Sends a command to turn OFF/ON the LED
+  - **CTRL+c followed by ENTER**: Exits the program
 
-- **0,1,2,... followed by ENTER**: Chooses the Arduino port
-- **0/1 followed by ENTER**: Sends a command to turn OFF/ON the LED
-- **CTRL+c followed by ENTER**: Exits the program
-
-First, run the EGSE software. This Java software should be in a local folder, and it runs by writing:
+1. Run the EGSE software. This Java software should be in a local folder, and it runs by writing
 ```
 sudo java -jar target/PQ9EGSE-0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
@@ -128,7 +128,7 @@ python client_LED.py localhost:8080
 ```
 *NOTE: the last two commands should be executed with terminal running in the respective folders where the invoked files/paths exist. Else, simply replacing the files names by the full directory should suffice.*
 
-A message of how to utilise the program will appear:
+2. A message of how to utilise the program will appear:
 
 ```
 #################################################################
@@ -145,19 +145,17 @@ Choose the port that connects the Arduino to the PC.
 
 *NOTE: The Arduino board has to be connected in the format of ```/dev/ttyACM(...)```, else the program does not recognise it. In case the connection to the PC has a different designation, change line (XXXXX) of ```client_LED.py``` to the specific designation (for example, ```COM(...)```)*
 
-If the connection is established, the program will attempt to connect to the LaunchPad board. This is represented by a progress bar that looks like the following:
+3. If the connection is established, the program will attempt to connect to the LaunchPad board. This is represented by a progress bar that looks like the following:
 ```
 [###       ]
 ```
 Each ```#``` represents a successful ping with the DEBUG subsystem of the board. 
 
-Finally, the program is ready to take commands to turn ON and OFF the LED. Every 10 seconds (after the first user input) an update on the Arduino feedback is printed on the screen. Every time a user inputs 1/0 (+ENTER), the message that is sent to the board is printed. If there is feedback from the board, the following should appear:
+4. Finally, the program is ready to take commands to turn ON and OFF the LED. Every 10 seconds (after the first user input) an update on the Arduino feedback is printed on the screen. Every time a user inputs 1/0 (+ENTER), the message that is sent to the board is printed. If there is feedback from the board, the following should appear:
 ```
 Command received in DEBUG
 ```
-Additionally, an immediate Arduino feedback check is performed.
-
-Anytime the Arduino disagrees with the subsystem feedback, an ERROR message is saved in an external .log file.
+Additionally, an immediate Arduino feedback check is performed. Anytime the Arduino disagrees with the subsystem feedback, an ERROR message is saved in an external .log file.
 
 *FINAL REMARKS: This program is protected such that if any undesired input exists, a 'try again' type of notification is printed; The ```ENTER``` command after ```CTRL+c``` is required because there is an existing thread that contains the function ```input()``` that stalls the program. The waiting period is demanded such that existing ```time.sleep()``` functions cease.*
 
