@@ -32,11 +32,11 @@ The overall purpose of this project is to do integration testing of the Delfi-PQ
 
 ### Arduino 
 
-The Arduino script is the simplest one. It updates every second in the Serial Monitor the value that is read in the GPIO that is connected to the LaunchPad. The Serial Monitor is later interpreted by the python scripts, which in their turn use such values
+The Arduino script is the simplest one. It updates every second in the Serial Monitor the value that is read in the GPIO that is connected to the LaunchPad. The Serial Monitor is later interpreted by the python scripts, which in their turn use such values.
 
 #### Arduino block diagram
 
-<img src="https://user-images.githubusercontent.com/50111548/59796762-08fa9b00-9293-11e9-8ffa-40642fd87ef6.jpg" width="700"/>
+<img src="https://user-images.githubusercontent.com/50111548/59805326-d0b08800-92a5-11e9-8e63-e66b61d4de22.jpg" width="700"/>
 
 ### Python
 
