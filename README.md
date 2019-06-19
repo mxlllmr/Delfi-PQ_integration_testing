@@ -32,8 +32,7 @@ The Arduino script is the simplest one. It updates every second in the Serial Mo
 
 #### Arduino block diagram
 
-![arduino](https://user-images.githubusercontent.com/50111548/59796762-08fa9b00-9293-11e9-8ffa-40642fd87ef6.jpg  | width=100)
-
+<img src="https://user-images.githubusercontent.com/50111548/59796762-08fa9b00-9293-11e9-8ffa-40642fd87ef6.jpg" width="700"/>
 
 ### Python
 
@@ -94,9 +93,18 @@ In order to use the scripts provided in this repository, the user will need the 
 
 ### Software implementation
 
+
+### ```arduino_microsat.ino```
+
+To run any of the python scripts, this code must be uploaded to the Arduino board connected to the PC. After checking the connection in Arduino IDE (by choosing the type of board in ```Tools->Board``` and the port in ```Tools->Port```), the user can upload the code to the board.
+
+The Serial Monitor can be checked to verify its normal functioning. To help with this verification, the user can even uncomment the commented lines, as it is indicated in the source code. Nevertheless, to run the python scripts, it is crucial that:
+- The Serial Monitor only receives 1 or 0;
+- The Serial Monitor is not opened while running the scripts, such that a double access doesn't happen and interfere with the readings. It is advised that, after the verification of the functionality of this code, Arduino IDE is closed.
+
 #### ```client_LED.py```
 
-Libraries needed: ```numpy```, ```Pyserial```,(...) - in the 'import' section)
+Libraries needed: ```numpy```, ```Pyserial```, ```threading```, ```sys```, ```time```, ```signal```, ```logging```
 
 Commands: 
 
@@ -106,7 +114,7 @@ Commands:
 
 First, run the EGSE software. This Java software should be in a local folder, and it runs by writing:
 ```
-java -........ 
+sudo java -jar target/PQ9EGSE-0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
 in the terminal. After making sure the connection and emulation of the LaunchPad board is established (this can be verified by opening the browser in ```localhost:8080```), run the python script as:
 ```
