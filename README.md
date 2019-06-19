@@ -10,18 +10,25 @@ This project will focus on the design and implementation of a solution for verif
 
 ## Repository overview
 Besides this README file, the repository includes the following files:
-- **arduino_feedback.ino**:
-- **client_LED.py**:
-- **client_ADB.py**:
-- **client_ADB_noUI.py**:
-- **pq_comms.py**:
+- **arduino_feedback.ino**: Arduino script that must be uploaded to the Arduino board
+- **client_LED.py**: Python script with UI to change the state of the LED
+- **client_ADB.py**: Python script with UI to change the state of the ADB power (?????????)
+- **client_ADB_noUI.py**: Python script without UI to change the state of the ADB power (?????????)
+- **pq_comms.py**: Python script that converts the commands of the client scripts into messages that are sent to the board
 
+## Literature background
+
+### Integration testing
+
+### ADB
 
 ## Design
 
-general Idea ......
+The overall purpose of this project is to do integration testing of the Delfi-PQ subsystems. To do so, first the interaction between the PC and a SimpleLink™ MSP432P401R LaunchPad, which emulates the on-board software, is tested. This is done by plugging an Arduino to the PC and connect one of its GPIO ports to the LaunchPad. This way the commands are tested both with the subsystem feedback (either by printing it in the terminal or by using the EGSE software) and with the external hardware feedback.
 
 ### Arduino 
+
+The Arduino script is the simplest one. It updates every second in the Serial Monitor the value that is read in the GPIO that is connected to the LaunchPad. The Serial Monitor is later interpreted by the python scripts, which in their turn use such values
 
 #### Arduino block diagram
 
@@ -101,9 +108,9 @@ Welcome to...
 Choose Arduino port (0,1,2,...): 
 ```
 
-Choose the port that connects the Arduino to the CPU.
+Choose the port that connects the Arduino to the PC.
 
-*NOTE: The Arduino board has to be connected in the format of ```/dev/ttyACM(...)```, else the program does not recognise it. In case the connection to the CPU has a different designation, change line (XXXXX) of ```client_LED.py``` to the specific designation (for example, ```COM(...)```)*
+*NOTE: The Arduino board has to be connected in the format of ```/dev/ttyACM(...)```, else the program does not recognise it. In case the connection to the PC has a different designation, change line (XXXXX) of ```client_LED.py``` to the specific designation (for example, ```COM(...)```)*
 
 If the connection is established, the program will attempt to connect to the LaunchPad board. This is represented by a progress bar that looks like the following:
 ```
