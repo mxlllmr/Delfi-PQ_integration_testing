@@ -170,7 +170,99 @@ To exit the program press ```CTRL+C``` (+ENTER).
 
 #### ```client_ADB.py```
 
-<img src="https://user-images.githubusercontent.com/51790860/59845784-7a535000-935e-11e9-87d1-645bbff00bf7.jpg" width="600"/>
+#####  Hardware setup
+Similar as before The Arduino and ADB subsystem need to be connected after both have beenconnected to the host computer via the USB ports. The image below shows the wiring necessary. The GND (ground) pins of both boards need to be connected, as well as the pin belonging to the respective power bus of the ADB (U1, U2, U3, or U4) that is selected for testing to the pin 7 on the Arduino board. As before, if another pin instead of pin 7 is prefered the respective pin number has to be modifiued in ```arduino_feedback.ino``` and the software needs to be compiled and uploaded to the Arduino as explained before. 
+
+<img src="https://user-images.githubusercontent.com/51790860/59844570-84278400-935b-11e9-9541-93f04d25ead1.jpg" width="400"/>
+
+##### Running ```client_ADB.py```
+
+- Libraries needed: ```numpy```, ```serial```, ```threading```, ```sys```, ```time```, ```signal```, ```logging```, ```json```, ```socket```
+
+- Files needed in repository: ```pq_module.py```, ```pq_comms.py```
+
+- Commands: 
+  - **0,1,2,... followed by ENTER**: Chooses the Arduino port
+  - **1,2,3,4 followed by ENTER**: Choose one of the four the ADB power busses
+  - **0/1 followed by ENTER**: Sends a command to turn OFF/ON the LED
+  - **CTRL+c followed by ENTER**: Exits the program
+  
+In order to run ```client_ADB.py``` similar steps as in ```client_LED.py``` need to be executed.
+1. Before running the EGSE software, delete line 1444 of the ```EPS.xml``` and execute the EGSE software as before by writing
+```
+sudo java -jar target/PQ9EGSE-0.1-SNAPSHOT-jar-with-dependencies.jar 
+```
+in the terminal. Alternatively, the in the repository given file ```EPS_ADB.xml``` can be used, when
+
+2. Choose the LaunchPad port in the EGSE software. this done by opening the browser in ```localhost:8080``` and choosing the port as in the picture below:
+
+<img src="https://user-images.githubusercontent.com/50111548/59802762-82e45180-929e-11e9-88b3-2b25fda94401.JPG" width="700"/>
+
+By trial and error, the user can choose a port and verify if it is the correct one by pinging to the DEBUG and verifying a response in the DataLog.
+
+3. Run the python script as:
+```
+sudo python client_LED.py localhost:8080
+```
+*NOTE: The last two commands (to run the EGSE and to run the python script) should be executed with the terminal running in the respective folders where the invoked files/paths exist. Else, simply replacing the files names by the full directory should suffice.*
+
+4. After running ```client_LED.py```  a welcome message appears and an explanaition on how to utilise the program, including the commands which can be used:
+
+```
+#################################################################
+Welcome to the LED detection software!
+This application prints out every 10 seconds the Arduino feedback
+The commands are: 1 to turn the LED ON, 0 to turn it OFF.
+To exit the application press 'CTRL+C'
+#################################################################
+```
+<img src="https://user-images.githubusercontent.com/51790860/59845077-c43b3680-935c-11e9-8ae2-82f78351f9d5.jpg"/>
+
+Thereafter the user is asked to choose the Arduino port
+```
+Insert the arduino port (0,1,2,...): 
+```
+Here the port that connects the Arduino to the CPU has to be selected.
+
+*NOTE: The Arduino board has to be connected in the format of ```/dev/ttyACM(...)```, else the program does not recognise it. In case the connection to the PC has a different designation, change line (XXXXX) of ```client_LED.py``` to the specific designation (for example, ```COM(...)```)*
+
+If a wrong port was selected the user is notified and asked to try again.
+
+<img src="https://user-images.githubusercontent.com/51790860/59844789-fef09f00-935b-11e9-9907-858408ba19a2.jpg"/>
+
+5. If the connection is established, the program will attempt to connect to the LaunchPad board. This is represented by a progress bar that looks like the following:
+```
+[###       ]
+```
+Each ```#``` represents a successful ping with the DEBUG subsystem of the board. 
+
+6. Finally, the program is ready to take commands to turn ON and OFF the LED. Every 10 seconds (after the first user input) an update on the Arduino feedback is printed on the screen. Every time a user inputs 1/0 (+ENTER), the message that is sent to the board is printed. If there is feedback from the board, the following should appear:
+```
+Command received in DEBUG
+```
+<img src="https://user-images.githubusercontent.com/51790860/59845344-7246e080-935d-11e9-8a48-4ca8116ef08b.jpg"/>
+
+Additionally, an immediate Arduino feedback check is performed. If the Arduino agrees with the subsystem feedback 
+```
+Arduino: The LED is ON.
+```
+is displayed if the LED is turned on and
+```
+Arduino: The LED is OFF.
+```
+if the LED is turned off.
+
+<img src="https://user-images.githubusercontent.com/51790860/59845389-94406300-935d-11e9-8232-4000b9af8d01.jpg"/>
+
+Anytime the Arduino disagrees with the subsystem feedback, the user is notified, an ERROR message is saved in an external log_LED.log file and the LED input is set to the according value.
+
+<img src="https://user-images.githubusercontent.com/51790860/59845420-a91cf680-935d-11e9-9df6-bac610be8d8e.jpg"/>
+
+To exit the program press ```CTRL+C``` (+ENTER).
+
+<img src="https://user-images.githubusercontent.com/51790860/59845518-e41f2a00-935d-11e9-95b7-cf7b989f8c35.jpg"/>
+
+*FINAL REMARKS: This program is protected such that if any undesired input exists, a 'try again' type of notification is printed; The ```ENTER``` command after ```CTRL+c``` is required because there is an existing thread that contains the function ```input()``` that stalls the program. The waiting period is demanded such that existing ```time.sleep()``` functions cease.*
 
 #### ```client_ADB_noUI.py```
 
