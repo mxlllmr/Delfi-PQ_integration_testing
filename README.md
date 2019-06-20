@@ -120,7 +120,7 @@ The commands are: 1 to turn the LED ON, 0 to turn it OFF.
 To exit the application press 'CTRL+C'
 #################################################################
 ```
-<img src="images/LED_start.jpg" width="400"> 
+<img src="https://user-images.githubusercontent.com/51790860/59845077-c43b3680-935c-11e9-8ae2-82f78351f9d5.jpg"/>
 
 Thereafter the user is asked to choose the Arduino port
 ```
@@ -134,8 +134,6 @@ If a wrong port was selected the user is notified and asked to try again.
 
 <img src="https://user-images.githubusercontent.com/51790860/59844789-fef09f00-935b-11e9-9907-858408ba19a2.jpg"/>
 
-
-
 5. If the connection is established, the program will attempt to connect to the LaunchPad board. This is represented by a progress bar that looks like the following:
 ```
 [###       ]
@@ -146,7 +144,7 @@ Each ```#``` represents a successful ping with the DEBUG subsystem of the board.
 ```
 Command received in DEBUG
 ```
-<img src="images/LED_feedback.jpg" width="400"> 
+<img src="https://user-images.githubusercontent.com/51790860/59845344-7246e080-935d-11e9-8a48-4ca8116ef08b.jpg"/>
 
 Additionally, an immediate Arduino feedback check is performed. If the Arduino agrees with the subsystem feedback 
 ```
@@ -158,15 +156,22 @@ Arduino: The LED is OFF.
 ```
 if the LED is turned off.
 
-<img src="images/LED_onoff.jpg" width="400"> 
+<img src="https://user-images.githubusercontent.com/51790860/59845389-94406300-935d-11e9-8232-4000b9af8d01.jpg"/>
 
 Anytime the Arduino disagrees with the subsystem feedback, the user is notified, an ERROR message is saved in an external log_LED.log file and the LED input is set to the according value.
+
+<img src="https://user-images.githubusercontent.com/51790860/59845420-a91cf680-935d-11e9-9df6-bac610be8d8e.jpg"/>
+
+To exit the program press ```CTRL+C``` (+ENTER).
+
+<img src="https://user-images.githubusercontent.com/51790860/59845518-e41f2a00-935d-11e9-95b7-cf7b989f8c35.jpg"/>
 
 *FINAL REMARKS: This program is protected such that if any undesired input exists, a 'try again' type of notification is printed; The ```ENTER``` command after ```CTRL+c``` is required because there is an existing thread that contains the function ```input()``` that stalls the program. The waiting period is demanded such that existing ```time.sleep()``` functions cease.*
 
 #### ```client_ADB.py```
 
 <img src="images/setup_ADB.jpg" width="600">
+<img src="https://user-images.githubusercontent.com/51790860/59844789-fef09f00-935b-11e9-9907-858408ba19a2.jpg"/>
 
 #### ```client_ADB_noUI.py```
 
