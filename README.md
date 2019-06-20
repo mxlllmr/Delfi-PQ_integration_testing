@@ -128,7 +128,7 @@ Insert the arduino port (0,1,2,...):
 ```
 Here the port that connects the Arduino to the CPU has to be selected.
 
-*NOTE: The Arduino board has to be connected in the format of ```/dev/ttyACM(...)```, else the program does not recognise it. In case the connection to the PC has a different designation, change line (XXXXX) of ```client_LED.py``` to the specific designation (for example, ```COM(...)```)*
+*NOTE: The Arduino board has to be connected in the format of ```/dev/ttyACM(...)```, else the program does not recognise it. In case the connection to the PC has a different designation, change line 267 of ```client_LED.py``` to the specific designation (for example, ```COM(...)```)*
 
 If a wrong port was selected the user is notified and asked to try again.
 
@@ -223,7 +223,7 @@ Insert the arduino port (0,1,2,...):
 ```
 Here the port that connects the Arduino to the CPU has to be selected.
 
-*NOTE: The Arduino board has to be connected in the format of ```/dev/ttyACM(...)```, else the program does not recognise it. In case the connection to the PC has a different designation, change line (XXXXX) of ```client_ADB.py``` to the specific designation (for example, ```COM(...)```)*
+*NOTE: The Arduino board has to be connected in the format of ```/dev/ttyACM(...)```, else the program does not recognise it. In case the connection to the PC has a different designation, change line 271 of ```client_ADB.py``` to the specific designation (for example, ```COM(...)```)*
 
 5. If the connection is established, the program will attempt to connect to the ADB. This is represented by a progress bar that looks like the following:
 ```
