@@ -165,7 +165,7 @@ Anytime the Arduino disagrees with the subsystem feedback, the user is notified,
 Log file:
 <img src="https://user-images.githubusercontent.com/51790860/59852252-be4e5100-936e-11e9-86eb-d327389ba4a6.JPG"/>
 
-To exit the program press ```CTRL+C``` (+ENTER).
+8. To exit the program press ```CTRL+C``` (+ENTER).
 
 <img src="https://user-images.githubusercontent.com/51790860/59845518-e41f2a00-935d-11e9-95b7-cf7b989f8c35.jpg"/>
 
@@ -261,7 +261,7 @@ Anytime the Arduino disagrees with the subsystem feedback, the user is notified,
 Log file:
 <img src="https://user-images.githubusercontent.com/51790860/59852474-33ba2180-936f-11e9-89f8-a94c37779991.JPG"/>
 
-To exit the program press ```CTRL+C``` (+ENTER) as before.
+8. To exit the program press ```CTRL+C``` (+ENTER) as before.
 
 #### ```client_ADB_noUI.py```
 #####  Hardware setup
