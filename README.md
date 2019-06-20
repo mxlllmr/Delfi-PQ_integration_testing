@@ -45,40 +45,8 @@ The Arduino script is the simplest one. It updates every second in the Serial Mo
 #### Python block diagrams
 
 
+<img src="user-images.githubusercontent.com/50111548/59825790-d8921b80-92e9-11e9-8e1d-af4ced2ade96.jpg"/>
 
-
-
-
-
-
-
-
-
-
-so I was thinking of having something that says every 5/10 seconds: The LED is ON (like, if serial reads 1, print this)
-
-if the user sets it to off and it's on, it says: Error, the output is not what was chosen. Log file saved; then it saves a file with the time, with what was chosen and what it read
-
-
-tell the user what to do
-exit program press control C
-use there commands: led on of
-
-get user input
-thread 1
-use user input
-turn on -> turn led on
-turn off -> turn led off
-
-
-thread 2
-check Arduino serial,
-compare to user input
-
-
-if error
-a log file will be saved, saves error
-and saves comment
 
 
 
