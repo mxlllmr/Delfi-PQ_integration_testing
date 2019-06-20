@@ -92,7 +92,7 @@ After connecting the Launchpad and the  Arduino to the host computer via USB por
   - **CTRL+c followed by ENTER**: Exits the program
   
 In order to run ```client_LED.py``` several steps need to be executed.
-1. Run the EGSE software. This Java software should be in a local folder, and it runs by writing
+1. Run the EGSE software. This Java software should be in a local folder, and it runs by writing:
 ```
 sudo java -jar target/PQ9EGSE-0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
@@ -162,6 +162,9 @@ Anytime the Arduino disagrees with the subsystem feedback, the user is notified,
 
 <img src="https://user-images.githubusercontent.com/51790860/59845420-a91cf680-935d-11e9-9df6-bac610be8d8e.jpg"/>
 
+Log file:
+<img src="https://user-images.githubusercontent.com/51790860/59852252-be4e5100-936e-11e9-86eb-d327389ba4a6.JPG"/>
+
 To exit the program press ```CTRL+C``` (+ENTER).
 
 <img src="https://user-images.githubusercontent.com/51790860/59845518-e41f2a00-935d-11e9-95b7-cf7b989f8c35.jpg"/>
@@ -188,7 +191,7 @@ Similar as before The Arduino and ADB subsystem need to be connected after both 
   - **CTRL+c followed by ENTER**: Exits the program
   
 In order to run ```client_ADB.py``` similar steps as in ```client_LED.py``` need to be executed.
-1. Before running the EGSE software, delete line 1444 of the ```EPS.xml``` and execute the EGSE software as before by writing
+1. Before running the EGSE software, delete line 1444 of the ```EPS.xml``` and execute the EGSE software as before by writing:
 ```
 sudo java -jar target/PQ9EGSE-0.1-SNAPSHOT-jar-with-dependencies.jar 
 ```
@@ -217,7 +220,7 @@ To exit the application press 'CTRL+C'
 ```
 <img src="https://user-images.githubusercontent.com/51790860/59848818-627fca00-9366-11e9-8a36-2e139a51f9ab.jpg"/>
 
-The user is asked again to choose the Arduino port
+The user is asked again to choose the Arduino port.
 ```
 Insert the arduino port (0,1,2,...): 
 ```
@@ -255,6 +258,9 @@ Anytime the Arduino disagrees with the subsystem feedback, the user is notified,
 
 <img src="https://user-images.githubusercontent.com/51790860/59849196-40d31280-9367-11e9-9887-ff10f9091f4f.jpg"/>
 
+Log file:
+<img src="https://user-images.githubusercontent.com/51790860/59852474-33ba2180-936f-11e9-89f8-a94c37779991.JPG"/>
+
 To exit the program press ```CTRL+C``` (+ENTER) as before.
 
 #### ```client_ADB_noUI.py```
@@ -272,7 +278,7 @@ Refer to the hardware setup section of **```client_ADB.py```**.
   - **CTRL+c followed by ENTER**: Exits the program
   
 In order to run ```client_ADB_noUI.py``` similar steps as in ```client_ADB.py``` need to be executed.
-1. Before running the EGSE software, delete line 1444 of the ```EPS.xml``` and execute the EGSE software as before by writing
+1. Before running the EGSE software, delete line 1444 of the ```EPS.xml``` and execute the EGSE software as before by writing:
 ```
 sudo java -jar target/PQ9EGSE-0.1-SNAPSHOT-jar-with-dependencies.jar 
 ```
@@ -315,13 +321,13 @@ Here the port that connects the Arduino to the CPU has to be selected.
 ```
 Each ```#``` represents a successful ping with the ADB. 10 pings are sent. If a ping was unsuccessfully sent it is saved in the external 'log_BUS_noUI.log file.
 
-**log** <img src="https://user-images.githubusercontent.com/51790860/59848929-a5da3880-9366-11e9-9276-b90ad80ef7f3.jpg"/>
+<img src="https://user-images.githubusercontent.com/51790860/59852633-7e3b9e00-936f-11e9-8d9a-1010bab32584.JPG"/>
 
 6. Now the user is informed about the following steps of the progam. Bus 1 will be turned ON and OFF and the Arduino feedback check is performed after each command is sent. The displayed output is the same as seen under point **7** of ```client_ADB.py```). After the commands have been performed the program exits automatically.
 
 <img src="https://user-images.githubusercontent.com/51790860/59851296-8e9e4980-936c-11e9-9d07-0ebbdfb3f5b4.jpg"/>
 
-If the Arduino disagrees with the subsystem feedback, the user is notified and an ERROR message is saved in the external log_BUS_noUI.log file.
+If the Arduino disagrees with the subsystem feedback, the user is notified and an ERROR message is saved in the external log_BUS_noUI.log file with the same output as in ```client_ADB.py```.
 
 ## Results
 
