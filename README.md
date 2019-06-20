@@ -76,7 +76,7 @@ The Serial Monitor can be checked to verify its normal functioning. To help with
 #### ```client_LED.py```
 
 #####  Hardware setup
-After connecting the Launchpad and the  Arduino to the host computer via USB ports both need to be connected with each other as is shown in the picture below. The GND (ground) pins of both boards need to be connected, as well as the pin P1.0 of the Launchpad's LED1 to the pin 7 on the Arduino board. If another pin instead of pin 7 is prefered the respective pin number has to be modifiued in ```arduino_feedback.ino``` and the software needs to be compiled and uploaded to the Arduino as explained before.
+After connecting the Launchpad and the Arduino to the host computer, via USB ports, both need to be connected with each other as it is shown in the picture below. The GND (ground) pins of both boards need to be connected, as well as the pin P1.0 of the Launchpad's LED1 to the pin 7 on the Arduino board. If another pin instead of pin 7 is prefered, the respective pin number has to be modified in ```arduino_feedback.ino``` and the software needs to be compiled and uploaded to the Arduino (as explained above).
 
 <img src="https://user-images.githubusercontent.com/51790860/59844570-84278400-935b-11e9-9541-93f04d25ead1.jpg" width="400"/>
 
@@ -174,7 +174,7 @@ Log file:
 #### ```client_ADB.py```
 
 #####  Hardware setup
-Similar as before The Arduino and ADB subsystem need to be connected after both have beenconnected to the host computer via the USB ports. The image below shows the wiring necessary. The GND (ground) pins of both boards need to be connected, as well as the pin belonging to the respective power bus of the ADB (U1, U2, U3, or U4) that is selected for testing to the pin 7 on the Arduino board. As before, if another pin instead of pin 7 is prefered the respective pin number has to be modifiued in ```arduino_feedback.ino``` and the software needs to be compiled and uploaded to the Arduino as explained before. 
+Similar to the previous script, the Arduino and ADB subsystem need to be connected after both have been connected to the host computer via the USB ports. The image below shows the necessary wiring. The GND (ground) pins of both boards need to be connected, as well as the pin belonging to the respective power bus of the ADB (U1, U2, U3, or U4) that is selected to be tested with the pin 7 on the Arduino board. As before, if other pin, instead of pin 7, is prefered, the respective pin number has to be modifiued in ```arduino_feedback.ino``` and the software needs to be compiled and uploaded to the Arduino, as explained before. 
 
 <img src="https://user-images.githubusercontent.com/51790860/59849455-f8682480-9367-11e9-863c-5a4f44432d0d.jpg" width="600"/>
 
@@ -191,11 +191,11 @@ Similar as before The Arduino and ADB subsystem need to be connected after both 
   - **CTRL+c followed by ENTER**: Exits the program
   
 In order to run ```client_ADB.py``` similar steps as in ```client_LED.py``` need to be executed.
-1. Before running the EGSE software, delete line 1444 of the ```EPS.xml``` and execute the EGSE software as before by writing:
+1. Before running the EGSE software, delete line 1444 of the ```EPS.xml``` (in the folder PQ9EGSE-master) and execute the EGSE software as before by writing
 ```
 sudo java -jar target/PQ9EGSE-0.1-SNAPSHOT-jar-with-dependencies.jar 
 ```
-in the terminal. Alternatively, the in the repository given file ```EPS_ADB.xml``` can be used, when ......... **cannot find it, but it was written here somewhere**
+in the terminal. Alternatively, the user can replace this file with ```EPS_ADB.xml``` (renaming it to ```EPS.xml```). This file is in the repository. ,  given file can be used, when ......... **cannot find it, but it was written here somewhere????????????????????what do you mean**
 
 2. Choose the ADB port in the EGSE software as explained under point **2** of **Running ```client_LED.py```**.
 
@@ -246,11 +246,11 @@ Additionally, an immediate Arduino feedback check is performed. If the Arduino a
 ```
 Arduino: The BUS Bus1Sw is ON.
 ```
-is displayed if power bus 1 is turned on and
+is displayed if the power bus 1 is turned on and
 ```
 Arduino: The BUS Bus1Sw is OFF.
 ```
-if power bus 1 is turned off.
+if the power bus 1 is turned off.
 
 <img src="https://user-images.githubusercontent.com/51790860/59849010-d91cc780-9366-11e9-9522-e7ee45a3ab8f.jpg"/>
 
@@ -282,7 +282,7 @@ In order to run ```client_ADB_noUI.py``` similar steps as in ```client_ADB.py```
 ```
 sudo java -jar target/PQ9EGSE-0.1-SNAPSHOT-jar-with-dependencies.jar 
 ```
-in the terminal. If the line 1444 has already been deleted, no further action is necessary. Alternatively, the in the repository given file ```EPS_ADB.xml``` can be used, when ......... **cannot find it, but it was written here somewhere**
+in the terminal. If the line 1444 has already been deleted, no further action is necessary. in the terminal. Alternatively, the user can replace this file with ```EPS_ADB.xml``` (renaming it to ```EPS.xml```). This file is in the repository.  when ......... **cannot find it, but it was written here somewhere**
 
 2. Choose the ADB port in the EGSE software as explained under point **2** of **Running ```client_LED.py```**.
 
