@@ -2,6 +2,8 @@
 
 ## Purpose
 
+REPLACE 'INTERGRATION' WITH 'INTEGRATION'
+
 Delfi-PQ belongs to the new type of miniaturized satellites, namely PocketQube satellites, which exhibit certain advantages over the widely used CubeSats. Due to their smaller size, PocketQubes bring a decrease in total cost and development time. The main objective of Delfi-PQ is to test the application of a PocketQube satellite for future missions since it is expected that the reduced development cycle will allow a comparably higher launch frequency, increasing flight experience and reliability of the system.
 
 To ensure that the respective subsystems are operational, the integration of the Delfi-PQ system must be tested. While in space, the functionality of a subsystem cannot be observed directly and positive feedback from the subsystem itself does not guarantee a faultless execution of the specified task. Additionally, the subsystem hardware itself is not able to detect if the execution was in fact successful. Hence, it is necessary to deploy verification through external hardware if the command given to the subsystem was effectively executed.
@@ -40,14 +42,15 @@ The Arduino script is the simplest one. It updates every second in the Serial Mo
 
 ### Python
 
-
+The script shown below is more complex and requires a more detailed analysis. This is exposed right after it.
 
 #### Python block diagrams
 
 
 <img src="https://user-images.githubusercontent.com/50111548/59826440-29eeda80-92eb-11e9-923d-fc697338dcf5.jpg"/>
 
-
+- Go through the points in the blocks
+(...)
 
 
 ## How to use
@@ -141,6 +144,10 @@ Additionally, an immediate Arduino feedback check is performed. Anytime the Ardu
 
 ## Results
 
+- Show the python scripts running and giving prints. Show log file
+
+- Also put a log file in the repository
+
 ## Issues encountered
 
 - The connection between LaunchPad and EGSE was not always established. The only remedy was to kill the EGSE instance and rerun it until it worked.
@@ -151,5 +158,5 @@ Additionally, an immediate Arduino feedback check is performed. Anytime the Ardu
 ## Future changes and recommendations
 - Instead of connecting to the LED, this can be used to verify the funcionality of another Delfi-PQ subsystem
 
-- ?
+- ? We need more
 
