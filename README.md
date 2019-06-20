@@ -52,20 +52,20 @@ The script shown below is more complex and requires a more detailed analysis. Th
 
 
 ## How to use
+The required hard- and sorftware needed to execute the scripts found in this repository are listed below. Further, it is explained in detail how to use the scripts.
 
 ### Required hardware
 
 In order to use the scripts provided in this repository, the user will need the following hardware items: 
 - **SimpleLink™ MSP432P401R LaunchPad**: Communicates with the python scripts and is simulating the Delfi-PQ subsystem
 - **Arduino (UNO, MEGA, etc.)**: Used as the external hardware 
-- **Wires and Breadboard**: To connect the LaunchPad and Arduino
+- **Wires**: To connect the LaunchPad and Arduino (2x female/male) and to connect the ADB to the Arduino (2x male/male)
 
 <img src="images/setup_LED.jpg" width="400">
 
 <img src="images/setup_ADB.jpg" width="600">
 
 ### Software implementation
-
 To run the following software, Arduino IDE, Python 2x and Java must be installed in the user's PC. This software must be cloned or forked there as well.
 
 #### ```arduino_microsat.ino```
@@ -74,9 +74,16 @@ To run any of the python scripts, this code must be uploaded to the Arduino boar
 
 The Serial Monitor can be checked to verify its normal functioning. To help with this verification, the user can even uncomment the commented lines, as it is indicated in the source code. Nevertheless, to run the python scripts, it is crucial that:
 - The Serial Monitor only receives 1 or 0;
-- The Serial Monitor is not opened while running the scripts, such that a double access doesn't happen and interfere with the readings. It is advised that, after the verification of the functionality of this code, Arduino IDE is closed.
+- The Serial Monitor is not opened while running the scripts, such that a double access does not happen and interfere with the readings. It is advised that, after the verification of the functionality of this code, Arduino IDE is closed.
 
 #### ```client_LED.py```
+
+#####  Hardware setup
+After connecting the Launchpad and the  Arduino to the host computer via USB ports both need to be connected with each other as is shown in the picture below. The GND (ground) pins of both boards need to be connected, as well as the pin P1.0 of the Launchpad's LED1 to the pin 7 on the Arduino board. If another pin instead of pin 7 is prefered the respective pin number has to be modifiued in ```arduino_feedback.ino``` and the software needs to be compiled and uploaded to the Arduino as explained before.
+
+<img src="images/setup_LED.jpg" width="400">
+
+##### Running ```client_LED.py```
 
 - Libraries needed: ```numpy```, ```serial```, ```threading```, ```sys```, ```time```, ```signal```, ```logging```, ```json```, ```socket```
 
@@ -86,7 +93,8 @@ The Serial Monitor can be checked to verify its normal functioning. To help with
   - **0,1,2,... followed by ENTER**: Chooses the Arduino port
   - **0/1 followed by ENTER**: Sends a command to turn OFF/ON the LED
   - **CTRL+c followed by ENTER**: Exits the program
-
+  
+In order to run ```client_LED.py``` several steps need to be executed.
 1. Run the EGSE software. This Java software should be in a local folder, and it runs by writing
 ```
 sudo java -jar target/PQ9EGSE-0.1-SNAPSHOT-jar-with-dependencies.jar
@@ -103,9 +111,9 @@ By trial and error, the user can choose a port and verify if it is the correct o
 ```
 python client_LED.py localhost:8080
 ```
-*NOTE: the last two commands should be executed with terminal running in the respective folders where the invoked files/paths exist. Else, simply replacing the files names by the full directory should suffice.*
+*NOTE: The last two commands (to run the EGSE and to run the python script) should be executed with the terminal running in the respective folders where the invoked files/paths exist. Else, simply replacing the files names by the full directory should suffice.*
 
-4. A message of how to utilise the program will appear:
+4. After running ```client_LED.py```  a welcome message appears and an explanaition on how to utilise the program, including the commands which can be used:
 
 ```
 #################################################################
@@ -114,13 +122,21 @@ This application prints out every 10 seconds the Arduino feedback
 The commands are: 1 to turn the LED ON, 0 to turn it OFF.
 To exit the application press 'CTRL+C'
 #################################################################
-
-'Insert the arduino port (0,1,2,...):'
 ```
+<img src="images/LED_wrong port.jpg" width="400"> 
 
-Choose the port that connects the Arduino to the PC.
+Thereafter the user is asked to choose the Arduino port
+```
+Insert the arduino port (0,1,2,...): 
+```
+Here the port that connects the Arduino to the CPU has to be selected.
 
 *NOTE: The Arduino board has to be connected in the format of ```/dev/ttyACM(...)```, else the program does not recognise it. In case the connection to the PC has a different designation, change line (XXXXX) of ```client_LED.py``` to the specific designation (for example, ```COM(...)```)*
+
+If a wrong port was selected the user is notified and asked to try again.
+
+<img src="images/LED_wrong port.jpg" width="400"> 
+
 
 5. If the connection is established, the program will attempt to connect to the LaunchPad board. This is represented by a progress bar that looks like the following:
 ```
@@ -132,7 +148,21 @@ Each ```#``` represents a successful ping with the DEBUG subsystem of the board.
 ```
 Command received in DEBUG
 ```
-Additionally, an immediate Arduino feedback check is performed. Anytime the Arduino disagrees with the subsystem feedback, an ERROR message is saved in an external .log file.
+<img src="images/LED_feedback.jpg" width="400"> 
+
+Additionally, an immediate Arduino feedback check is performed. If the Arduino agrees with the subsystem feedback 
+```
+Arduino: The LED is ON.
+```
+is displayed if the LED is turned on and
+```
+Arduino: The LED is OFF.
+```
+if the LED is turned off.
+
+<img src="images/LED_onoff.jpg" width="400"> 
+
+Anytime the Arduino disagrees with the subsystem feedback, the user is notified, an ERROR message is saved in an external log_LED.log file and the LED input is set to the according value.
 
 *FINAL REMARKS: This program is protected such that if any undesired input exists, a 'try again' type of notification is printed; The ```ENTER``` command after ```CTRL+c``` is required because there is an existing thread that contains the function ```input()``` that stalls the program. The waiting period is demanded such that existing ```time.sleep()``` functions cease.*
 
