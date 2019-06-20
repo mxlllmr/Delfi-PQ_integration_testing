@@ -173,7 +173,7 @@ To exit the program press ```CTRL+C``` (+ENTER).
 #####  Hardware setup
 Similar as before The Arduino and ADB subsystem need to be connected after both have beenconnected to the host computer via the USB ports. The image below shows the wiring necessary. The GND (ground) pins of both boards need to be connected, as well as the pin belonging to the respective power bus of the ADB (U1, U2, U3, or U4) that is selected for testing to the pin 7 on the Arduino board. As before, if another pin instead of pin 7 is prefered the respective pin number has to be modifiued in ```arduino_feedback.ino``` and the software needs to be compiled and uploaded to the Arduino as explained before. 
 
-<img src="https://user-images.githubusercontent.com/51790860/59844570-84278400-935b-11e9-9541-93f04d25ead1.jpg" width="400"/>
+<img src="https://user-images.githubusercontent.com/51790860/59849455-f8682480-9367-11e9-863c-5a4f44432d0d.jpg" width="600"/>
 
 ##### Running ```client_ADB.py```
 
