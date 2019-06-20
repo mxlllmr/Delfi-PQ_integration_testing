@@ -45,7 +45,7 @@ The script shown below is more complex and requires a more detailed analysis. Th
 #### Python block diagrams
 
 
-<img src="https://user-images.githubusercontent.com/50111548/59826440-29eeda80-92eb-11e9-923d-fc697338dcf5.jpg"/>
+<img src="https://user-images.githubusercontent.com/50111548/59873873-c8ae2200-9351-11e9-90c6-456246908e56.jpg"/>
 
 - Go through the points in the blocks
 (...)
