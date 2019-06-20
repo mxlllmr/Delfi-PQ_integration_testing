@@ -61,9 +61,6 @@ In order to use the scripts provided in this repository, the user will need the 
 - **Arduino (UNO, MEGA, etc.)**: Used as the external hardware 
 - **Wires**: To connect the LaunchPad and Arduino (2x female/male) and to connect the ADB to the Arduino (2x male/male)
 
-<img src="images/setup_LED.jpg" width="400">
-
-<img src="images/setup_ADB.jpg" width="600">
 
 ### Software implementation
 To run the following software, Arduino IDE, Python 2x and Java must be installed in the user's PC. This software must be cloned or forked there as well.
@@ -81,7 +78,7 @@ The Serial Monitor can be checked to verify its normal functioning. To help with
 #####  Hardware setup
 After connecting the Launchpad and the  Arduino to the host computer via USB ports both need to be connected with each other as is shown in the picture below. The GND (ground) pins of both boards need to be connected, as well as the pin P1.0 of the Launchpad's LED1 to the pin 7 on the Arduino board. If another pin instead of pin 7 is prefered the respective pin number has to be modifiued in ```arduino_feedback.ino``` and the software needs to be compiled and uploaded to the Arduino as explained before.
 
-<img src="images/setup_LED.jpg" width="400">
+<img src="https://user-images.githubusercontent.com/51790860/59844570-84278400-935b-11e9-9541-93f04d25ead1.jpg" width="400"/>
 
 ##### Running ```client_LED.py```
 
@@ -123,7 +120,7 @@ The commands are: 1 to turn the LED ON, 0 to turn it OFF.
 To exit the application press 'CTRL+C'
 #################################################################
 ```
-<img src="images/LED_wrong port.jpg" width="400"> 
+<img src="images/LED_start.jpg" width="400"> 
 
 Thereafter the user is asked to choose the Arduino port
 ```
@@ -135,7 +132,8 @@ Here the port that connects the Arduino to the CPU has to be selected.
 
 If a wrong port was selected the user is notified and asked to try again.
 
-<img src="images/LED_wrong port.jpg" width="400"> 
+<img src="https://user-images.githubusercontent.com/51790860/59844789-fef09f00-935b-11e9-9907-858408ba19a2.jpg"/>
+
 
 
 5. If the connection is established, the program will attempt to connect to the LaunchPad board. This is represented by a progress bar that looks like the following:
@@ -167,6 +165,8 @@ Anytime the Arduino disagrees with the subsystem feedback, the user is notified,
 *FINAL REMARKS: This program is protected such that if any undesired input exists, a 'try again' type of notification is printed; The ```ENTER``` command after ```CTRL+c``` is required because there is an existing thread that contains the function ```input()``` that stalls the program. The waiting period is demanded such that existing ```time.sleep()``` functions cease.*
 
 #### ```client_ADB.py```
+
+<img src="images/setup_ADB.jpg" width="600">
 
 #### ```client_ADB_noUI.py```
 
