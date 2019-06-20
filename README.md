@@ -170,8 +170,7 @@ To exit the program press ```CTRL+C``` (+ENTER).
 
 #### ```client_ADB.py```
 
-<img src="images/setup_ADB.jpg" width="600">
-<img src="https://user-images.githubusercontent.com/51790860/59844789-fef09f00-935b-11e9-9907-858408ba19a2.jpg"/>
+<img src="https://user-images.githubusercontent.com/51790860/59845784-7a535000-935e-11e9-87d1-645bbff00bf7.jpg" width="600"/>
 
 #### ```client_ADB_noUI.py```
 
