@@ -194,7 +194,7 @@ sudo java -jar target/PQ9EGSE-0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
 in the terminal. Alternatively, the in the repository given file ```EPS_ADB.xml``` can be used, when ......... **cannot find it, but it was written here somewhere**
 
-2. Choose the ADB port in the EGSE software as explained under **Running ```client_LED.py```** point **2.**.
+2. Choose the ADB port in the EGSE software as explained under point **2** of **Running ```client_LED.py```**.
 
 <img src="https://user-images.githubusercontent.com/51790860/59848262-fea8d180-9364-11e9-915a-df896b8bb056.JPG" width="700"/>
 
@@ -225,11 +225,11 @@ Here the port that connects the Arduino to the CPU has to be selected.
 
 *NOTE: The Arduino board has to be connected in the format of ```/dev/ttyACM(...)```, else the program does not recognise it. In case the connection to the PC has a different designation, change line 271 of ```client_ADB.py``` to the specific designation (for example, ```COM(...)```)*
 
-5. If the connection is established, the program will attempt to connect to the ADB. This is represented by a progress bar that looks like the following:
+5. If the connection to the Arduino is established, the program will attempt to connect to the ADB. This is represented by a progress bar that looks like the following:
 ```
 [###       ]
 ```
-Each ```#``` represents a successful ping with the DEBUG subsystem of the board. 
+Each ```#``` represents a successful ping with the ADB. 
 
 6. Now the application is ready for the bus input. The user is asked to select the connected ADB bus and press ENTER.
 
@@ -258,6 +258,70 @@ Anytime the Arduino disagrees with the subsystem feedback, the user is notified,
 To exit the program press ```CTRL+C``` (+ENTER) as before.
 
 #### ```client_ADB_noUI.py```
+#####  Hardware setup
+Refer to the hardware setup section of **```client_ADB.py```**.
+
+##### Running ```client_ADB_noUI.py```
+
+- Libraries needed: ```numpy```, ```serial```, ```threading```, ```sys```, ```time```, ```signal```, ```logging```, ```json```, ```socket```
+
+- Files needed in repository: ```pq_module.py```, ```pq_comms.py```
+
+- Commands: 
+  - **0,1,2,... followed by ENTER**: Chooses the Arduino port
+  - **CTRL+c followed by ENTER**: Exits the program
+  
+In order to run ```client_ADB_noUI.py``` similar steps as in ```client_ADB.py``` need to be executed.
+1. Before running the EGSE software, delete line 1444 of the ```EPS.xml``` and execute the EGSE software as before by writing
+```
+sudo java -jar target/PQ9EGSE-0.1-SNAPSHOT-jar-with-dependencies.jar 
+```
+in the terminal. If the line 1444 has already been deleted, no further action is necessary. Alternatively, the in the repository given file ```EPS_ADB.xml``` can be used, when ......... **cannot find it, but it was written here somewhere**
+
+2. Choose the ADB port in the EGSE software as explained under point **2** of **Running ```client_LED.py```**.
+
+3. Run the python script as:
+```
+sudo python client_ADB_noUI.py localhost:8080
+```
+*NOTE: The last two commands (to run the EGSE and to run the python script) should be executed with the terminal running in the respective folders where the invoked files/paths exist. Else, simply replacing the files names by the full directory should suffice.*
+
+4. After running ```client_ADB_noUI.py``` a welcome message appears and an explanaition on how to utilise the program, including the commands which can be used:
+
+```
+#################################################################
+Welcome to the ADB Power Bus verification software!
+Ten ping commands are sent to the ADB.
+After that, Bus1SW will be turned ON and turned OFF.
+All occuring ERRORS will be logged in log_BUS_noUI.
+To exit the application press 'CTRL+C'
+#################################################################
+```
+*NOTE: If instead of Bus 1 (Bus1SW) the bus number needs to be changed at the appropriate locations in ```client_ADB_noUI.py``` (use the search function).
+
+<img src="https://user-images.githubusercontent.com/51790860/59850380-6a416d80-936a-11e9-8099-8e6e3ce1b2f9.jpg"/>
+
+The user is asked again to choose the Arduino port
+```
+Insert the arduino port (0,1,2,...): 
+```
+Here the port that connects the Arduino to the CPU has to be selected.
+
+*NOTE: The Arduino board has to be connected in the format of ```/dev/ttyACM(...)```, else the program does not recognise it. In case the connection to the PC has a different designation, change line 238 of ```client_ADB_noUI.py``` to the specific designation (for example, ```COM(...)```)*
+
+5. If the connection to the Arduino is established, the program will attempt to connect to the ADB. This is as before represented by a progress bar that looks like the following:
+```
+[###       ]
+```
+Each ```#``` represents a successful ping with the ADB. 10 pings are sent. If a ping was unsuccessfully sent it is saved in the external 'log_BUS_noUI.log file.
+
+**log** <img src="https://user-images.githubusercontent.com/51790860/59848929-a5da3880-9366-11e9-9276-b90ad80ef7f3.jpg"/>
+
+6. Now the user is informed about the following steps of the progam. Bus 1 will be turned ON and OFF and the Arduino feedback check is performed after each command is sent. The displayed output is the same as seen under point **7** of ```client_ADB.py```). After the commands have been performed the program exits automatically.
+
+<img src="https://user-images.githubusercontent.com/51790860/59851296-8e9e4980-936c-11e9-9d07-0ebbdfb3f5b4.jpg"/>
+
+If the Arduino disagrees with the subsystem feedback, the user is notified and an ERROR message is saved in the external log_BUS_noUI.log file.
 
 ## Results
 
