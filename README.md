@@ -106,7 +106,7 @@ By trial and error, the user can choose a port and verify if it is the correct o
 
 3. Run the python script as:
 ```
-python client_LED.py localhost:8080
+sudo python client_LED.py localhost:8080
 ```
 *NOTE: The last two commands (to run the EGSE and to run the python script) should be executed with the terminal running in the respective folders where the invoked files/paths exist. Else, simply replacing the files names by the full directory should suffice.*
 
