@@ -42,6 +42,10 @@ The Arduino script is the simplest one. It updates every second in the Serial Mo
 
 The script shown below is more complex and requires a more detailed analysis. This is exposed right after it.
 
+The design of this script had to take into account the way that an Arduino can communicate with Python and the way the communications with the LaunchPad are structured. The former requires printing in the board's Serial Monitor, which can be later read by the script. This reading has to be done in a thread, that constantly updates what was just printed, and another thread that sistematically checks (within a time frame, with the function ```time.sleep()```) the pin value.
+
+The latter communication is done by sending messages in a structured way to the board, which is emulating, through a local host, the Delfi-PQ software. The feedback is received and has to be interpreted. This also requires a thread that will be used to get the subsystem feedback and a later function that prints what was received.
+
 #### Python block diagrams
 
 
