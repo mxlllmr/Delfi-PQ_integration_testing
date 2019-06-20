@@ -88,11 +88,11 @@ def send_packets():
 
     pq_class.busON("ADB", 'Bus1Sw')
     packets = pq_class.get_packets()
-    time.sleep(1)
+    time.sleep(1)  # to make sure everything changes appropriately
     if packets:
         for packet in packets:
             process_frame(packet)
-    time.sleep(1)
+    time.sleep(1)  # to make sure everything changes appropriately
     check() # check the arduino
 
     time.sleep(3)
@@ -102,11 +102,11 @@ def send_packets():
 
     pq_class.busOFF("ADB",'Bus1Sw')
     packets = pq_class.get_packets()
-    time.sleep(1)
+    time.sleep(1)  # to make sure everything changes appropriately
     if packets:
         for packet in packets:
             process_frame(packet)
-    time.sleep(1)
+    time.sleep(1)  # to make sure everything changes appropriately
     check() # check the arduino
 
     time.sleep(3)
