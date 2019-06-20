@@ -192,77 +192,70 @@ In order to run ```client_ADB.py``` similar steps as in ```client_LED.py``` need
 ```
 sudo java -jar target/PQ9EGSE-0.1-SNAPSHOT-jar-with-dependencies.jar 
 ```
-in the terminal. Alternatively, the in the repository given file ```EPS_ADB.xml``` can be used, when
+in the terminal. Alternatively, the in the repository given file ```EPS_ADB.xml``` can be used, when ......... **cannot find it, but it was written here somewhere**
 
-2. Choose the LaunchPad port in the EGSE software. this done by opening the browser in ```localhost:8080``` and choosing the port as in the picture below:
+2. Choose the ADB port in the EGSE software as explained under **Running ```client_LED.py```** point **2.**.
 
-<img src="https://user-images.githubusercontent.com/50111548/59802762-82e45180-929e-11e9-88b3-2b25fda94401.JPG" width="700"/>
-
-By trial and error, the user can choose a port and verify if it is the correct one by pinging to the DEBUG and verifying a response in the DataLog.
+<img src="https://user-images.githubusercontent.com/51790860/59848262-fea8d180-9364-11e9-915a-df896b8bb056.JPG" width="700"/>
 
 3. Run the python script as:
 ```
-sudo python client_LED.py localhost:8080
+sudo python client_ADB.py localhost:8080
 ```
 *NOTE: The last two commands (to run the EGSE and to run the python script) should be executed with the terminal running in the respective folders where the invoked files/paths exist. Else, simply replacing the files names by the full directory should suffice.*
 
-4. After running ```client_LED.py```  a welcome message appears and an explanaition on how to utilise the program, including the commands which can be used:
+4. After running ```client_ADB.py``` a welcome message appears and an explanaition on how to utilise the program, including the commands which can be used:
 
 ```
 #################################################################
-Welcome to the LED detection software!
+Welcome to the ADB Power Bus verification software!
 This application prints out every 10 seconds the Arduino feedback
-The commands are: 1 to turn the LED ON, 0 to turn it OFF.
+Choose one of the four busses with 1 for Bus1SW, 2 for Bus2SW, 3 for Bus3SW, or 4 for Bus4SW
+The commands are: 1 to turn the BUS ON, 0 to turn it OFF.
 To exit the application press 'CTRL+C'
 #################################################################
 ```
-<img src="https://user-images.githubusercontent.com/51790860/59845077-c43b3680-935c-11e9-8ae2-82f78351f9d5.jpg"/>
+<img src="https://user-images.githubusercontent.com/51790860/59848818-627fca00-9366-11e9-8a36-2e139a51f9ab.jpg"/>
 
-Thereafter the user is asked to choose the Arduino port
+The user is asked again to choose the Arduino port
 ```
 Insert the arduino port (0,1,2,...): 
 ```
 Here the port that connects the Arduino to the CPU has to be selected.
 
-*NOTE: The Arduino board has to be connected in the format of ```/dev/ttyACM(...)```, else the program does not recognise it. In case the connection to the PC has a different designation, change line (XXXXX) of ```client_LED.py``` to the specific designation (for example, ```COM(...)```)*
+*NOTE: The Arduino board has to be connected in the format of ```/dev/ttyACM(...)```, else the program does not recognise it. In case the connection to the PC has a different designation, change line (XXXXX) of ```client_ADB.py``` to the specific designation (for example, ```COM(...)```)*
 
-If a wrong port was selected the user is notified and asked to try again.
-
-<img src="https://user-images.githubusercontent.com/51790860/59844789-fef09f00-935b-11e9-9907-858408ba19a2.jpg"/>
-
-5. If the connection is established, the program will attempt to connect to the LaunchPad board. This is represented by a progress bar that looks like the following:
+5. If the connection is established, the program will attempt to connect to the ADB. This is represented by a progress bar that looks like the following:
 ```
 [###       ]
 ```
 Each ```#``` represents a successful ping with the DEBUG subsystem of the board. 
 
-6. Finally, the program is ready to take commands to turn ON and OFF the LED. Every 10 seconds (after the first user input) an update on the Arduino feedback is printed on the screen. Every time a user inputs 1/0 (+ENTER), the message that is sent to the board is printed. If there is feedback from the board, the following should appear:
+6. Now the application is ready for the bus input. The user is asked to select the connected ADB bus and press ENTER.
+
+<img src="https://user-images.githubusercontent.com/51790860/59848929-a5da3880-9366-11e9-9276-b90ad80ef7f3.jpg"/>
+
+7. After the bus number has been selected, the program is ready to take commands to turn the power bus ON and OFF. Every 10 seconds (after the first user input) an update on the Arduino feedback is printed on the screen. Every time a user inputs 1/0 (+ENTER), the message that is sent to the board is printed. If there is feedback from the board, the following should appear:
 ```
 Command received in DEBUG
 ```
-<img src="https://user-images.githubusercontent.com/51790860/59845344-7246e080-935d-11e9-8a48-4ca8116ef08b.jpg"/>
-
 Additionally, an immediate Arduino feedback check is performed. If the Arduino agrees with the subsystem feedback 
 ```
-Arduino: The LED is ON.
+Arduino: The BUS Bus1Sw is ON.
 ```
-is displayed if the LED is turned on and
+is displayed if power bus 1 is turned on and
 ```
-Arduino: The LED is OFF.
+Arduino: The BUS Bus1Sw is OFF.
 ```
-if the LED is turned off.
+if power bus 1 is turned off.
 
-<img src="https://user-images.githubusercontent.com/51790860/59845389-94406300-935d-11e9-8232-4000b9af8d01.jpg"/>
+<img src="https://user-images.githubusercontent.com/51790860/59849010-d91cc780-9366-11e9-9522-e7ee45a3ab8f.jpg"/>
 
-Anytime the Arduino disagrees with the subsystem feedback, the user is notified, an ERROR message is saved in an external log_LED.log file and the LED input is set to the according value.
+Anytime the Arduino disagrees with the subsystem feedback, the user is notified, an ERROR message is saved in an external log_BUS.log file and the BUS input is set to the according value.
 
-<img src="https://user-images.githubusercontent.com/51790860/59845420-a91cf680-935d-11e9-9df6-bac610be8d8e.jpg"/>
+<img src="https://user-images.githubusercontent.com/51790860/59849196-40d31280-9367-11e9-9887-ff10f9091f4f.jpg"/>
 
-To exit the program press ```CTRL+C``` (+ENTER).
-
-<img src="https://user-images.githubusercontent.com/51790860/59845518-e41f2a00-935d-11e9-95b7-cf7b989f8c35.jpg"/>
-
-*FINAL REMARKS: This program is protected such that if any undesired input exists, a 'try again' type of notification is printed; The ```ENTER``` command after ```CTRL+c``` is required because there is an existing thread that contains the function ```input()``` that stalls the program. The waiting period is demanded such that existing ```time.sleep()``` functions cease.*
+To exit the program press ```CTRL+C``` (+ENTER) as before.
 
 #### ```client_ADB_noUI.py```
 
