@@ -12,8 +12,8 @@ This project will focus on the design and implementation of a solution for verif
 Besides this README file, the repository includes the following files:
 - **arduino_feedback.ino**: Arduino script that must be uploaded to the Arduino board
 - **client_LED.py**: Python script with UI to change the state of the LED
-- **client_ADB.py**: Python script with UI to change the state of the ADB power (?????????)
-- **client_ADB_noUI.py**: Python script without UI to change the state of the ADB power (?????????)
+- **client_ADB.py**: Python script with UI to change the state of the ADB (Antenna Deployment Board) power bus
+- **client_ADB_noUI.py**: Python script without UI to change the state of the ADB power bus
 - **pq_comms.py**: Python script that converts the commands of the client scripts into messages that are sent to the board
 
 Additionally, the remaining necessary files (that were not created or modified by us) are included, such as:
