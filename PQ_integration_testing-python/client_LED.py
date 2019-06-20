@@ -94,7 +94,7 @@ def send_packets():
             sys.stdout.write('\nCommand received.\nSending to board->') # print with no '\n'
             pq_class.ledOFF()
             packets = pq_class.get_packets()
-            time.sleep(1)
+            time.sleep(0.5)  # to make sure everything changes appropriately
             if packets:
                 for packet in packets:
                     process_frame(packet)
@@ -104,7 +104,7 @@ def send_packets():
             sys.stdout.write('\nCommand received.\nSending to board->')
             pq_class.ledON()
             packets = pq_class.get_packets()
-            time.sleep(1)
+            time.sleep(0.5)   # to make sure everything changes appropriately
             if packets:
                 for packet in packets:
                     process_frame(packet)
