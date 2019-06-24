@@ -351,6 +351,7 @@ If the Arduino disagrees with the subsystem feedback, the user is notified and a
 - Show the python scripts running and giving prints. Show log file
 
 - Also put a log file in the repository
+- Ping errors
 
 ## Issues encountered
 
