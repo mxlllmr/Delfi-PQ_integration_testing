@@ -42,7 +42,7 @@ The Arduino script is the simplest one. It updates every second in the Serial Mo
 
 The script shown below is more complex and requires a more detailed analysis. This is exposed right after it.
 
-The design of this script had to take into account the way that an Arduino can communicate with Python and the way the communications with the LaunchPad are structured. The former requires printing in the board's Serial Monitor, which can be later read by the script. This reading has to be done in a thread, that constantly updates what was just printed, and another thread that sistematically checks (within a time frame, with the function ```time.sleep()```) the pin value.
+The design of this script had to take into account the way that an Arduino can communicate with Python and the way the communications with the LaunchPad are structured. The former requires printing in the board's Serial Monitor, which can be later read by the script. This reading has to be done in a thread, that constantly updates what was just printed, and another thread that systematically checks (within a time frame, with the function ```time.sleep()```) the pin value.
 
 The latter communication is done by sending messages in a structured way to the board, which is emulating, through a local host, the Delfi-PQ software. The feedback is received and has to be interpreted. This also requires a thread that will be used to get the subsystem feedback and a later function that prints what was received.
 
@@ -61,7 +61,9 @@ The ```send_packets``` thread (T2) invokes the ```user_input``` function. This f
 
 The ```receiving``` thread (T3) constantly updates what is printed in the Serial monitor of the Arduino. If a new line is detected, the buffer is split and saved in the variable *lines*. The variable *last_received* (which is the useful variable) gets the 2nd to last line. Then, the buffer is updated. This allows reading at least the last two lines, which can ensure that the Arduino state was updated.
 
-Finally, thread number 4, ```check```, prints on the screen the Arduino's feedback. If this one differs from the user input and/or the subsystem feedback, then an error message is saved in a log file. After this, the *user* variable (last user input) is refreshed to what is read by the Arduino, which prevents repeated errors saved in the log file. This thread also serves as a function to immediately check the Arduino feedback after an input. For this, the *wait_time* value should be ```0```. Else, the function invokes the ```time.sleep()``` with the *wait_time* as an input.
+Finally, thread T4, ```check```, prints on the screen the Arduino's feedback. If this one differs from the user input and/or the subsystem feedback, then an error message is saved in a log file. After this, the *user* variable (last user input) is refreshed to what is read by the Arduino, which prevents repeated errors saved in the log file. This thread also serves as a function to immediately check the Arduino feedback after an input. For this, the *wait_time* value should be ```0```. Else, the function invokes the ```time.sleep()``` with the *wait_time* as an input.
+
+#### Adaptations for ```client_ADB.py``` and ```client_ADB_noUI.py```
 
 
 ## How to use
