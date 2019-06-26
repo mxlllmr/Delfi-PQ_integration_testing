@@ -1,1 +1,0 @@
-(Maybe including that subsystems for small satellites do not consist of any additional units other then the ones absolute needed and cannot monitor the execution of the task; they only send commands and receive replies, but have no guarantee that it actually works.)
