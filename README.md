@@ -21,19 +21,17 @@ Additionally, the remaining necessary files (that were not created or modified b
 - **pq_module.py**: Python script invoked by *client* to allow a connection with the board
 - **EGSE software**: Remaining files in the folder "PQ9EGSE-master"
 
-## Literature background
+## Background
 
 ### Integration testing
 
 Integration testing follows unit testing. Here, the units are combined and tested as a whole. Hence, possible design flaws can be exposed and unforeseen faults between the integrated units can be detected. With this, in this project the several subsystems will be combined and tested in group, where an external board (Arduino) checks the change in a state of a Delfi-PQ subsystem.
 
-### ADB
+### Continuous integration
 
-**??????????**
 
-### Breakout board
+......
 
-**??????????**
 
 ## Design
 
@@ -220,7 +218,7 @@ In order to run ```client_ADB.py``` similar steps as in ```client_LED.py``` need
 ```
 sudo java -jar target/PQ9EGSE-0.1-SNAPSHOT-jar-with-dependencies.jar 
 ```
-in the terminal. Alternatively, the user can replace this file with ```EPS_ADB.xml``` (renaming it to ```EPS.xml```). This file is in the repository. ,  given file can be used, when ......... **cannot find it, but it was written here somewhere????????????????????what do you mean**
+in the terminal. Alternatively, the user can replace this file with ```EPS_ADB.xml``` (renaming it to ```EPS.xml```). This file is in the repository.
 
 2. Choose the ADB port in the EGSE software as explained under point **2** of **Running ```client_LED.py```**.
 
@@ -307,7 +305,7 @@ In order to run ```client_ADB_noUI.py``` similar steps as in ```client_ADB.py```
 ```
 sudo java -jar target/PQ9EGSE-0.1-SNAPSHOT-jar-with-dependencies.jar 
 ```
-in the terminal. If the line 1444 has already been deleted, no further action is necessary. in the terminal. Alternatively, the user can replace this file with ```EPS_ADB.xml``` (renaming it to ```EPS.xml```). This file is in the repository.  when ......... **cannot find it, but it was written here somewhere**
+in the terminal. If the line 1444 has already been deleted, no further action is necessary. in the terminal. Alternatively, the user can replace this file with ```EPS_ADB.xml``` (renaming it to ```EPS.xml```). This file is as said before in the repository.
 
 2. Choose the ADB port in the EGSE software as explained under point **2** of **Running ```client_LED.py```**.
 
@@ -360,9 +358,9 @@ If the Arduino disagrees with the subsystem feedback, the user is notified and a
 
 ## Results
 
-This project had the purpose to do an integrated test of the Delfi-PQ software. This was partially achieved by testing some subsystems and their response to an external input. The change in state was not only reported by the subsystem itself but by an external board (Arduino) as well. All the tests were successfuly demonstrated. 
+This project had the purpose to do an integrated test of the Delfi-PQ software. This was partially achieved by testing some subsystems and their response to an external input. The change in state was not only reported by the subsystem itself but by an external board (Arduino) as well. All the tests were successfully demonstrated. 
 
-The LED changed its state according to the user input and this was observed in both boards' feedback. When the the Arduino did not detect the correct change, an error was saved in a log file. The ADB subsystem replied in the same way as the LED, because here the alteration was not represented by an LED, but by a power bus. The Arduino succesfully reported correct and incorrect (not demanded or non-existing) state changes.
+The LED changed its state according to the user input and this was observed in both boards' feedback. When the Arduino did not detect the correct change, an error was saved in a log file. The ADB subsystem replied in the same way as the LED, because here the alteration was not represented by an LED, but by a power bus. The Arduino succesfully reported correct and incorrect (not demanded or non-existing) state changes.
 
 
 ## Issues encountered
