@@ -23,15 +23,12 @@ Additionally, the remaining necessary files (that were not created or modified b
 
 ## Background
 
-### Integration testing
-
-Integration testing follows unit testing. Here, the units are combined and tested as a whole. Hence, possible design flaws can be exposed and unforeseen faults between the integrated units can be detected. With this, in this project the several subsystems will be combined and tested in group, where an external board (Arduino) checks the change in a state of a Delfi-PQ subsystem.
-
 ### Continuous integration
 
 
-......
+### Integration testing
 
+Integration testing follows unit testing. Here, the units are combined and tested as a whole. Hence, possible design flaws can be exposed and unforeseen faults between the integrated units can be detected. With this, in this project the several subsystems will be combined and tested in group, where an external board (Arduino) checks the change in a state of a Delfi-PQ subsystem.
 
 ## Design
 
