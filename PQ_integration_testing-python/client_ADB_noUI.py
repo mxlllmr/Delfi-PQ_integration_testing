@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 '''
-client_ADB.py
+client_ADB_noUI.py
 
 Authors: Maxi Gallbrecht, Tiago Costa
 
