@@ -15,18 +15,25 @@ Besides this README file, the repository includes the following files:
 - **client_ADB.py**: Python script with UI to change the state of the ADB (Antenna Deployment Board) power bus
 - **client_ADB_noUI.py**: Python script without UI to change the state of the ADB power bus
 - **pq_comms.py**: Python script that converts the commands of the client scripts into messages that are sent to the board
+- **EPS_ADB.xml**: XML file that can be used for the EGSE software while running the ADB python script
 
 Additionally, the remaining necessary files (that were not created or modified by us) are included, such as:
-- **pq_module.py**
-- **EGSE software**: in the folder "PQ9EGSE-master"
+- **pq_module.py**: Python script invoked by *client* to allow a connection with the board
+- **EGSE software**: Remaining files in the folder "PQ9EGSE-master"
 
 ## Literature background
 
 ### Integration testing
 
+Integration testing follows unit testing. Here, the units are combined and tested as a whole. Hence, possible design flaws can be exposed and unforeseen faults between the integrated units can be detected. With this, in this project the several subsystems will be combined and tested in group, where an external board (Arduino) checks the change in a state of a Delfi-PQ subsystem.
+
 ### ADB
 
+**??????????**
+
 ### Breakout board
+
+**??????????**
 
 ## Design
 
@@ -353,20 +360,25 @@ If the Arduino disagrees with the subsystem feedback, the user is notified and a
 
 ## Results
 
-- Show the python scripts running and giving prints. Show log file
+This project had the purpose to do an integrated test of the Delfi-PQ software. This was partially achieved by testing some subsystems and their response to an external input. The change in state was not only reported by the subsystem itself but by an external board (Arduino) as well. All the tests were successfuly demonstrated. 
 
+The LED changed its state according to the user input and this was observed in both boards' feedback. When the the Arduino did not detect the correct change, an error was saved in a log file. The ADB subsystem replied in the same way as the LED, because here the alteration was not represented by an LED, but by a power bus. The Arduino succesfully reported correct and incorrect (not demanded or non-existing) state changes.
+
+
+- Show the python scripts running and giving prints. Show log file
 - Also put a log file in the repository
 - Ping errors
 
 ## Issues encountered
 
-- The connection between LaunchPad and EGSE was not always established. The only remedy was to kill the EGSE instance and rerun it until it worked.
+- The connection between LaunchPad and EGSE was not always established. This was noticed several times, mainly after the VirtualBox was initialized. Sometimes the EGSE doesn't show any context menu to choose a port to connect, others it just shows a blank window. The only remedy was to kill the EGSE instance and rerun it until it worked.
 
-- The LaunchPad LED P1.0 GPIO connection burned and the LED was constantly ON when plugged in. This was remedied by manually connecting/disconnecting the cable accordingly (or not) to the user input.
+- The LaunchPad LED P1.0 GPIO connection burned and the LED was constantly ON when plugged in. This happened suddenly and without any known mistakes (like short circuiting). This was remedied by manually connecting/disconnecting the cable accordingly (or not) to the user input.
 
 
 ## Future changes and recommendations
-- Instead of connecting to the LED, this can be used to verify the funcionality of another Delfi-PQ subsystem
+- The scripts were written to analyse just one possible state change. This could be expanded into analysing a third for state (e.g. a blinking LED) or analysing several subsystems at once. In the latter, the integration testing would be more realistic, comparing it to the final complex system. So, several inputs could be taken into account by the same script and these changes would be reported in a *info* log file, that records every input and output. Any possible errors would be save in a *error* log file (like the one in this project).
 
-- ? We need more
+- The scripts relied on a rather 'abrupt' way to exit, with the ```CTRL+C``` command. This could be adapted with the UI, by creating an exit command (e.g. with ```0```).
 
+- The user interface that was developed relied on a terminal interaction. There are several GUI libraries available for python that would facilitate the integration testing of the Delfi-PQ software. A GUI would allow to check the Arduino feedback instantly, with a designated button, a simpler user input, and many other useful options that, in the UI, would make the user interaction complex and not efficient. This (future) software would enable a fast test of the subsystems and could even be adapted for future projects.
