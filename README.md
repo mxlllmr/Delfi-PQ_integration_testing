@@ -95,7 +95,7 @@ The Serial Monitor can be checked to verify its normal functioning. To help with
 #####  Hardware setup
 After connecting the Launchpad and the Arduino to the host computer, via USB ports, both need to be connected with each other as it is shown in the picture below. The GND (ground) pins of both boards need to be connected, as well as the pin P1.0 of the Launchpad's LED1 to the pin 7 on the Arduino board. If another pin instead of pin 7 is prefered, the respective pin number has to be modified in ```arduino_feedback.ino``` and the software needs to be compiled and uploaded to the Arduino (as explained above).
 
-<img src="https://user-images.githubusercontent.com/51790860/59844570-84278400-935b-11e9-9541-93f04d25ead1.jpg" width="400"/>
+<img src="https://user-images.githubusercontent.com/51790860/60188387-7bd5ba00-982f-11e9-9107-cccfd8d4589e.jpg" width="400"/>
 
 ##### Running ```client_LED.py```
 
@@ -193,7 +193,7 @@ Log file:
 #####  Hardware setup
 Similar to the previous script, the Arduino and ADB subsystem need to be connected after both have been connected to the host computer via the USB ports. The image below shows the necessary wiring. The GND (ground) pins of both boards need to be connected, as well as the pin belonging to the respective power bus of the ADB (U1, U2, U3, or U4) that is selected to be tested with the pin 7 on the Arduino board. As before, if other pin, instead of pin 7, is prefered, the respective pin number has to be modifiued in ```arduino_feedback.ino``` and the software needs to be compiled and uploaded to the Arduino, as explained before. 
 
-<img src="https://user-images.githubusercontent.com/51790860/59849455-f8682480-9367-11e9-863c-5a4f44432d0d.jpg" width="600"/>
+<img src="https://user-images.githubusercontent.com/51790860/60188448-91e37a80-982f-11e9-87b8-08024e5c767d.jpg" width="600"/>
 
 ##### Running ```client_ADB.py```
 
@@ -345,6 +345,10 @@ Each ```#``` represents a successful ping with the ADB. 10 pings are sent. If a 
 <img src="https://user-images.githubusercontent.com/51790860/59851296-8e9e4980-936c-11e9-9d07-0ebbdfb3f5b4.jpg"/>
 
 If the Arduino disagrees with the subsystem feedback, the user is notified and an ERROR message is saved in the external log_BUS_noUI.log file with the same output as in ```client_ADB.py```.
+
+
+<img src="https://user-images.githubusercontent.com/51790860/60188508-b17aa300-982f-11e9-90dd-d4a80d88be9b.jpg" width="600"/>
+<img src="https://user-images.githubusercontent.com/51790860/60188653-f0105d80-982f-11e9-9c56-c2514e5418a3.jpg" width="600"/>
 
 ## Results
 
