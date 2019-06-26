@@ -51,7 +51,7 @@ The latter communication is done by sending messages in a structured way to the 
 #### Python block diagrams
 
 
-<img src="https://user-images.githubusercontent.com/50111548/59885728-243bd800-9371-11e9-83f9-208de35e9ae1.jpg"/>
+<img src="https://user-images.githubusercontent.com/50111548/60195107-617bec00-97ef-11e9-8da4-78b836ade043.jpg"/>
 
 After variables initialization and defining the ```pq_class``` with the local host settings and the functions from ```pq_comms.py``` and ```pq_module.py``` (as it can be seen in the source code), the script starts by printing a message to the user in ```introduction``` (0). After this, the user is asked to choose the Arduino port (1). If the input is incorrect, the user is required to retry. Only after a ```0``` or a ```1``` is read from the board 3 times, the program proceeds (to a valid port, the program tries to get a response 1000000 times before printing a 'try again' message).
 
@@ -67,6 +67,7 @@ Finally, thread T4, ```check```, prints on the screen the Arduino's feedback. If
 
 #### Adaptations for ```client_ADB.py``` and ```client_ADB_noUI.py```
 
+**maxi- put what you changed, explaining that a new diagram for each script would be redundant, due to the fact that this alterations are minor**
 
 ## How to use
 The required hard- and sorftware needed to execute the scripts found in this repository are listed below. Further, it is explained in detail how to use the scripts.
