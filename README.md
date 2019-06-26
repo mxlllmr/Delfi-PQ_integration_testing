@@ -365,10 +365,6 @@ This project had the purpose to do an integrated test of the Delfi-PQ software. 
 The LED changed its state according to the user input and this was observed in both boards' feedback. When the the Arduino did not detect the correct change, an error was saved in a log file. The ADB subsystem replied in the same way as the LED, because here the alteration was not represented by an LED, but by a power bus. The Arduino succesfully reported correct and incorrect (not demanded or non-existing) state changes.
 
 
-- Show the python scripts running and giving prints. Show log file
-- Also put a log file in the repository
-- Ping errors
-
 ## Issues encountered
 
 - The connection between LaunchPad and EGSE was not always established. This was noticed several times, mainly after the VirtualBox was initialized. Sometimes the EGSE doesn't show any context menu to choose a port to connect, others it just shows a blank window. The only remedy was to kill the EGSE instance and rerun it until it worked.
