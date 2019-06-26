@@ -72,7 +72,10 @@ Finally, thread T4, ```check```, prints on the screen the Arduino's feedback. If
 
 #### Adaptations for ```client_ADB.py``` and ```client_ADB_noUI.py```
 
-**maxi- put what you changed, explaining that a new diagram for each script would be redundant, due to the fact that this alterations are minor**
+In order to work with the ADB instead of the LaunchPad LED the before explained python script needs to be altered. The general structure of ```client_ADB.py``` and ```client_ADB_noUI.py``` is similar to the structure of ```client_LED.py``` and therefore including another flow chart is considered to be redundant.
+In ```client_ADB.py``` a function asking the user to select the power bus number ```choose_bus_number()``` which shall be used is included and invoked right after ```initialization()``` and before T2, T3, and T4 are initialized. Within T2 the package is sent refering to the commands in ```pq_comms.py ``` appropriate for commanding the power bus (busON() and busOFF()). 
+In ```client_ADB_noUI.py``` the Bus1Sw is turned on and off once and the Arduino feedback is checked immediately after the command is sent to the board. Following, T4 is omitted here, and ```check()``` is called right after the respective command is sent to the board within T2 (```send_package()```). Further, the user is not asked to choose a power bus, but Bus1Sw is predefined within the code (this may be adaped to a different bus in future projects).
+
 
 ## How to use
 The required hard- and sorftware needed to execute the scripts found in this repository are listed below. Further, it is explained in detail how to use the scripts.
