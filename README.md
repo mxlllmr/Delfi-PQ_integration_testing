@@ -388,17 +388,17 @@ Similar to the previous setups, the Arduino needs to be connected to the breakou
 
 #### Running ```client_pot_EPS.py``` and ```client_pot_EPS_noUI.py```
 
-For ```client_pot_EPS.py``` the python script and ```arduino_breakoutboard.ino```, compare [[5]](https://www.instructables.com/id/X9C103P-Basic-Operation/), have to be operated parallel with the Arduino IDE, as well as the serial monitor opened. Therefore the ```Serial.print()``` commands within the Arduino script should be uncommented for a better user experience. Here the user has the option to set the potentiometer either to a LOW or a HIGH value with entering '1' or '3' into the serial monitor.
-After that the python script ```client_pot_EPS.py``` is used to request the current value of the ESP bus 3, using the command '0' in the terminal. ```client_pot_EPS.py``` is guiding the user similarily to the aforementioned scripts.
+For ```client_pot_EPS.py``` the python script and ```arduino_breakoutboard.ino```, compare [[5]](https://www.instructables.com/id/X9C103P-Basic-Operation/), have to be operated parallel with the Arduino IDE, as well as the serial monitor opened. Therefore the ```Serial.print()``` commands within the Arduino script should be uncommented for better user experience. Here the user has the option to set the potentiometer either to a LOW or a HIGH value with entering '1' or '3' into the serial monitor.
+After that the python script ```client_pot_EPS.py``` is used to request the current value of the ESP bus 3, using the command '0' in the terminal. ```client_pot_EPS.py``` is guiding the user similarly to the aforementioned scripts.
 
-For ```client_pot_EPS_noUI.py``` the user should upload ```arduino_breakoutboard.ino``` with the ```Serial.print()``` commands commented after which Arduino IDE is closed. Now```client_pot_EPS_noUI.py``` is executed and is guiding the user through the programs steps. Similar to ```client_ADB_noUI.py``` the only user input requested is to select the correct Arduino port. After that the script runs autonomously after which it exits. First the python script sends a command directly to the Arduino to set the potentiometer to LOW. Then, a housekeeping request is sent to the EPS and the current value of bus 3 is printed to the terminal. After that, another command is sent to the Arduino to set the potentiometer to HIGH and the housekeeping request and printing of the current value is repeated.
+For ```client_pot_EPS_noUI.py``` the user should upload ```arduino_breakoutboard.ino``` with the ```Serial.print()``` commands commented after which Arduino IDE is closed. Now```client_pot_EPS_noUI.py``` is executed and is guiding the user through the program's steps. Similar to ```client_ADB_noUI.py``` the only user input requested is to select the correct Arduino port. After that, the script runs and exits autonomously. First, the python script sends a command directly to the Arduino to set the potentiometer to LOW. Then, a housekeeping request is sent to the EPS and the current value of bus 3 is printed to the terminal. After that, another command is sent to the Arduino to set the potentiometer to HIGH and the housekeeping request and printing of the current value are repeated.
 
 
 ## Results
 
-This project had the purpose to do an integrated test of the Delfi-PQ software. This was partially achieved by testing some subsystems and their response to an external input. The change in state was not only reported by the subsystem itself but by an external board (Arduino) as well. All the tests were successfully demonstrated. 
+This project had the purpose to do an integrated test of the Delfi-PQ software. This was partially achieved by testing some subsystems and their response to external input. The change in state was not only reported by the subsystem itself but by an external board (Arduino) as well. All the tests were successfully demonstrated. 
 
-The LED changed its state according to the user input and this was observed in both boards' feedback. When the Arduino did not detect the correct change, an error was saved in a log file. The ADB subsystem replied in the same way as the LED, because here the alteration was not represented by an LED, but by a power bus. The Arduino succesfully reported correct and incorrect (not demanded or non-existing) state changes.
+The LED changed its state according to the user input and this was observed in both boards' feedback. When the Arduino did not detect the correct change, an error was saved in a log file. The ADB subsystem replied in the same way as the LED, because here the alteration was not represented by an LED, but by a power bus. The Arduino successfully reported correct and incorrect (not demanded or non-existing) state changes.
 
 The digital potentiometer was controlled successfully through the Arduino. The resistance value changed correspondingly with the executed commands. The verifying process of the EPS sensor readings was performed and the current values received from the housekeeping request were adequate.
 
@@ -406,17 +406,17 @@ The digital potentiometer was controlled successfully through the Arduino. The r
 
 - The connection between LaunchPad and EGSE was not always established. This was noticed several times, mainly after the VirtualBox was initialized. Sometimes the EGSE doesn't show any context menu to choose a port to connect, others it just shows a blank window. The only remedy was to kill the EGSE instance and rerun it until it worked.
 
-- The LaunchPad LED P1.0 GPIO connection burned and the LED was constantly ON when plugged in. This happened suddenly and without any known mistakes (like short circuiting). This was remedied by manually connecting/disconnecting the cable accordingly (or not) to the user input.
+- The LaunchPad LED P1.0 GPIO connection burned and the LED was constantly ON when plugged in. This happened suddenly and without any known mistakes (like short-circuiting). This was remedied by manually connecting/disconnecting the cable accordingly (or not) to the user input.
 
 
 ## Future changes and recommendations
-- The scripts were written to analyse just one possible state change. This could be expanded into analysing a third for state (e.g. a blinking LED) or analysing several subsystems at once. In the latter, the integration testing would be more realistic, comparing it to the final complex system. So, several inputs could be taken into account by the same script and these changes would be reported in a *info* log file, that records every input and output. Any possible errors would be save in a *error* log file (like the one in this project).
+- The scripts were written to analyse just one possible state change. This could be expanded into analysing a third state (e.g. a blinking LED) or analysing several subsystems at once. In the latter, the integration testing would be more realistic, comparing it to the final complex system. So, several inputs could be taken into account by the same script and these changes would be reported in an *info* log file, that records every input and output. Any possible errors would be saved in an *error* log file (like the one in this project).
 
 - The scripts relied on a rather 'abrupt' way to exit, with the ```CTRL+C``` command. This could be adapted with the UI, by creating an exit command (e.g. with ```0```).
 
-- The user interface that was developed relied on a terminal interaction. There are several GUI libraries available for python that would facilitate the integration testing of the Delfi-PQ software. A GUI would allow to check the Arduino feedback instantly, with a designated button, a simpler user input, and many other useful options that, in the UI, would make the user interaction complex and not efficient. This (future) software would enable a fast test of the subsystems and could even be adapted for future projects.
+- The user interface that was developed relied on a terminal interaction. There are several GUI libraries available for python that would facilitate the integration testing of the Delfi-PQ software. A GUI would allow checking the Arduino feedback instantly, with a designated button, a simpler user input, and many other useful options that, in the UI, would make the user interaction complex and not efficient. This (future) software would enable a fast test of the subsystems and could even be adapted for future projects.
 
-- The ```client_pot_EPS.py``` and ```client_pot_EPS_noUI.py``` may not entirely be bug free and sensitive to errors. It is advised to exercise the practice  continuous integration, as explained before, to refine the scripts presented in this repository.
+- The ```client_pot_EPS.py``` and ```client_pot_EPS_noUI.py``` may not entirely be bug-free and sensitive to errors. It is advised to exercise the practice of continuous integration, as explained before, to refine the scripts presented in this repository.
 
 ## References
 
