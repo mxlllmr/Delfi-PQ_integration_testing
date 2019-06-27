@@ -357,14 +357,36 @@ Each ```#``` represents a successful ping with the ADB. 10 pings are sent. If a 
 
 If the Arduino disagrees with the subsystem feedback, the user is notified and an ERROR message is saved in the external log_BUS_noUI.log file with the same output as in ```client_ADB.py```.
 
-### Integrating a digital potentiometer (```client_pot_EPS.py``` and ```client_pot_EPS_noUI.py```)
+### Integrating a digital potentiometer to verify the EPS current consumption
 
 #### Additional hardware and setup
-- **DC 3V-5V X9c103S Digital Potentiometer 10K**: The digital potentiometer is integrated into a breakout board in order to allow easy implementation within the units' setup (see the images below for the respective wiring).
+- **DC 3V-5V X9c103S Digital Potentiometer 10K**: The digital potentiometer is integrated into a breakout board in order to allow easy implementation within the units' setup. .... what is a digital potentiometer ..... what is it used for
+
+Similar to the previous explainations, the Arduino and EPS subsystem and the breakout board need to be connected after both have been connected to the host computer via the USB ports. The image below shows the necessary wiring.
+
+**Arduino to breakout board**: 
+- 5V pin to VCC
+- GND to GND
+- GND to VL
+- GPIO 8 to U/D
+- GPIO 9 to INC
+- GPIO 10 to CS
+
+**Arduino to EPS**: 
+- GND to GND
+
+**EPS to breakout board**: 
+- U3 to VW
+
+The GND (ground) pins of both boards need to be connected, as well as the pin belonging to the respective power bus of the ADB (U1, U2, U3, or U4) that is selected to be tested with the pin 7 on the Arduino board. As before, if other pin, instead of pin 7, is prefered, the respective pin number has to be modifiued in ```arduino_feedback.ino``` and the software needs to be compiled and uploaded to the Arduino, as explained before. 
+(see the images below for the respective wiring).
 
 <img src="https://user-images.githubusercontent.com/51790860/60188508-b17aa300-982f-11e9-90dd-d4a80d88be9b.jpg" width="800"/>
 <img src="https://user-images.githubusercontent.com/51790860/60188653-f0105d80-982f-11e9-9c56-c2514e5418a3.jpg" width="400"/>
 
+
+
+#### ```client_pot_EPS.py``` and ```client_pot_EPS_noUI.py```
 
 
 
