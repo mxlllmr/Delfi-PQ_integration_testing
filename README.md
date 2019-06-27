@@ -381,3 +381,6 @@ The LED changed its state according to the user input and this was observed in b
 - The scripts relied on a rather 'abrupt' way to exit, with the ```CTRL+C``` command. This could be adapted with the UI, by creating an exit command (e.g. with ```0```).
 
 - The user interface that was developed relied on a terminal interaction. There are several GUI libraries available for python that would facilitate the integration testing of the Delfi-PQ software. A GUI would allow to check the Arduino feedback instantly, with a designated button, a simpler user input, and many other useful options that, in the UI, would make the user interaction complex and not efficient. This (future) software would enable a fast test of the subsystems and could even be adapted for future projects.
+
+## References
+
