@@ -10,7 +10,8 @@ This project will focus on the design and implementation of a solution for verif
 
 ## Repository overview
 Besides this README file, the repository includes the following files:
-- **arduino_feedback.ino**: Arduino script that must be uploaded to the Arduino board
+- **arduino_feedback.ino**: Arduino script that must be uploaded to the Arduino board for ```client_LED.py```, ```client_ADB.py``` and ```client_ADB_noUI.py```
+- **arduino_breakoutboard.ino**: Arduino script that must be uploaded to the Arduino board for ```client_pot_EPS.py``` and ```client_pot_EPS_noUI.py```
 - **client_LED.py**: Python script with user input to change the state of the LED
 - **client_ADB.py**: Python script with user input to change the state of the ADB (Antenna Deployment Board) power bus
 - **client_ADB_noUI.py**: Python script without user input to change the state of the ADB power bus
@@ -72,9 +73,10 @@ Finally, thread T4, ```check```, prints on the screen the Arduino's feedback. If
 
 #### Adaptations for ```client_ADB.py``` and ```client_ADB_noUI.py```
 
-In order to work with the ADB instead of the LaunchPad LED the before explained python script needs to be altered. The general structure of ```client_ADB.py``` and ```client_ADB_noUI.py``` is similar to the structure of ```client_LED.py``` and therefore including another flow chart is considered to be redundant.
+In order to work with the ADB instead of the LaunchPad LED the before explained python script needs to be altered. The general structure of ```client_ADB.py``` and ```client_ADB_noUI.py``` is similar to the structure of ```client_LED.py``` and therefore including another flow chart is considered to be redundant. During the ```initialization()``` the ping command is send to the ADB instead of the DEBUG, additionally if here one of the ping requests is not sent successfully a log entry is made, refere to the **How to use** section for comparison.
+
 In ```client_ADB.py``` a function asking the user to select the power bus number ```choose_bus_number()``` which shall be used is included and invoked right after ```initialization()``` and before T2, T3, and T4 are initialized. Within T2 the package is sent refering to the commands in ```pq_comms.py ``` appropriate for commanding the power bus (busON() and busOFF()). 
-In ```client_ADB_noUI.py``` the Bus1Sw is turned on and off once and the Arduino feedback is checked immediately after the command is sent to the board. Following, T4 is omitted here, and ```check()``` is called right after the respective command is sent to the board within T2 (```send_package()```). Further, the user is not asked to choose a power bus, but Bus1Sw is predefined within the code (this may be adaped to a different bus in future projects).
+In ```client_ADB_noUI.py``` the Bus1Sw is turned on and off once and the Arduino feedback is checked immediately after the command is sent to the board. Following, T4 is omitted here, and ```check()``` is called right after the respective command is sent to the board within T2 (```send_package()```). Further, the user is not asked to choose a power bus, but Bus1Sw is predefined within the code (this may be adaped to a different bus in future projects). 
 
 
 ## How to use
