@@ -359,12 +359,14 @@ If the Arduino disagrees with the subsystem feedback, the user is notified and a
 
 ### Integrating a digital potentiometer to verify the EPS current consumption
 
+Goal is to verify that the 
+
 #### Additional hardware and setup
 - **DC 3V-5V X9c103S Digital Potentiometer 10K**: The digital potentiometer is integrated into a breakout board in order to allow easy implementation within the units' setup. .... what is a digital potentiometer ..... what is it used for
 
-Similar to the previous explainations, the Arduino and EPS subsystem and the breakout board need to be connected after both have been connected to the host computer via the USB ports. The image below shows the necessary wiring.
+Similar to the previous setups, the Arduino needs to be connected to the breakout board and the EPS subsystem, after both, the EPS and the Arduino have been connected to the host computer via the USB ports. The images below show the necessary wiring.
 
-**Arduino to breakout board**: 
+**Arduino to breakout board connections**: 
 - 5V pin to VCC
 - GND to GND
 - GND to VL
@@ -372,22 +374,24 @@ Similar to the previous explainations, the Arduino and EPS subsystem and the bre
 - GPIO 9 to INC
 - GPIO 10 to CS
 
-**Arduino to EPS**: 
+**Arduino to EPS connections**: 
 - GND to GND
 
-**EPS to breakout board**: 
+**EPS to breakout board connections**: 
 - U3 to VW
-
-The GND (ground) pins of both boards need to be connected, as well as the pin belonging to the respective power bus of the ADB (U1, U2, U3, or U4) that is selected to be tested with the pin 7 on the Arduino board. As before, if other pin, instead of pin 7, is prefered, the respective pin number has to be modifiued in ```arduino_feedback.ino``` and the software needs to be compiled and uploaded to the Arduino, as explained before. 
-(see the images below for the respective wiring).
 
 <img src="https://user-images.githubusercontent.com/51790860/60297669-01896080-9929-11e9-8356-8349479db8da.jpg" width="800"/>
 <img src="https://user-images.githubusercontent.com/51790860/60188653-f0105d80-982f-11e9-9c56-c2514e5418a3.jpg" width="400"/>
 
+#### Running ```client_pot_EPS.py``` and ```client_pot_EPS_noUI.py```
+
+For ```client_pot_EPS.py``` the python script and ```arduino_breakoutboard.ino``` have to be operated parallel with the Arduino IDE, as well as the serial monitor opened. Therefore the ```Serial.print()``` commands within the Arduino script should be uncommented for a better user experience. Here the user has the option to set the potentiometer either to a LOW or a HIGH value with entering '1' or '3' into the serial monitor.
+After that the python script ```client_pot_EPS.py``` is used to request the current value of the ESP bus 3, using the command '0' in the terminal. ```client_pot_EPS.py``` is guiding the user similarily to the aforementioned scripts.
+
+For ```client_pot_EPS_noUI.py``` the user should upload ```arduino_breakoutboard.ino``` with the ```Serial.print()``` commands commented after which Arduino IDE is closed. Now```client_pot_EPS_noUI.py``` is executed and is guiding the user through the programs steps. Similar to ```client_ADB_noUI.py``` the only user input requested is to select the correct Arduino port. After that the script runs autonomously after which it exits. First the python script sends a command directly to the Arduino to set the potentiometer to LOW. Then, a housekeeping request is sent to the EPS and the current value of bus 3 is printed to the terminal. After that another command is sent to the Arduino to set the potentiometer to HIGH and the housekeeping request and printing of the current value is repeted.
 
 
-#### ```client_pot_EPS.py``` and ```client_pot_EPS_noUI.py```
-
+It has to be mentioned that ```client_pot_EPS.py``` and ```client_pot_EPS_noUI.py``` may not entirely be bug free and sensitive to errors. Here the user is advised to exercise the practise of continuous integration, as explained before, to refine the scripts presented in this repository.
 
 
 ## Results
