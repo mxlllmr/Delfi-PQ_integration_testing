@@ -69,12 +69,11 @@ FUNCTION send_packets
 
     Input:None
     Output:None
-    Purpose:To send a command to the board. First, it calls the 'user_input'
-            function, saving the previous input, in case the next one is
-            not understood. As the input function stalls the thread, in case
-            the program as finished, an extra verification of the 'working'
-            flag is performed. Then, according to the user input, it either
-            calls a function to turn ON or OFF the powerbus.
+    Purpose:To send a command to the board. It first
+            calls a function to turn the powerbus ON after 
+            which a check is performed. Finally a function 
+            is called to turn the powerbus ON and a check 
+            is performed again before the program exits.
 
 '''
 def send_packets():
@@ -271,7 +270,7 @@ FUNCTION initialization
     Output:None
     Purpose:Verifies the connection with the board by pinging it 10 times. Only
             after 10 successful tries the main program continues. It pings once
-            every second.
+            every second. Each unsuccesful ping is logged.
 '''
 def initialization():
     connected=False
