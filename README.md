@@ -25,6 +25,7 @@ Additionally, the remaining necessary files (that were not created or modified b
 
 ### Continuous integration
 
+Continuous intergration is a software development approach where members of a team or a group of people integrate code changes into shared repositories. Instead of adapting major alterations over a greater period of time minor changes are implemented more frequently, and often on a daily basis. After the alterations are merged to the repository the integration is verified immediately by built and unit tests to guarantee the code's functionality and to detect possible emerging integration problems. The advantage of continuous integration is that integration errors are discovered very early, are identified and located more easily, and hence can be eradicated immediately which leads to an overall reduction in intergration problems and a decrease in debugging time, followed by an overall improvement of the software's quality combined with the benefit of shorter time periods between verified software updates. Likewise due to the continuous integration process this project kept adapting to different design demands from where the multiple remotely different variations of python scrips within this repository originate and henceforth the user is asked to integrate favored changes accordingly.
 
 ### Integration testing
 
