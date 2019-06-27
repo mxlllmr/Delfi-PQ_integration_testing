@@ -357,9 +357,9 @@ Each ```#``` represents a successful ping with the ADB. 10 pings are sent. If a 
 
 If the Arduino disagrees with the subsystem feedback, the user is notified and an ERROR message is saved in the external log_BUS_noUI.log file with the same output as in ```client_ADB.py```.
 
-### Integrating a digital potentiometer to verify the EPS current consumption
+### Integrating a digital potentiometer to verify the EPS current consumption reading
 
-Goal is to verify that the current consumption of the EPS bus line 3 read with its sensors is correct. For that a digital potentiometer is used, which acts like an analog potentiometer (variable resistor) but the resistance value is changed via digital inputs [3](). The digital potentiometer is connected to the Arduino that controles the potentiometer's resitance value influencing the current consumption to the connected bus. Through that the current in the EPS bus line 3 can be changed, which is captured by the EPS' internal sensors. The sensor value can be observed by the user with the respective python scripts that receives the current value of bus 3 through the houskeeping request sent to the EPS. Following, if the observed current value coincides with the set resistance value, the EPS sensor readings are considered to be correct.
+Goal is to verify that the current consumption of the EPS bus line 3 read with its sensors is correct. For that a digital potentiometer is used, which acts like an analog potentiometer (variable resistor) but the resistance value is changed via digital inputs [3](https://www.analogictips.com/what-is-a-digital-potentiometer/). The digital potentiometer is connected to the Arduino that controles the potentiometer's resitance value influencing the current consumption to the connected bus. Through that the current in the EPS bus line 3 can be changed, which is captured by the EPS' internal sensors. The sensor value can be observed by the user with the respective python scripts that receives the current value of bus 3 through the houskeeping request sent to the EPS. Following, if the observed current value coincides with the set resistance value, the EPS sensor readings are considered to be correct.
 
 #### Additional hardware and setup
 - **DC 3V-5V X9c103S Digital Potentiometer 10K**: The digital potentiometer is embedded into a breakout board in order to allow easy implementation within the setup. Through the breakout board connecting the units with wires is made easier.
@@ -421,6 +421,6 @@ The LED changed its state according to the user input and this was observed in b
 
 [2] *What Is Continuous Integration and How to Benefit From It?* https://nevercode.io/blog/what-is-continuous-integration-and-how-to-benefit-from-it/ Viewed: 26.06.2019
 
-[3]
+[3] *Digital Potentiometer or Digipot: Applications and Uses*, 2017. https://www.analogictips.com/what-is-a-digital-potentiometer/ Viewed: 27.06.2019
 
 [4] *X9C103P Basic Operation* https://www.instructables.com/id/X9C103P-Basic-Operation/ Viewed: 26.06.2019
