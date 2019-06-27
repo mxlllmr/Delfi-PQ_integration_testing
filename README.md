@@ -353,6 +353,10 @@ Each ```#``` represents a successful ping with the ADB. 10 pings are sent. If a 
 
 If the Arduino disagrees with the subsystem feedback, the user is notified and an ERROR message is saved in the external log_BUS_noUI.log file with the same output as in ```client_ADB.py```.
 
+### Integrating the digital potentiometer
+
+#### Additional hardware and setup
+- **DC 3V-5V X9c103S Digital Potentiometer 10K**: The digital potentiometer is integrated into a breakout board in order to allow easy implementation within the units' setup (see the images below forthe respective wiring).
 
 <img src="https://user-images.githubusercontent.com/51790860/60188508-b17aa300-982f-11e9-90dd-d4a80d88be9b.jpg" width="800"/>
 <img src="https://user-images.githubusercontent.com/51790860/60188653-f0105d80-982f-11e9-9c56-c2514e5418a3.jpg" width="400"/>
