@@ -381,7 +381,7 @@ Similar to the previous explainations, the Arduino and EPS subsystem and the bre
 The GND (ground) pins of both boards need to be connected, as well as the pin belonging to the respective power bus of the ADB (U1, U2, U3, or U4) that is selected to be tested with the pin 7 on the Arduino board. As before, if other pin, instead of pin 7, is prefered, the respective pin number has to be modifiued in ```arduino_feedback.ino``` and the software needs to be compiled and uploaded to the Arduino, as explained before. 
 (see the images below for the respective wiring).
 
-<img src="https://user-images.githubusercontent.com/51790860/60188508-b17aa300-982f-11e9-90dd-d4a80d88be9b.jpg" width="800"/>
+<img src="https://user-images.githubusercontent.com/51790860/60297669-01896080-9929-11e9-8356-8349479db8da.jpg" width="800"/>
 <img src="https://user-images.githubusercontent.com/51790860/60188653-f0105d80-982f-11e9-9c56-c2514e5418a3.jpg" width="400"/>
 
 
