@@ -387,10 +387,6 @@ The LED changed its state according to the user input and this was observed in b
 
 ## References
 
-[1] *Continuous Integration Explained.*
+[1] *Continuous Integration Explained.* https://aws.amazon.com/devops/continuous-integration/  Viewed: 26.06.2019
 
-    https://aws.amazon.com/devops/continuous-integration/ Viewed: 26.06.2019
-
-[2] *What Is Continuous Integration and How to Benefit From It?*
-
-    https://nevercode.io/blog/what-is-continuous-integration-and-how-to-benefit-from-it/ Viewed: 26.06.2019
+[2] *What Is Continuous Integration and How to Benefit From It?* https://nevercode.io/blog/what-is-continuous-integration-and-how-to-benefit-from-it/ Viewed: 26.06.2019
